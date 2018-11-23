@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.11 - 2018-11-23
+
+### Changed
+- Always send the `Content-Type` header
+
 ## 0.1.10 - 2018-10-24
 
 ### Fixed
