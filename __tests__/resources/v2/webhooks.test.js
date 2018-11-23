@@ -23,9 +23,19 @@ describe('API - 2.0 - Resources - Blocks', () => {
   })
 
   it('should call "create" method', async () => {
-    const response = await resource.create()
+    const response = await resource.create({
+      'event': 'block.forged',
+      'target': 'https://httpbin.org/post',
+      'conditions': [
+        {
+          'key': 'generatorPublicKey',
+          'condition': 'eq',
+          'value': '032fcfd19f0e095bf46bd3ada87e283720c405249b1be1a70bad1d5f20095a8515'
+        }
+      ]
+    })
 
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(201)
   })
 
   it('should call "get" method', async () => {
@@ -35,20 +45,14 @@ describe('API - 2.0 - Resources - Blocks', () => {
   })
 
   it('should call "update" method', async () => {
-    const response = await resource.update('123')
+    const response = await resource.update('123', { 'event': 'block.forged' })
 
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(204)
   })
 
   it('should call "delete" method', async () => {
     const response = await resource.delete('123')
 
-    expect(response.status).toBe(200)
-  })
-
-  it('should call "events" method', async () => {
-    const response = await resource.events()
-
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(204)
   })
 })
