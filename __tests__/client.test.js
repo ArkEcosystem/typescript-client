@@ -172,6 +172,20 @@ describe('API - Client', () => {
       expect(foundPeers).not.toContainEqual(notOkPeer)
     })
 
+    it('should check 2 peers', async () => {
+      const data = {
+        success: true,
+        peers: peers
+      }
+
+      const peerRespond = jest.fn(() => { return [200, data] })
+      httpMock.onGet(/http.*\/api\/peers/).reply(() => (peerRespond()))
+
+      const foundPeers = await Client.findPeers('devnet')
+      expect(foundPeers).toEqual(arrayContaining(peers))
+      expect(peerRespond).toHaveBeenCalledTimes(2)
+    })
+
     xdescribe('when a peer is not valid', () => {
       it('tries others', () => {
       })
