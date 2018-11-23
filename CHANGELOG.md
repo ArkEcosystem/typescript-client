@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.12 - 2018-11-23
+
+### Changed
+- Get peer list from 2 peers
+
 ## 0.1.11 - 2018-11-23
 
 ### Changed
