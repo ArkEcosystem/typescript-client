@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## 0.1.13 - 2018-11-36
+## 0.1.14 - 2018-11-27
+
+### Changed
+- Update mainnet peer list
+
+## 0.1.13 - 2018-11-26
 
 ### Changed
 - Update mainnet peer list
