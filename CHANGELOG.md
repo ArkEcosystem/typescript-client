@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.16 - 2018-12-04
+
+### Fixed
+- Update mainnet peer addresses to match Core
+
 ## 0.1.15 - 2018-12-04
 
 ### Fixed
