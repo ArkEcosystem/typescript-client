@@ -11,7 +11,6 @@ const format = (dist) => ({
   filename: path.basename(dist)
 })
 
-// bundle without crypto package
 const browserConfig = {
   entry: resolve(pkg.main),
   target: 'web',
