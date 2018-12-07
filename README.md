@@ -15,7 +15,7 @@ yarn add @arkecosystem/client
 If you want to use the CDN version:
 
 ```html
-<script src="https://unpkg.com/@arkecosystem/client/dist/bundle.umd.js"></script>
+<script src="https://unpkg.com/@arkecosystem/client/dist/index.umd.js"></script>
 ```
 
 ## Usage
