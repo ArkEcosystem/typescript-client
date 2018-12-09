@@ -5,7 +5,7 @@ const { arrayContaining } = expect
 
 const Client = require('../lib')
 const HttpClient = require('../lib/http')
-const ApiResource = require('../lib/resources/v2/transactions')
+const ApiResource = require('../lib/resources/api/transactions')
 const initialPeers = require('../lib/peers')
 
 // https://github.com/facebook/jest/issues/3601

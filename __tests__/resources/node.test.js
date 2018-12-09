@@ -1,7 +1,7 @@
-const Client = require('../../../lib')
-const ApiResource = require('../../../lib/resources/v2/node')
+const Client = require('../../lib')
+const ApiResource = require('../../lib/resources/api/node')
 
-const configureMocks = require('../../mocks/v2')
+const configureMocks = require('../mocks')
 const host = 'https://example.net:4003'
 configureMocks({ host })
 
