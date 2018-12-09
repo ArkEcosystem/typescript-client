@@ -5,7 +5,7 @@ const { arrayContaining } = expect
 
 const Client = require('../lib')
 const HttpClient = require('../lib/http')
-const ApiResource = require('../lib/resources/v1/transactions')
+const ApiResource = require('../lib/resources/v2/transactions')
 const initialPeers = require('../lib/peers')
 
 // https://github.com/facebook/jest/issues/3601
@@ -41,7 +41,7 @@ describe('API - Client', () => {
     })
 
     it('should use 1 as the default API version', () => {
-      expect(client.version).toBe(1)
+      expect(client.version).toBe(2)
     })
 
     it('should set the API version', () => {
@@ -79,25 +79,6 @@ describe('API - Client', () => {
     })
 
     xit('should connect randomly to the initial peers', () => {
-    })
-
-    describe('on version 1', () => {
-      it('should return a sorted list of peers', async () => {
-        const data = {
-          success: true,
-          peers
-        }
-
-        httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
-
-        const foundPeers = await Client.findPeers('devnet', 1)
-        expect(foundPeers).toEqual([
-          peers[1],
-          peers[3],
-          peers[0],
-          peers[2]
-        ])
-      })
     })
 
     describe('on version 2', () => {

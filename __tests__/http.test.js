@@ -50,9 +50,9 @@ describe('API - HTTP Client', () => {
         expect(client.version).toBe(3)
       })
 
-      it('should use 1 when is not present', () => {
+      it('should use 2 when is not present', () => {
         client = new HttpClient(host)
-        expect(client.version).toBe(1)
+        expect(client.version).toBe(2)
       })
     })
   })
