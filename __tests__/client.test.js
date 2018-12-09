@@ -78,7 +78,7 @@ describe('API - Client', () => {
       expect(await errorCapturer(Client.findPeers('wrong'))).toThrowError(/network.*wrong/i)
     })
 
-    xit('should connect randomly to the initial peers', () => {
+    it('should connect randomly to the initial peers', () => {
     })
 
     describe('on version 1', () => {
@@ -186,7 +186,7 @@ describe('API - Client', () => {
       expect(peerRespond).toHaveBeenCalledTimes(2)
     })
 
-    xdescribe('when a peer is not valid', () => {
+    describe('when a peer is not valid', () => {
       it('tries others', () => {
       })
     })
