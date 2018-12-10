@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const Client = require('../lib/index')
-const crypto = require('../../crypto/lib/index')
+const Client = require('@arkecosystem/client')
+const crypto = require('@arkecosystem/crypto')
 
 const sendGift = async () => {
   const version = 2
