@@ -117,12 +117,11 @@ describe('API - Client', () => {
         const localPeer = {
           ip,
           height: 3663605,
-          status: 'OK',
-          delay: 17
+          status: 200,
+          latency: 17
         }
         const data = {
-          success: true,
-          peers: peers.concat([localPeer])
+          data: peers.concat([localPeer])
         }
 
         httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
@@ -142,8 +141,7 @@ describe('API - Client', () => {
         delay: 17
       }
       const data = {
-        success: true,
-        peers: peers.concat([notOkPeer])
+        data: peers.concat([notOkPeer])
       }
 
       httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
@@ -155,8 +153,7 @@ describe('API - Client', () => {
 
     it('should check 2 peers', async () => {
       const data = {
-        success: true,
-        peers: peers
+        data: peers
       }
 
       const peerRespond = jest.fn(() => { return [200, data] })
@@ -304,8 +301,7 @@ describe('API - Client', () => {
     describe('when there is at least 1 peer with `core-api` enabled', () => {
       it('should find peers and select the most updated and less delayed', async () => {
         const data = {
-          success: true,
-          peers
+          data: peers
         }
         httpMock.onGet(/http.*\/config/).reply(200, { data: peerConfig })
         httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
@@ -317,9 +313,9 @@ describe('API - Client', () => {
       it('should select a peer with `core-api` enabled', async () => {
         const peer = peers[2]
         const data = {
-          success: true,
-          peers
+          data: peers
         }
+
         httpMock.onGet(`http://${peer.ip}:${peer.port}/config`).reply(200, { data: peerConfig })
         httpMock.onGet(/http.*\/config/).reply(200, { data: { plugins: {} } })
         httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
