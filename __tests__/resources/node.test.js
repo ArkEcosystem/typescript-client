@@ -1,17 +1,17 @@
-const Client = require('../../../lib')
-const ApiResource = require('../../../lib/resources/v1/loader')
+const Client = require('../../lib')
+const ApiResource = require('../../lib/resources/api/node')
 
-const configureMocks = require('../../mocks/v1')
+const configureMocks = require('../mocks')
 const host = 'https://example.net:4003'
 configureMocks({ host })
 
 let resource
 
 beforeEach(() => {
-  resource = (new Client(host)).setVersion(1).resource('loader')
+  resource = (new Client(host)).setVersion(2).resource('node')
 })
 
-describe('API - 1.0 - Resources - Loader', () => {
+describe('API - 2.0 - Resources - Loader', () => {
   it('should be instantiated', () => {
     expect(resource).toBeInstanceOf(ApiResource)
   })
