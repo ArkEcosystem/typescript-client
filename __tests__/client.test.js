@@ -37,7 +37,7 @@ describe('API - Client', () => {
     })
 
     it('should return an API resource', () => {
-      expect(client.transactions()).toBeInstanceOf(ApiResource)
+      expect(client.transactions).toBeInstanceOf(ApiResource)
     })
 
     it('should use 1 as the default API version', () => {

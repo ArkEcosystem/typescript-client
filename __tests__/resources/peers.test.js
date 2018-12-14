@@ -8,7 +8,7 @@ configureMocks({ host })
 let resource
 
 beforeEach(() => {
-  resource = (new Client(host)).setVersion(2).peers()
+  resource = (new Client(host)).setVersion(2).peers
 })
 
 describe('API - 2.0 - Resources - Peers', () => {

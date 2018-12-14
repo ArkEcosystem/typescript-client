@@ -8,7 +8,7 @@ configureMocks({ host })
 let resource
 
 beforeEach(() => {
-  resource = (new Client(host)).setVersion(2).wallets()
+  resource = (new Client(host)).setVersion(2).wallets
 })
 
 describe('API - 2.0 - Resources - Webhooks', () => {

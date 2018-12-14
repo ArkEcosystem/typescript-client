@@ -8,7 +8,7 @@ configureMocks({ host })
 let resource
 
 beforeEach(() => {
-  resource = (new Client(host)).setVersion(2).blocks()
+  resource = (new Client(host)).setVersion(2).blocks
 })
 
 describe('API - 2.0 - Resources - Blocks', () => {
