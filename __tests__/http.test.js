@@ -5,6 +5,21 @@ const mock = new MockAdapter(axios)
 const toHaveAtLeastHeaders = require('./matchers/http/headers')
 expect.extend({ toHaveAtLeastHeaders })
 
+// NOTE: until this PR or similar is merged:
+// https://github.com/ctimmerm/axios-mock-adapter/pull/130
+const expectBodyAndParams = (mock, { params, data }) => {
+  mock.reply(request => {
+    try {
+      expect(request.params).toEqual(params)
+      expect(request.data).toEqual(JSON.stringify(data))
+      return [200, []]
+    } catch (error){
+      console.log(error)
+      return [500]
+    }
+  })
+}
+
 const HttpClient = require('../lib/http')
 
 const host = 'http://example.net'
@@ -77,6 +92,24 @@ describe('API - HTTP Client', () => {
     })
   })
 
+  describe('sendRequest', () => {
+    it('should ignore the case of the method name', async () => {
+      mock.onGet(`${host}/path`).reply(200, { data: [] })
+
+      const response = await client.sendRequest('GET', 'path')
+
+      expect(response.status).toBe(200)
+    })
+
+    it('should ignore the inital "/" on the `path` parameter', async () => {
+      mock.onGet(`${host}/path`).reply(200, { data: [] })
+
+      const response = await client.sendRequest('get', '/path')
+
+      expect(response.status).toBe(200)
+    })
+  })
+
   describe('get', () => {
     beforeEach(() => {
       mock.onGet(`${host}/api/ENDPOINT`).reply(200, { data: [] })
@@ -122,6 +155,29 @@ describe('API - HTTP Client', () => {
 
       expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
     })
+
+    it('should admit sending data on the request body', async () => {
+      const data = { example: 'example' }
+
+      mock.reset()
+      mock.onPost(`${host}/api/ENDPOINT`, data).reply(200, { data: [] })
+
+      const response = await client.post('ENDPOINT', data)
+
+      expect(response.status).toBe(200)
+    })
+
+    it('should admit sending querystring parameters', async () => {
+      const data = { example: 'example' }
+      const params = { page: 1 }
+
+      mock.reset()
+      expectBodyAndParams(mock.onPost(`${host}/api/ENDPOINT`), { params, data })
+
+      const response = await client.post('ENDPOINT', data, params)
+
+      expect(response.status).toBe(200)
+    })
   })
 
   describe('put', () => {
@@ -140,6 +196,29 @@ describe('API - HTTP Client', () => {
 
       expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
     })
+
+    it('should admit sending data on the request body', async () => {
+      const data = { example: 'example' }
+
+      mock.reset()
+      mock.onPut(`${host}/api/ENDPOINT`, data).reply(200, { data: [] })
+
+      const response = await client.put('ENDPOINT', data)
+
+      expect(response.status).toBe(200)
+    })
+
+    it('should admit sending querystring parameters', async () => {
+      const data = { example: 'example' }
+      const params = { page: 1 }
+
+      mock.reset()
+      expectBodyAndParams(mock.onPut(`${host}/api/ENDPOINT`), { params, data })
+
+      const response = await client.put('ENDPOINT', data, params)
+
+      expect(response.status).toBe(200)
+    })
   })
 
   describe('patch', () => {
@@ -157,6 +236,29 @@ describe('API - HTTP Client', () => {
       const response = await client.patch('ENDPOINT')
 
       expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
+    })
+
+    it('should admit sending data on the request body', async () => {
+      const data = { example: 'example' }
+
+      mock.reset()
+      mock.onPatch(`${host}/api/ENDPOINT`, data).reply(200, { data: [] })
+
+      const response = await client.patch('ENDPOINT', data)
+
+      expect(response.status).toBe(200)
+    })
+
+    it('should admit sending querystring parameters', async () => {
+      const data = { example: 'example' }
+      const params = { page: 1 }
+
+      mock.reset()
+      expectBodyAndParams(mock.onPatch(`${host}/api/ENDPOINT`), { params, data })
+
+      const response = await client.patch('ENDPOINT', data, params)
+
+      expect(response.status).toBe(200)
     })
   })
 
