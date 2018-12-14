@@ -76,7 +76,7 @@ const sendGift = async () => {
         .sign(passphrase)
         .getStruct()
 
-      client.resource('transactions').create({ transactions: [transaction] })
+      await client.resource('transactions').create({ transactions: [transaction] })
 
       return transaction
     } catch (error) {
