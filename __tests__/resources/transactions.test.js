@@ -8,7 +8,7 @@ configureMocks({ host })
 let resource
 
 beforeEach(() => {
-  resource = (new Client(host)).setVersion(2).resource('transactions')
+  resource = (new Client(host)).setVersion(2).transactions()
 })
 
 describe('API - 2.0 - Resources - Transactions', () => {
