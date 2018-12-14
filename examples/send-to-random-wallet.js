@@ -38,7 +38,7 @@ const sendGift = async () => {
    */
   const getWallet = async address => {
     try {
-      const { data } = await client.resource('wallets').get(address)
+      const { data } = await client.wallets.get(address)
       return data.data
     } catch (error) {
       fail(`An error has occured while retrieving the wallet with address ${address}:`, error)
@@ -51,7 +51,7 @@ const sendGift = async () => {
    */
   const getRandomWallet = async () => {
     try {
-      const { data } = await client.resource('wallets').all()
+      const { data } = await client.wallets.all()
       const wallets = data.data
       return getRandom(wallets)
     } catch (error) {
@@ -76,7 +76,7 @@ const sendGift = async () => {
         .sign(passphrase)
         .getStruct()
 
-      client.resource('transactions').create({ transactions: [transaction] })
+      client.transactions.create({ transactions: [transaction] })
 
       return transaction
     } catch (error) {
