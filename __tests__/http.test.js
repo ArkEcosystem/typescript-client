@@ -5,20 +5,7 @@ const mock = new MockAdapter(axios)
 const toHaveAtLeastHeaders = require('./matchers/http/headers')
 expect.extend({ toHaveAtLeastHeaders })
 
-// NOTE: until this PR or similar is merged:
-// https://github.com/ctimmerm/axios-mock-adapter/pull/130
-const expectBodyAndParams = (mock, { params, data }) => {
-  mock.reply(request => {
-    try {
-      expect(request.params).toEqual(params)
-      expect(request.data).toEqual(JSON.stringify(data))
-      return [200, []]
-    } catch (error){
-      console.log(error)
-      return [500]
-    }
-  })
-}
+const expectBodyAndParams = require('./__utils__/expect-body-and-params')
 
 const HttpClient = require('../lib/http')
 
@@ -167,7 +154,7 @@ describe('API - HTTP Client', () => {
       expect(response.status).toBe(200)
     })
 
-    it('should admit sending querystring parameters', async () => {
+    it('should admit sending data on the request body and querystring parameters', async () => {
       const data = { example: 'example' }
       const params = { page: 1 }
 
