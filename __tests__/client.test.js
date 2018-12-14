@@ -37,7 +37,7 @@ describe('API - Client', () => {
     })
 
     it('should return an API resource', () => {
-      expect(client.resource('transactions')).toBeInstanceOf(ApiResource)
+      expect(client.transactions).toBeInstanceOf(ApiResource)
     })
 
     it('should use 1 as the default API version', () => {
@@ -98,7 +98,6 @@ describe('API - Client', () => {
         httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
 
         const foundPeers = await Client.findPeers('devnet', 2)
-
         expect(foundPeers).toEqual([
           apiPeers[1],
           apiPeers[3],

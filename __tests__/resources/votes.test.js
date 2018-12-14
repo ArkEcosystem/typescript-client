@@ -8,7 +8,7 @@ configureMocks({ host })
 let resource
 
 beforeEach(() => {
-  resource = (new Client(host)).setVersion(2).resource('votes')
+  resource = (new Client(host)).setVersion(2).votes
 })
 
 describe('API - 2.0 - Resources - Voters', () => {
