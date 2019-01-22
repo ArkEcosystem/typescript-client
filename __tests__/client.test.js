@@ -186,6 +186,25 @@ describe('API - Client', () => {
       expect(peerRespond).toHaveBeenCalledTimes(2)
     })
 
+    it('should check https if specified', async () => {
+      const data = {
+        success: true,
+        peers: peers
+      }
+
+      const httpPeer = peers[0]
+      const httpsPeer = { ...peers[1], isHttps: true }
+
+      const httpRespond = jest.fn(() => { return [200, data] })
+      const httpsRespond = jest.fn(() => { return [200, data] })
+      httpMock.onGet(`http://${httpPeer.ip}:${httpPeer.port}/api/peers`).reply(() => (httpRespond()))
+      httpMock.onGet(`https://${httpsPeer.ip}:${httpsPeer.port}/api/peers`).reply(() => (httpsRespond()))
+
+      await Client.findPeers(null, 2, [httpPeer, httpsPeer])
+      expect(httpRespond).toHaveBeenCalledTimes(1)
+      expect(httpsRespond).toHaveBeenCalledTimes(1)
+    })
+
     xdescribe('when a peer is not valid', () => {
       it('tries others', () => {
       })
