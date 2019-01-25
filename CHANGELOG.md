@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.19 - 2019-01-25
+
+### Changed
+- Added transaction fees v2 endpoint
+
 ## 0.1.18 - 2019-01-22
 
 ### Changed
