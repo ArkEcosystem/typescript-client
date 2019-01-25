@@ -6,4 +6,5 @@ module.exports = (mock, host) => {
   mock.onGet(`${host}/api/transactions/unconfirmed/123`).reply(200, { data: [] })
   mock.onPost(`${host}/api/transactions/search`).reply(200, { data: [] })
   mock.onGet(`${host}/api/transactions/types`).reply(200, { data: [] })
+  mock.onGet(`${host}/api/transactions/fees`).reply(200, { data: [] })
 }
