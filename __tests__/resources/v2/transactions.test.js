@@ -57,4 +57,10 @@ describe('API - 2.0 - Resources - Transactions', () => {
 
     expect(response.status).toBe(200)
   })
+
+  it('should call "fees" method', async () => {
+    const response = await resource.fees()
+
+    expect(response.status).toBe(200)
+  })
 })
