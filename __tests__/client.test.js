@@ -105,7 +105,8 @@ describe('API - Client', () => {
         const apiPeers = peers.map(peer => {
           return {
             ...peer,
-            status: 200
+            status: 200,
+            version: '2.0.0'
           }
         })
 
