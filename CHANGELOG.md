@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.22 - 2019-05-09
+
+### Fixed
+- Try all possible config endpoints during transition period
+
 ## 0.1.21 - 2019-05-08
 
 ### Fixed
