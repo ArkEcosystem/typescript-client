@@ -33,4 +33,10 @@ describe('API - 2.0 - Resources - Loader', () => {
 
     expect(response.status).toBe(200)
   })
+
+  it('should call "fees" method', async () => {
+    const response = await resource.fees(30)
+
+    expect(response.status).toBe(200)
+  })
 })

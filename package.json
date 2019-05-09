@@ -1,7 +1,7 @@
 {
   "name": "@arkecosystem/client",
   "description": "A JavaScript library to interact with the Ark Blockchain",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "contributors": [
     "Brian Faust <brian@ark.io>",
     "Alex Barnsley <alex@ark.io>",
@@ -20,11 +20,11 @@
     "prepublish": "yarn run lint && yarn run test && yarn run build",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "build:docs": "../../node_modules/.bin/jsdoc -c jsdoc.json",
-    "test": "cross-env jest --runInBand --detectOpenHandles",
-    "test:coverage": "cross-env jest --coverage --coveragePathIgnorePatterns='/(defaults.js|index.js)$' --runInBand --detectOpenHandles",
-    "test:debug": "cross-env node --inspect-brk ../../node_modules/.bin/jest --runInBand",
-    "test:watch": "cross-env jest --runInBand --watch",
-    "test:watch:all": "cross-env jest --runInBand --watchAll",
+    "test": "cross-env jest --detectOpenHandles",
+    "test:coverage": "cross-env jest --coverage --coveragePathIgnorePatterns='/(defaults.js|index.js)$' --detectOpenHandles",
+    "test:debug": "cross-env node --inspect-brk ../../node_modules/.bin/jest",
+    "test:watch": "cross-env jest --watch",
+    "test:watch:all": "cross-env jest --watchAll",
     "lint": "eslint -c .eslintrc --ignore-pattern dist ./ --fix",
     "depcheck": "depcheck ./ --ignores @babel/core,@babel/preset-env,babel-loader,codecov,docdash,jest-extended,jsdoc,regenerator-runtime,standard,webpack,webpack-cli"
   },
