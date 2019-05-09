@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.23 - 2019-05-09
+
+### Fixed
+- V2 peers no longer provide "status" which breaks validation for peer objects
+
 ## 0.1.22 - 2019-05-09
 
 ### Fixed
