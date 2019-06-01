@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.24 - 2019-05-30
+
+### Fixed
+- Upgrade  `axios` to 0.19 to avoid CVE-2019-10742 (http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10742)
+
 ## 0.1.23 - 2019-05-09
 
 ### Fixed

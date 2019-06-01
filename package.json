@@ -1,7 +1,7 @@
 {
   "name": "@arkecosystem/client",
   "description": "A JavaScript library to interact with the Ark Blockchain",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "contributors": [
     "Brian Faust <brian@ark.io>",
     "Alex Barnsley <alex@ark.io>",
@@ -29,7 +29,7 @@
     "depcheck": "depcheck ./ --ignores @babel/core,@babel/preset-env,babel-loader,codecov,docdash,jest-extended,jsdoc,regenerator-runtime,standard,webpack,webpack-cli"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.orderby": "^4.6.0",
     "lodash.shuffle": "^4.2.0"
