@@ -15,7 +15,7 @@ export declare type ApiResponseWithMeta<DataType = any, MetaType = MetaResponse>
     data: DataType;
 }>;
 
-export declare enum TransactionTypes {
+export declare enum TransactionType {
     Transfer = 0,
     SecondSignature = 1,
     DelegateRegistration = 2,
@@ -85,7 +85,7 @@ export declare interface BlocksSearchParams {
     payloadLength: Range;
 }
 
-export declare  interface PeersAllParams {
+export declare interface PeersAllParams {
     port: number;
     status: string;
     os: string;
@@ -93,8 +93,8 @@ export declare  interface PeersAllParams {
     orderBy: string;
 }
 
-export declare  interface TransactionsAllParams {
-    type: TransactionTypes;
+export declare interface TransactionsAllParams {
+    type: TransactionType;
     blockId: number;
     id: number;
 }
@@ -103,7 +103,7 @@ export declare interface TransactionsSearchParams {
     orderBy: string;
     id: string;
     blockId: string;
-    type: TransactionTypes;
+    type: TransactionType;
     version: number;
     senderPublicKey: string;
     senderId: string;
@@ -136,7 +136,7 @@ export interface WebhooksCreateParams {
     event: string;
     target: string;
     enabled: string;
-    conditions: [];
+    conditions: object[];
 }
 
 export declare interface NodeStatusResponse {
@@ -248,7 +248,7 @@ export declare interface Block {
 export declare interface Transaction {
     version?: number;
     network?: number;
-    type: TransactionTypes;
+    type: TransactionType;
     timestamp: number;
     senderPublicKey: string;
     fee: string;
@@ -337,12 +337,12 @@ export declare interface MetaResponse {
     last: string | null;
 }
 
-export declare class Base {
+declare class Base {
     http: HttpClient;
     constructor(http: HttpClient);
 }
 
-export declare class Blocks extends Base {
+declare class Blocks extends Base {
     all(query?: Merge<PaginationParams, {
         id: string;
         height: number;
@@ -352,14 +352,14 @@ export declare class Blocks extends Base {
     search(query: RequireAtLeastOne<BlocksSearchParams>): Promise<ApiResponseWithMeta<Block[]>>;
 }
 
-export declare class Delegates extends Base {
+declare class Delegates extends Base {
     all(query?: PaginationParams): Promise<ApiResponseWithMeta<Delegate[]>>;
     get(id: string): Promise<ApiResponse<Delegate>>;
     blocks(id: string, query?: PaginationParams): Promise<ApiResponseWithMeta<Block[]>>;
     voters(id: string, query?: PaginationParams): Promise<ApiResponseWithMeta<Wallet[]>>;
 }
 
-export declare class Node extends Base {
+declare class Node extends Base {
     status(): Promise<ApiResponse<NodeStatusResponse>>;
     syncing(): Promise<ApiResponse<NodeSyncingResponse>>;
     configuration(): Promise<ApiResponse<NodeConfigurationResponse>>;
@@ -368,12 +368,12 @@ export declare class Node extends Base {
     }>>;
 }
 
-export declare class Peers extends Base {
+declare class Peers extends Base {
     all(query?: Merge<PaginationParams, PeersAllParams>): Promise<ApiResponseWithMeta<Peer[]>>;
     get(ip: string): Promise<ApiResponse<Peer>>;
 }
 
-export declare class Transactions extends Base {
+declare class Transactions extends Base {
     all(query?: Merge<PaginationParams, TransactionsAllParams>): Promise<ApiResponseWithMeta<Transaction[]>>;
     create(payload: {
         transactions: Transaction[];
@@ -385,16 +385,16 @@ export declare class Transactions extends Base {
     allUnconfirmed(query?: PaginationParams): Promise<ApiResponseWithMeta<Transaction[]>>;
     getUnconfirmed(id: string): Promise<ApiResponse<Transaction>>;
     search(query: RequireAtLeastOne<TransactionsSearchParams>): Promise<ApiResponseWithMeta<Transaction[]>>;
-    types(): Promise<ApiResponse<TransactionTypes>>;
+    types(): Promise<ApiResponse<TransactionType>>;
     fees(): Promise<ApiResponse<TransactionFees>>;
 }
 
-export declare class Votes extends Base {
+declare class Votes extends Base {
     all(query?: PaginationParams): Promise<ApiResponseWithMeta<Transaction[]>>;
     get(id: string): Promise<ApiResponse<Transaction>>;
 }
 
-export declare class Wallets extends Base {
+declare class Wallets extends Base {
     all(query?: PaginationParams): Promise<ApiResponseWithMeta<Wallet[]>>;
     top(query?: PaginationParams): Promise<ApiResponseWithMeta<Wallet[]>>;
     get(id: string): Promise<ApiResponse<Wallet>>;
@@ -405,7 +405,7 @@ export declare class Wallets extends Base {
     search(query: RequireAtLeastOne<TransactionsSearchParams>): Promise<ApiResponseWithMeta<Wallet[]>>;
 }
 
-export declare class Webhooks extends Base {
+declare class Webhooks extends Base {
     all(query?: PaginationParams): Promise<ApiResponseWithMeta<Webhook[]>>;
     create(payload: WebhooksCreateParams): Promise<ApiResponse<Webhook>>;
     get(id: string): Promise<ApiResponse<Webhook>>;
@@ -413,7 +413,7 @@ export declare class Webhooks extends Base {
     delete(id: string): Promise<object>;
 }
 
-export declare class HttpClient {
+declare class HttpClient {
     host: string;
     version: number;
     timeout: number;
@@ -437,7 +437,7 @@ export declare class ApiClient {
     static findPeers(network: ArkNetwork, version: number, peersOverride?: Seed[]): Promise<Seed>;
     static fetchPeerConfig(host: string): Promise<null | PeerConfigResponse>;
     static selectApiPeer(peers: Seed[]): Promise<null | PeerConfigResponse>;
-    static connect(network: ArkNetwork, version: number, peersOverride?: Seed[]): ApiClient;
+    static connect(network: ArkNetwork, version: number, peersOverride?: Seed[]): Promise<ApiClient>;
     constructor(host: string, version?: number);
     setConnection(host: string): void;
     getConnection(): HttpClient;
