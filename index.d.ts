@@ -429,9 +429,9 @@ export declare class ApiClient {
     readonly votes: Votes;
     readonly wallets: Wallets;
     readonly webhooks: Webhooks;
-    static findPeers(network: ArkNetwork, version: number, peersOverride?: Seed[]): Promise<Seed>;
+    static findPeers(network: ArkNetwork, version: number, peersOverride?: Seed[]): Promise<Seed[]>;
     static fetchPeerConfig(host: string): Promise<null | PeerConfigResponse>;
-    static selectApiPeer(peers: Seed[]): Promise<null | PeerConfigResponse>;
+    static selectApiPeer(peers: Partial<Peer>[]): Promise<null | Partial<Peer>>;
     static connect(network: ArkNetwork, version: number, peersOverride?: Seed[]): Promise<ApiClient>;
     constructor(host: string, version?: number);
     setConnection(host: string): void;

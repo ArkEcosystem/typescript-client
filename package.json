@@ -27,7 +27,7 @@
     "test:watch": "cross-env jest --runInBand --watch",
     "test:watch:all": "cross-env jest --runInBand --watchAll",
     "lint": "eslint -c .eslintrc --ignore-pattern dist ./ --fix",
-    "depcheck": "depcheck ./ --ignores @babel/core,@babel/preset-env,babel-loader,codecov,docdash,jest-extended,jsdoc,regenerator-runtime,standard,webpack,webpack-cli"
+    "depcheck": "depcheck ./ --ignores @babel/core,@babel/preset-env,babel-loader,codecov,docdash,jest-extended,jsdoc,regenerator-runtime,standard,webpack,webpack-cli,type-fest"
   },
   "dependencies": {
     "axios": "^0.18.0",
