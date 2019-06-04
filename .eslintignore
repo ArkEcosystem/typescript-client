@@ -4,3 +4,4 @@
 /docs/**
 /tmp/**
 !.eslintrc.js
+*.d.ts
