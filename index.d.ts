@@ -1,8 +1,6 @@
 import { AxiosResponse, AxiosRequestConfig } from "axios";
 import { Merge, RequireAtLeastOne } from "type-fest";
 
-declare type Filter<T, K extends keyof T> = T[K];
-
 export declare type Method = 'get' | 'post' | 'put' | 'patch' | 'delete';
 export declare type ArkNetwork = 'mainnet' | 'devnet';
 export declare type Seed = Pick<Peer, 'ip' | 'port'>;
@@ -30,17 +28,6 @@ export declare enum TransactionType {
 declare interface Range {
     from: number;
     to: number;
-}
-
-export declare interface ResourceTypes {
-    blocks: Blocks;
-    delegates: Delegates;
-    node: Node;
-    peers: Peers;
-    transactions: Transactions;
-    votes: Votes;
-    wallets: Wallets;
-    webhooks: Webhooks;
 }
 
 export declare interface TransactionFees {
@@ -434,6 +421,14 @@ declare class HttpClient {
 export declare class ApiClient {
     http: HttpClient;
     version: number;
+    readonly blocks: Blocks;
+    readonly delegates: Delegates;
+    readonly node: Node;
+    readonly peers: Peers;
+    readonly transactions: Transactions;
+    readonly votes: Votes;
+    readonly wallets: Wallets;
+    readonly webhooks: Webhooks;
     static findPeers(network: ArkNetwork, version: number, peersOverride?: Seed[]): Promise<Seed>;
     static fetchPeerConfig(host: string): Promise<null | PeerConfigResponse>;
     static selectApiPeer(peers: Seed[]): Promise<null | PeerConfigResponse>;
@@ -442,7 +437,6 @@ export declare class ApiClient {
     setConnection(host: string): void;
     getConnection(): HttpClient;
     setVersion(version: number): ApiClient;
-    resource<T extends keyof ResourceTypes>(name: T): Filter<ResourceTypes, T>;
 }
 
 export default ApiClient;
