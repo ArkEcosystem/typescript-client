@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.25 - 2019-06-12
+
+### Changed
+- Update order of config endpoints for Wallet API
+
 ## 0.1.24 - 2019-05-30
 
 ### Fixed
