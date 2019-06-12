@@ -262,7 +262,6 @@ describe('API - Client', () => {
           }
         }
         httpMock.onGet(`http://${peer.ip}:${peer.port}/config`).reply(200, { data: peerConfig })
-        httpMock.onGet(/http.*\/config/).reply(200, { data: { plugins: {} } })
 
         expect(await Client.selectApiPeer(peers)).toEqual({
           ...peer,
@@ -360,7 +359,6 @@ describe('API - Client', () => {
           peers
         }
         httpMock.onGet(`http://${peer.ip}:${peer.port}/config`).reply(200, { data: peerConfig })
-        httpMock.onGet(/http.*\/config/).reply(200, { data: { plugins: {} } })
         httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
 
         const client = await Client.connect('devnet')
