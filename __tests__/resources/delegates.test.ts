@@ -1,4 +1,4 @@
-import { Delegates } from "../../src/resources";
+import { Delegates } from "../../src/resources/delegates";
 import { configureMocks } from "../mocks";
 
 const resource: Delegates = configureMocks<Delegates>(Delegates);

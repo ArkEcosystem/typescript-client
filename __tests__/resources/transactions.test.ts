@@ -1,4 +1,4 @@
-import { Transactions } from "../../src/resources";
+import { Transactions } from "../../src/resources/transactions";
 import { configureMocks } from "../mocks";
 
 const resource: Transactions = configureMocks<Transactions>(Transactions);

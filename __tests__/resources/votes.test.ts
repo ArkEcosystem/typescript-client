@@ -1,4 +1,4 @@
-import { Votes } from "../../src/resources";
+import { Votes } from "../../src/resources/votes";
 import { configureMocks } from "../mocks";
 
 const resource: Votes = configureMocks<Votes>(Votes);

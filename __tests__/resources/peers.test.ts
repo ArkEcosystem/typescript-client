@@ -1,4 +1,4 @@
-import { Peers } from "../../src/resources";
+import { Peers } from "../../src/resources/peers";
 import { configureMocks } from "../mocks";
 
 const resource: Peers = configureMocks<Peers>(Peers);

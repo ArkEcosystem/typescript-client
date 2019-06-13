@@ -1,4 +1,4 @@
-import { Blocks } from "../../src/resources";
+import { Blocks } from "../../src/resources/blocks";
 import { configureMocks } from "../mocks";
 
 const resource: Blocks = configureMocks<Blocks>(Blocks);

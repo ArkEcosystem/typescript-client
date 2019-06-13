@@ -1,4 +1,4 @@
-import { Node } from "../../src/resources";
+import { Node } from "../../src/resources/node";
 import { configureMocks } from "../mocks";
 
 const resource: Node = configureMocks<Node>(Node);

@@ -1,4 +1,4 @@
-import { Wallets } from "../../src/resources";
+import { Wallets } from "../../src/resources/wallets";
 import { configureMocks } from "../mocks";
 
 const resource: Wallets = configureMocks<Wallets>(Wallets);
