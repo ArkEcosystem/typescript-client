@@ -1,0 +1,7 @@
+{
+	"extends": "@typeskrift/tslint",
+	"rules": {
+		"typedef": false,
+		"no-unsafe-any": false
+	}
+}

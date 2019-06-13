@@ -1,60 +1,36 @@
 version: 2
 jobs:
-  node-10:
-    docker:
-      - image: circleci/node:10-browsers
-    working_directory: ~/javascript-client
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn test
-      - run: ./node_modules/.bin/codecov
-  node-11:
-    docker:
-      - image: circleci/node:11-browsers
-    working_directory: ~/javascript-client
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn test
-      - run: ./node_modules/.bin/codecov
-  node-12:
-    docker:
-      - image: circleci/node:12-browsers
-    working_directory: ~/javascript-client
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn test
-      - run: ./node_modules/.bin/codecov
+    node-10:
+        docker:
+            - image: circleci/node:10-browsers
+        working_directory: ~/client
+        steps: &steps
+            - checkout
+            - restore_cache:
+                  keys:
+                      - v1-dependencies-{{ checksum "yarn.lock" }}
+                      - v1-dependencies-
+            - run: yarn install
+            - save_cache:
+                  paths:
+                      - node_modules
+                  key: v1-dependencies-{{ checksum "yarn.lock" }}
+            - run: yarn test
+            - run: ./node_modules/.bin/codecov
+    node-11:
+        docker:
+            - image: circleci/node:11-browsers
+        working_directory: ~/client
+        steps: *steps
+    node-12:
+        docker:
+            - image: circleci/node:12-browsers
+        working_directory: ~/client
+        steps: *steps
 workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - node-10
-      - node-11
-      - node-12
+    version: 2
+    build_and_test:
+        jobs:
+            - node-10
+            - node-11
+            - node-12
