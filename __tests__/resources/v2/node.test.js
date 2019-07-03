@@ -11,7 +11,7 @@ beforeEach(() => {
   resource = (new Client(host)).setVersion(2).resource('node')
 })
 
-describe('API - 2.0 - Resources - Loader', () => {
+describe('API - 2.0 - Resources - Node', () => {
   it('should be instantiated', () => {
     expect(resource).toBeInstanceOf(ApiResource)
   })
