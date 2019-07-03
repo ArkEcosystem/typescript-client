@@ -1,3 +1,6 @@
-module.exports = (mock, host) => {
-  mock.onGet(`${host}/api/signatures`).reply(200, { data: [] })
+module.exports = (nock, host) => {
+  nock(host)
+    .persist()
+    .get('/api/signatures')
+    .reply(200, { data: [] })
 }

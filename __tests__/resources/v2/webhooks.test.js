@@ -19,7 +19,7 @@ describe('API - 2.0 - Resources - Blocks', () => {
   it('should call "all" method', async () => {
     const response = await resource.all()
 
-    expect(response.status).toBe(200)
+    expect(response.statusCode).toBe(200)
   })
 
   it('should call "create" method', async () => {
@@ -35,24 +35,24 @@ describe('API - 2.0 - Resources - Blocks', () => {
       ]
     })
 
-    expect(response.status).toBe(201)
+    expect(response.statusCode).toBe(201)
   })
 
   it('should call "get" method', async () => {
     const response = await resource.get('123')
 
-    expect(response.status).toBe(200)
+    expect(response.statusCode).toBe(200)
   })
 
   it('should call "update" method', async () => {
     const response = await resource.update('123', { 'event': 'block.forged' })
 
-    expect(response.status).toBe(204)
+    expect(response.statusCode).toBe(204)
   })
 
   it('should call "delete" method', async () => {
     const response = await resource.delete('123')
 
-    expect(response.status).toBe(204)
+    expect(response.statusCode).toBe(204)
   })
 })

@@ -1,6 +1,4 @@
-const axios = require('axios')
-const MockAdapter = require('axios-mock-adapter')
-const mock = new MockAdapter(axios)
+const nock = require('nock')
 
 const toHaveAtLeastHeaders = require('./matchers/http/headers')
 expect.extend({ toHaveAtLeastHeaders })
@@ -19,7 +17,7 @@ describe('API - HTTP Client', () => {
 
   beforeEach(() => {
     defaultHeaders = {
-      'API-Version': client.version
+      'api-version': client.version
     }
   })
 
@@ -79,113 +77,113 @@ describe('API - HTTP Client', () => {
 
   describe('get', () => {
     beforeEach(() => {
-      mock.onGet(`${host}/api/ENDPOINT`).reply(200, { data: [] })
+      nock(host).get('/api/ENDPOINT').reply(200, { data: [] })
     })
 
     it('should send GET requests to the API', async () => {
       const response = await client.get('ENDPOINT')
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
 
     it('should use the necessary request headers', async () => {
       const response = await client.get('ENDPOINT')
 
-      expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
+      expect(response.req).toHaveAtLeastHeaders(defaultHeaders)
     })
 
     it('should send the request params', async () => {
       const params = { param1: 'value1', param2: 'value2' }
 
-      mock.reset()
-      mock.onGet(`${host}/api/ENDPOINT`, { params }).reply(200, { data: [] })
+      nock.cleanAll()
+      nock(host).get('/api/ENDPOINT').query(params).reply(200, { data: [] })
 
       const response = await client.get('ENDPOINT', params)
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
   })
 
   describe('post', () => {
     beforeEach(() => {
-      mock.onPost(`${host}/api/ENDPOINT`).reply(200, { data: [] })
+      nock(host).post('/api/ENDPOINT').reply(200, { data: [] })
     })
 
     it('should send POST requests to the API', async () => {
       const response = await client.post('ENDPOINT')
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
 
     it('should use the necessary request headers', async () => {
       const response = await client.post('ENDPOINT')
 
-      expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
+      expect(response.req).toHaveAtLeastHeaders(defaultHeaders)
     })
   })
 
   describe('put', () => {
     beforeEach(() => {
-      mock.onPut(`${host}/api/ENDPOINT`).reply(200, { data: [] })
+      nock(host).put('/api/ENDPOINT').reply(200, { data: [] })
     })
 
     it('should send PUT requests to the API', async () => {
       const response = await client.put('ENDPOINT')
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
 
     it('should use the necessary request headers', async () => {
       const response = await client.put('ENDPOINT')
 
-      expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
+      expect(response.req).toHaveAtLeastHeaders(defaultHeaders)
     })
   })
 
   describe('patch', () => {
     beforeEach(() => {
-      mock.onPatch(`${host}/api/ENDPOINT`).reply(200, { data: [] })
+      nock(host).patch('/api/ENDPOINT').reply(200, { data: [] })
     })
 
     it('should send PATCH requests to the API', async () => {
       const response = await client.patch('ENDPOINT')
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
 
     it('should use the necessary request headers', async () => {
       const response = await client.patch('ENDPOINT')
 
-      expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
+      expect(response.req).toHaveAtLeastHeaders(defaultHeaders)
     })
   })
 
   describe('delete', () => {
     beforeEach(() => {
-      mock.onDelete(`${host}/api/ENDPOINT`).reply(200, { data: [] })
+      nock(host).delete('/api/ENDPOINT').reply(200, { data: [] })
     })
 
     it('should send DELETE requests to the API', async () => {
       const response = await client.delete('ENDPOINT')
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
 
     it('should use the necessary request headers', async () => {
       const response = await client.delete('ENDPOINT')
 
-      expect(response.config).toHaveAtLeastHeaders(defaultHeaders)
+      expect(response.req).toHaveAtLeastHeaders(defaultHeaders)
     })
 
     it('should send the request params', async () => {
       const params = { param1: 'value1', param2: 'value2' }
 
-      mock.reset()
-      mock.onDelete(`${host}/api/ENDPOINT`, { params }).reply(200, { data: [] })
+      nock.cleanAll()
+      nock(host).delete('/api/ENDPOINT').query(params).reply(200, { data: [] })
 
       const response = await client.delete('ENDPOINT', params)
 
-      expect(response.status).toBe(200)
+      expect(response.statusCode).toBe(200)
     })
   })
 })
