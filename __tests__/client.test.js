@@ -268,7 +268,6 @@ describe('API - Client', () => {
 
     describe('when there is a network error', () => {
       it('should not throw Errors', async () => {
-
         nock(host)
           .persist()
           .get('/config')
