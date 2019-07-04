@@ -51,7 +51,7 @@
     "jest": "^23.6.0",
     "jest-extended": "^0.11.0",
     "jsdoc": "^3.5.5",
-    "nock": "^10.0.6",
+    "nock": "^11.0.0-beta.20",
     "regenerator-runtime": "^0.12.1",
     "standard": "^12.0.1",
     "webpack": "^4.23.1",
