@@ -3,6 +3,10 @@ module.exports = (babelOptions = {}) => ({
 
   context: __dirname,
 
+  node: {
+    fs: 'empty'
+  },
+
   module: {
     rules: [{
       test: /\.js$/,
