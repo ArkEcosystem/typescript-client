@@ -4,7 +4,8 @@ module.exports = (babelOptions = {}) => ({
   context: __dirname,
 
   node: {
-    fs: 'empty'
+    fs: 'empty',
+    net: 'empty'
   },
 
   module: {
