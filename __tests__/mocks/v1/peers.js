@@ -1,5 +1,14 @@
-module.exports = (mock, host) => {
-  mock.onGet(`${host}/api/peers`).reply(200, { data: [] })
-  mock.onGet(`${host}/api/peers/get`).reply(200, { data: [] })
-  mock.onGet(`${host}/api/peers/version`).reply(200, { data: [] })
+module.exports = (nock, host) => {
+  nock(host)
+    .persist()
+    .get('/api/peers')
+    .reply(200, { data: [] })
+    .get('/api/peers/get')
+    .query({
+      ip: '127.0.0.1',
+      port: 4001
+    })
+    .reply(200, { data: [] })
+    .get('/api/peers/version')
+    .reply(200, { data: [] })
 }

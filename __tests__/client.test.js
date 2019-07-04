@@ -1,6 +1,4 @@
-const axios = require('axios')
-const MockAdapter = require('axios-mock-adapter')
-const httpMock = new MockAdapter(axios)
+const nock = require('nock')
 const { arrayContaining } = expect
 
 const Client = require('../lib')
@@ -22,7 +20,7 @@ jest.mock('../lib/peers', () => {
 let client
 
 beforeEach(() => {
-  httpMock.reset()
+  nock.cleanAll()
   client = (new Client(host))
 })
 
@@ -88,7 +86,10 @@ describe('API - Client', () => {
           peers
         }
 
-        httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/api/peers')
+          .reply(200, data)
 
         const foundPeers = await Client.findPeers('devnet', 1)
         expect(foundPeers).toEqual([
@@ -115,7 +116,10 @@ describe('API - Client', () => {
           data: apiPeers
         }
 
-        httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/api/peers')
+          .reply(200, data)
 
         const foundPeers = await Client.findPeers('devnet', 2)
 
@@ -145,7 +149,10 @@ describe('API - Client', () => {
           peers: peers.concat([localPeer])
         }
 
-        httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/api/peers')
+          .reply(200, data)
 
         const foundPeers = await Client.findPeers('devnet')
         expect(foundPeers).toEqual(arrayContaining(peers))
@@ -166,7 +173,10 @@ describe('API - Client', () => {
         peers: peers.concat([notOkPeer])
       }
 
-      httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
+      nock(/http:\/\/.+/)
+        .persist()
+        .get('/api/peers')
+        .reply(200, data)
 
       const foundPeers = await Client.findPeers('devnet')
       expect(foundPeers).toEqual(arrayContaining(peers))
@@ -180,7 +190,10 @@ describe('API - Client', () => {
       }
 
       const peerRespond = jest.fn(() => { return [200, data] })
-      httpMock.onGet(/http.*\/api\/peers/).reply(() => (peerRespond()))
+      nock(/http:\/\/.+/)
+        .persist()
+        .get('/api/peers')
+        .reply(() => (peerRespond()))
 
       const foundPeers = await Client.findPeers('devnet')
       expect(foundPeers).toEqual(arrayContaining(peers))
@@ -198,8 +211,16 @@ describe('API - Client', () => {
 
       const httpRespond = jest.fn(() => { return [200, data] })
       const httpsRespond = jest.fn(() => { return [200, data] })
-      httpMock.onGet(`http://${httpPeer.ip}:${httpPeer.port}/api/peers`).reply(() => (httpRespond()))
-      httpMock.onGet(`https://${httpsPeer.ip}:${httpsPeer.port}/api/peers`).reply(() => (httpsRespond()))
+
+      nock(`http://${httpPeer.ip}:${httpPeer.port}`)
+        .persist()
+        .get('/api/peers')
+        .reply(() => (httpRespond()))
+
+      nock(`https://${httpsPeer.ip}:${httpsPeer.port}`)
+        .persist()
+        .get('/api/peers')
+        .reply(() => (httpsRespond()))
 
       await Client.findPeers(null, 2, [httpPeer, httpsPeer])
       expect(httpRespond).toHaveBeenCalledTimes(1)
@@ -213,7 +234,7 @@ describe('API - Client', () => {
 
     describe('when the request to find peers fails', () => {
       beforeEach(() => {
-        httpMock.onGet(/http.*\/api\/peers/).reply(500)
+        nock(/http:\/\/.+/).get('/api/peers').reply(500)
       })
 
       it('returns the list of initial (hardcoded) peers', async () => {
@@ -232,11 +253,14 @@ describe('API - Client', () => {
 
   describe('fetchPeerConfig', () => {
     const peer = peers[0]
-    const host = `http://${peer.ip}:${peer.port}`
+    const host = `http://${peer.ip}:4040`
 
     it('should obtain the configuration of the peer', async () => {
       const peerConfig = { plugins: {} }
-      httpMock.onGet(`${host}/config`).reply(200, { data: peerConfig })
+      nock(host)
+        .persist()
+        .get('/config')
+        .reply(200, { data: peerConfig })
 
       const config = await Client.fetchPeerConfig(host)
       expect(config).toEqual(peerConfig)
@@ -244,7 +268,20 @@ describe('API - Client', () => {
 
     describe('when there is a network error', () => {
       it('should not throw Errors', async () => {
-        httpMock.onGet(`${host}/config`).reply(500, {})
+        nock(host)
+          .persist()
+          .get('/config')
+          .reply(500, {})
+
+        nock(`http://${peer.ip}:4040`)
+          .persist()
+          .get('/')
+          .reply(500, {})
+
+        nock(`http://${peer.ip}:${peer.port}`)
+          .persist()
+          .get('/config')
+          .reply(500, {})
 
         expect(await errorCapturer(Client.fetchPeerConfig(host))).not.toThrowError()
       })
@@ -261,9 +298,13 @@ describe('API - Client', () => {
             '@arkecosystem/core-api': { enabled: true, port }
           }
         }
-        httpMock.onGet(`http://${peer.ip}:${peer.port}/config`).reply(200, { data: peerConfig })
 
-        expect(await Client.selectApiPeer(peers)).toEqual({
+        nock(/http:\/\/.+:4040/)
+          .persist()
+          .get('/config')
+          .reply(200, { data: peerConfig })
+
+        expect(await Client.selectApiPeer([peer])).toEqual({
           ...peer,
           port
         })
@@ -277,7 +318,11 @@ describe('API - Client', () => {
             '@arkecosystem/core-other-plugin': { enabled: true }
           }
         }
-        httpMock.onGet(/http.*\/config/).reply(200, { data: peerConfig })
+
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/config')
+          .reply(200, { data: peerConfig })
 
         expect(await Client.selectApiPeer(peers)).toBeNull()
       })
@@ -290,7 +335,11 @@ describe('API - Client', () => {
             '@arkecosystem/core-api': { enabled: false }
           }
         }
-        httpMock.onGet(/http.*\/config/).reply(200, { data: peerConfig })
+
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/config')
+          .reply(200, { data: peerConfig })
 
         expect(await Client.selectApiPeer(peers)).toBeNull()
       })
@@ -298,9 +347,15 @@ describe('API - Client', () => {
 
     describe('when there is a network error', () => {
       it('should not throw Errors', async () => {
-        httpMock.onGet(/http.*\/config/).reply(500, {})
+        jest.setTimeout(15000)
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/config')
+          .reply(500)
+          .get('/')
+          .reply(500)
 
-        expect(await errorCapturer(Client.selectApiPeer(peers))).not.toThrowError()
+        expect(await errorCapturer(Client.selectApiPeer([peers[0]]))).not.toThrowError()
       })
     })
   })
@@ -314,10 +369,13 @@ describe('API - Client', () => {
     }
 
     it('should throw an Error if the network does not have initial peers', async () => {
-      httpMock.onGet(/http.*\/config/).reply(200, { data: peerConfig })
+      nock(/http:\/\/.+/)
+        .persist()
+        .get('/config')
+        .reply(200, { data: peerConfig })
 
       try {
-        expect(async () => Client.connect('wrong')).toThrow()
+        expect(await errorCapturer(Client.connect('wrong'))).toThrow()
         expect().fail('Should fail on the previous line')
       } catch (error) {
         expect(error).toBeInstanceOf(Error)
@@ -326,7 +384,10 @@ describe('API - Client', () => {
 
     describe('when the peers are overriden', () => {
       it('should not throw an Error if the network does not exist', async () => {
-        httpMock.onGet(/http.*\/config/).reply(200, { data: peerConfig })
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/config')
+          .reply(200, { data: peerConfig })
 
         try {
           await Client.connect('wrong', 2, peersOverride)
@@ -345,8 +406,13 @@ describe('API - Client', () => {
           success: true,
           peers
         }
-        httpMock.onGet(/http.*\/config/).reply(200, { data: peerConfig })
-        httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
+
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/config')
+          .reply(200, { data: peerConfig })
+          .get('/api/peers')
+          .reply(200, data)
 
         const client = await Client.connect('devnet')
         expect(client.getConnection().host).toEqual(`http://${peers[1].ip}:${port}`)
@@ -358,8 +424,16 @@ describe('API - Client', () => {
           success: true,
           peers
         }
-        httpMock.onGet(`http://${peer.ip}:${peer.port}/config`).reply(200, { data: peerConfig })
-        httpMock.onGet(/http.*\/api\/peers/).reply(200, data)
+
+        nock(`http://${peer.ip}:4040`)
+          .persist()
+          .get('/config')
+          .reply(200, { data: peerConfig })
+
+        nock(/http:\/\/.+/)
+          .persist()
+          .get('/api/peers')
+          .reply(200, data)
 
         const client = await Client.connect('devnet')
         expect(client.getConnection().host).toEqual(`http://${peer.ip}:${port}`)
@@ -368,7 +442,7 @@ describe('API - Client', () => {
 
     describe('when there are not peers with `core-api` enabled', () => {
       it('should throw an Error', async () => {
-        httpMock.onGet(/http.*\/config/).reply(200, { data: {} })
+        nock(/http:\/\/.+/).get('/config').reply(200, { data: {} })
 
         expect(await errorCapturer(Client.connect('devnet', 2))).toThrowError(/api/i)
       })

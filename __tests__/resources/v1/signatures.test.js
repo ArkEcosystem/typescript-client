@@ -19,6 +19,6 @@ describe('API - 1.0 - Resources - Signatures', () => {
   it('should call "fee" method', async () => {
     const response = await resource.fee()
 
-    expect(response.status).toBe(200)
+    expect(response.statusCode).toBe(200)
   })
 })
