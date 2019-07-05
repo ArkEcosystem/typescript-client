@@ -5,6 +5,8 @@ import { IResponse } from "./interfaces";
 import { Resources } from "./resources";
 
 export class Connection {
+	private opts: Record<string, any>;
+
 	public constructor(private readonly host: string) {
 		if (!isUrl(host)) {
 			throw new Error(`${host} is not a valid URL.`);
@@ -18,6 +20,12 @@ export class Connection {
 		return new Resources[name](this);
 	}
 
+	public withOptions(opts: Record<string, any>): this {
+		this.opts = opts;
+
+		return this;
+	}
+
 	public async get<T = any>(url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
 		return this.sendRequest("get", url, opts);
 	}
@@ -27,10 +35,7 @@ export class Connection {
 	}
 
 	private async sendRequest<T>(method: string, url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
-		if (!opts) {
-			// @ts-ignore
-			opts = {};
-		}
+		opts = { ...this.opts, ...(opts || {}) };
 
 		if (opts.body && typeof opts !== "string") {
 			// @ts-ignore
