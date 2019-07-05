@@ -3,7 +3,7 @@ import { configureMocks } from "../mocks";
 
 const resource: Node = configureMocks<Node>(Node);
 
-describe("API - 2.0 - Resources - Loader", () => {
+describe("API - 2.0 - Resources - Node", () => {
 	it("should call \"status\" method", async () => {
 		const response = await resource.status();
 
