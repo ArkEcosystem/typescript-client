@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.26 - 2019-07-04
+
+### Changed
+- Replaced `axios` and `axios-mock-adapter` with `got` and `nock`
+
 ## 0.1.25 - 2019-06-12
 
 ### Changed
