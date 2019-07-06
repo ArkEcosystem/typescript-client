@@ -7,176 +7,183 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.1] - 2019-07-06
+
+### Added
+
+-   Allow client configuration via `withOptions` ([#49])
+
 ## [1.0.0] - 2019-07-05
 
 ### Added
 
-- Implemented Connections
+-   Implemented Connections
 
 ### Changed
 
-- Migrated to TypeScript
+-   Migrated to TypeScript
 
 ### Removed
 
-- Peer Logic
-- Webhook Integration
+-   Peer Logic
+-   Webhook Integration
 
 ## [0.1.26] - 2019-07-04
 
 ### Changed
 
-- Replaced `axios` and `axios-mock-adapter` with `got` and `nock`
+-   Replaced `axios` and `axios-mock-adapter` with `got` and `nock`
 
 ## [0.1.25] - 2019-06-12
 
 ### Changed
 
-- Update order of config endpoints for Wallet API
+-   Update order of config endpoints for Wallet API
 
 ## [0.1.24] - 2019-05-30
 
 ### Fixed
 
-- Upgrade  `axios` to 0.19 to avoid CVE-2019-10742 (http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10742)
+-   Upgrade `axios` to 0.19 to avoid CVE-2019-10742 (http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10742)
 
 ## [0.1.23] - 2019-05-09
 
 ### Fixed
 
-- V2 peers no longer provide "status" which breaks validation for peer objects
+-   V2 peers no longer provide "status" which breaks validation for peer objects
 
 ## [0.1.22] - 2019-05-09
 
 ### Fixed
 
-- Try all possible config endpoints during transition period
+-   Try all possible config endpoints during transition period
 
 ## [0.1.21] - 2019-05-08
 
 ### Fixed
 
-- Try both p2p and wallet api for config
+-   Try both p2p and wallet api for config
 
 ### Added
 
-- Node fees endpoint
+-   Node fees endpoint
 
 ## [0.1.20] - 2019-01-28
 
 ### Fixed
 
-- Check status and version to find peers
-- Clone peer list as to not overwrite default network peers
+-   Check status and version to find peers
+-   Clone peer list as to not overwrite default network peers
 
 ## [0.1.19] - 2019-01-25
 
 ### Changed
 
-- Added transaction fees v2 endpoint
+-   Added transaction fees v2 endpoint
 
 ## [0.1.18] - 2019-01-22
 
 ### Changed
 
-- Allow https peer option when finding peers
+-   Allow https peer option when finding peers
 
 ## [0.1.17] - 2019-01-16
 
 ### Changed
 
-- Use standard API-Version header
+-   Use standard API-Version header
 
 ## [0.1.16] - 2018-12-04
 
 ### Fixed
 
-- Update mainnet peer addresses to match Core
+-   Update mainnet peer addresses to match Core
 
 ## [0.1.15] - 2018-12-04
 
 ### Fixed
 
-- Use API port for mainnet peers
+-   Use API port for mainnet peers
 
 ## [0.1.14] - 2018-11-27
 
 ### Changed
 
-- Update mainnet peer list
+-   Update mainnet peer list
 
 ## [0.1.13] - 2018-11-26
 
 ### Changed
 
-- Update mainnet peer list
+-   Update mainnet peer list
 
 ## [0.1.12] - 2018-11-23
 
 ### Changed
 
-- Get peer list from 2 peers
+-   Get peer list from 2 peers
 
 ## [0.1.11] - 2018-11-23
 
 ### Changed
 
-- Always send the `Content-Type` header
+-   Always send the `Content-Type` header
 
 ## [0.1.10] - 2018-10-24
 
 ### Fixed
 
-- Use the configured `core-api` port instead of the `core-p2p` port, which would fail (https://github.com/ArkEcosystem/core/pull/1138)
-- Wrong loader methods (https://github.com/ArkEcosystem/core/pull/1194)
+-   Use the configured `core-api` port instead of the `core-p2p` port, which would fail (https://github.com/ArkEcosystem/core/pull/1138)
+-   Wrong loader methods (https://github.com/ArkEcosystem/core/pull/1194)
 
 ## [0.1.9] - 2018-10-13
 
 ### Fixed
 
-- Handle v2 endpoints when finding peers (https://github.com/ArkEcosystem/core/pull/1103)
+-   Handle v2 endpoints when finding peers (https://github.com/ArkEcosystem/core/pull/1103)
 
 ## [0.1.8] - 2018-10-12
 
 ### Changed
 
-- Use 5 second timeout for finding peers (https://github.com/ArkEcosystem/core/pull/1103)
+-   Use 5 second timeout for finding peers (https://github.com/ArkEcosystem/core/pull/1103)
 
 ### Fixed
 
-- Get peer response data correctly (https://github.com/ArkEcosystem/core/pull/1103)
+-   Get peer response data correctly (https://github.com/ArkEcosystem/core/pull/1103)
 
 ## [0.1.7] - 2018-10-12
 
 ### Fixed
 
-- Add query parameters to the v2 endpoints.(https://github.com/ArkEcosystem/core/pull/1103)
+-   Add query parameters to the v2 endpoints.(https://github.com/ArkEcosystem/core/pull/1103)
 
 ## [0.1.6] - 2018-10-09
 
 ### Fixed
 
-- Use the definitive `accept` header instead of the previous one (https://github.com/ArkEcosystem/core/pull/1082)
+-   Use the definitive `accept` header instead of the previous one (https://github.com/ArkEcosystem/core/pull/1082)
 
 ## [0.1.5] - 2018-10-05
 
 ### Fixed
 
-- Use the `accept` header instead of api-version to avoid CORS problems (https://github.com/ArkEcosystem/core/pull/1012)
+-   Use the `accept` header instead of api-version to avoid CORS problems (https://github.com/ArkEcosystem/core/pull/1012)
 
 ## [0.1.4] - 2018-09-20
 
 ### Fixed
 
-- Fix API client HTTP params (query string) (https://github.com/ArkEcosystem/core/pull/1015)
+-   Fix API client HTTP params (query string) (https://github.com/ArkEcosystem/core/pull/1015)
 
 ## [0.1.1] - 2018-06-14
 
 ### Added
 
-- initial release
+-   initial release
 
 [unreleased]: https://github.com/ARKEcosystem/core/compare/master...develop
+[1.0.1]: https://github.com/ARKEcosystem/core/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/ARKEcosystem/core/compare/0.1.26...1.0.0
 [0.1.26]: https://github.com/ARKEcosystem/core/compare/0.1.25...0.1.26
 [0.1.25]: https://github.com/ARKEcosystem/core/compare/0.1.24...0.1.25
@@ -202,3 +209,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.1.5]: https://github.com/ARKEcosystem/core/compare/0.1.4...0.1.5
 [0.1.4]: https://github.com/ARKEcosystem/core/tree/0.1.4
 [0.1.1]: https://github.com/ARKEcosystem/core/tree/0.1.1
+[#49]: https://github.com/ArkEcosystem/typescript-client/pull/49
