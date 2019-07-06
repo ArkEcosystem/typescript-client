@@ -3,10 +3,10 @@ import { Resource } from "./resource";
 
 export class Peers extends Resource {
 	public async all<T = any>(query?: Record<string, any>): Promise<IResponse<T>> {
-		return this.connection.get("peers", query);
+		return this.sendGet("peers", query);
 	}
 
 	public async get<T = any>(ip: string): Promise<IResponse<T>> {
-		return this.connection.get(`peers/${ip}`);
+		return this.sendGet(`peers/${ip}`);
 	}
 }

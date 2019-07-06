@@ -15,5 +15,6 @@ export const mockNode = (host: string) => {
 
 	nock(host)
 		.get("/node/fees")
+		.query({ days: 30 })
 		.reply(200, { data: [] });
 };
