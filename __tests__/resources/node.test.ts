@@ -22,6 +22,12 @@ describe("API - 2.0 - Resources - Node", () => {
 		expect(response.status).toBe(200);
 	});
 
+	it("should call \"crypto\" method", async () => {
+		const response = await resource.crypto();
+
+		expect(response.status).toBe(200);
+	});
+
 	it("should call \"fees\" method", async () => {
 		const response = await resource.fees(30);
 
