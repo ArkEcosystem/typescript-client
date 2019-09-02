@@ -1,8 +1,8 @@
 import { Connection } from "../../src/connection";
 import { Resource } from "../../src/resources/resource";
 
-const host = 'http://1.1.1.1:1234'
-let resource: Resource
+const host = 'http://1.1.1.1:1234';
+let resource: Resource;
 
 beforeEach(() => {
 	resource = new Resource(new Connection(host));
