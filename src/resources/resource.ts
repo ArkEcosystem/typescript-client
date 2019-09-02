@@ -6,6 +6,10 @@ export class Resource {
 
 	public constructor(protected readonly connection: Connection) {}
 
+	public getOptions(): Record<string, any> {
+		return this.opts;
+	}
+
 	public withOptions(opts: Record<string, any>): this {
 		this.opts = opts;
 
