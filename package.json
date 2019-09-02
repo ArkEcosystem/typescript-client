@@ -1,7 +1,7 @@
 {
 	"name": "@arkecosystem/client",
 	"description": "A simple TypeScript API client for the Ark Blockchain.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"contributors": [],
 	"license": "MIT",
 	"files": [
