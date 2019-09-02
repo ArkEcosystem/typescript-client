@@ -189,6 +189,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   initial release
 
 [unreleased]: https://github.com/ARKEcosystem/core/compare/master...develop
+[1.0.2]: https://github.com/ARKEcosystem/core/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/ARKEcosystem/core/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/ARKEcosystem/core/compare/0.1.26...1.0.0
 [0.1.26]: https://github.com/ARKEcosystem/core/compare/0.1.25...0.1.26
@@ -216,3 +217,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.1.4]: https://github.com/ARKEcosystem/core/tree/0.1.4
 [0.1.1]: https://github.com/ARKEcosystem/core/tree/0.1.1
 [#49]: https://github.com/ArkEcosystem/typescript-client/pull/49
+[#54]: https://github.com/ArkEcosystem/typescript-client/pull/544
