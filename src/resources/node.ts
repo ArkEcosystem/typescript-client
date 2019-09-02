@@ -14,6 +14,10 @@ export class Node extends Resource {
 		return this.sendGet("node/configuration");
 	}
 
+	public async crypto<T = any>(): Promise<IResponse<T>> {
+		return this.sendGet("node/configuration/crypto");
+	}
+
 	public async fees<T = any>(days: number): Promise<IResponse<T>> {
 		return this.sendGet("node/fees", {
 			days,
