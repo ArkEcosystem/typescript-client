@@ -217,4 +217,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.1.4]: https://github.com/ARKEcosystem/core/tree/0.1.4
 [0.1.1]: https://github.com/ARKEcosystem/core/tree/0.1.1
 [#49]: https://github.com/ArkEcosystem/typescript-client/pull/49
-[#54]: https://github.com/ArkEcosystem/typescript-client/pull/544
+[#54]: https://github.com/ArkEcosystem/typescript-client/pull/54
