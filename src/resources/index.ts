@@ -2,6 +2,7 @@ import { Blocks } from "./blocks";
 import { Delegates } from "./delegates";
 import { Node } from "./node";
 import { Peers } from "./peers";
+import { Rounds } from "./rounds";
 import { Transactions } from "./transactions";
 import { Votes } from "./votes";
 import { Wallets } from "./wallets";
@@ -12,6 +13,7 @@ export const Resources = {
 	Delegates,
 	Node,
 	Peers,
+	Rounds,
 	Transactions,
 	Votes,
 	Wallets,

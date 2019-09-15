@@ -4,6 +4,7 @@ import { mockBlocks } from "./blocks";
 import { mockDelegates } from "./delegates";
 import { mockNode } from "./node";
 import { mockPeers } from "./peers";
+import { mockRounds } from "./rounds";
 import { mockTransactions } from "./transactions";
 import { mockVotes } from "./votes";
 import { mockWallets } from "./wallets";
@@ -16,6 +17,7 @@ export const configureMocks = <T>(resource): T => {
 	mockDelegates(host);
 	mockNode(host);
 	mockPeers(host);
+	mockRounds(host);
 	mockTransactions(host);
 	mockVotes(host);
 	mockWallets(host);
