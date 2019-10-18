@@ -22,6 +22,12 @@ describe("API - 2.0 - Resources - Wallets", () => {
 		expect(response.status).toBe(200);
 	});
 
+	it("should call \"locks\" method", async () => {
+		const response = await resource.locks("123");
+
+		expect(response.status).toBe(200);
+	});
+
 	it("should call \"transactions\" method", async () => {
 		const response = await resource.transactions("123");
 

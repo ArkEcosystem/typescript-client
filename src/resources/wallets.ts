@@ -14,6 +14,10 @@ export class Wallets extends Resource {
 		return this.sendGet(`wallets/${id}`);
 	}
 
+	public async locks<T = any>(id: string, query?: Record<string, any>): Promise<IResponse<T>> {
+		return this.sendGet(`wallets/${id}/locks`, query);
+	}
+
 	public async transactions<T = any>(id: string, query?: Record<string, any>): Promise<IResponse<T>> {
 		return this.sendGet(`wallets/${id}/transactions`, query);
 	}
