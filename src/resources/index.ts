@@ -13,8 +13,8 @@ import { Wallets } from "./wallets";
 // tslint:disable-next-line: variable-name
 export const Resources = {
 	Blocks,
-  Bridgechains,
-  Businesses,
+	Bridgechains,
+	Businesses,
 	Delegates,
 	Locks,
 	Node,
