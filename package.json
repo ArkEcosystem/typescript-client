@@ -57,11 +57,10 @@
 		"verbose": true
 	},
 	"dependencies": {
-		"got": "^9.6.0",
-		"is-url-superb": "^3.0.0"
+		"is-url-superb": "^3.0.0",
+		"ky": "^0.16.1"
 	},
 	"devDependencies": {
-		"@types/got": "^9.6.7",
 		"@types/jest": "^24.0.18",
 		"@types/nock": "^10.0.3",
 		"@types/prettier": "^1.18.2",
