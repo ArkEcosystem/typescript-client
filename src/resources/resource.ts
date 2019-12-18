@@ -19,7 +19,7 @@ export class Resource {
 	}
 
 	public async sendGet<T = any>(url: string, query?: Record<string, any>): Promise<IResponse<T>> {
-		const response = await this.connection.get(url, { ...this.opts, ...{ query } });
+		const response = await this.connection.get(url, { ...this.opts, ...{ searchParams: query } });
 
 		this.resetOptions();
 

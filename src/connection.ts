@@ -1,4 +1,4 @@
-import got from "got";
+import ky from "ky-universal";
 import isUrl from "is-url-superb";
 import { RequestError } from "./errors";
 import { IResponse } from "./interfaces";
@@ -53,12 +53,12 @@ export class Connection {
 
 		try {
 			// @ts-ignore
-			const { body, headers, statusCode } = await got[method](`${this.host}/${url}`, opts);
+			const response = await ky[method](`${this.host}/${url}`, opts);
 
 			return {
-				body: JSON.parse(body),
-				headers,
-				status: statusCode,
+				body: response.json(),
+				headers: response.headers,
+				status: response.status,
 			};
 		} catch (error) {
 			throw new RequestError(error);
