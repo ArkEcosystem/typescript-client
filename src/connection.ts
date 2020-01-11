@@ -56,7 +56,7 @@ export class Connection {
 			const response = await ky[method](`${this.host}/${url}`, opts);
 
 			return {
-				body: response.json(),
+				body: await response.json(),
 				headers: response.headers,
 				status: response.status,
 			};
