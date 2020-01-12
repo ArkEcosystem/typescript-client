@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.6] - 2020-01-11
+
+### Changed
+
+-   Replace `got` with `ky` integration ([#79]) and ([#82])
+
 ## [1.0.5] - 2019-11-11
 
 ### Added
@@ -197,6 +203,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   initial release
 
 [unreleased]: https://github.com/ARKEcosystem/core/compare/master...develop
+[1.0.6]: https://github.com/ARKEcosystem/core/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/ARKEcosystem/core/compare/1.0.2...1.0.5
 [1.0.2]: https://github.com/ARKEcosystem/core/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/ARKEcosystem/core/compare/1.0.0...1.0.1
@@ -228,3 +235,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [#49]: https://github.com/ArkEcosystem/typescript-client/pull/49
 [#54]: https://github.com/ArkEcosystem/typescript-client/pull/54
 [#70]: https://github.com/ArkEcosystem/typescript-client/pull/70
+[#79]: https://github.com/ArkEcosystem/typescript-client/pull/79
+[#82]: https://github.com/ArkEcosystem/typescript-client/pull/82
