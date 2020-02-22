@@ -1,5 +1,5 @@
-import ky from "ky-universal";
 import isUrl from "is-url-superb";
+import ky, { Options as kyOptions } from "ky-universal";
 import { RequestError } from "./errors";
 import { IResponse } from "./interfaces";
 import { Resources } from "./resources";
@@ -34,7 +34,7 @@ export class Connection {
 		return this.sendRequest("post", url, opts);
 	}
 
-	private async sendRequest<T>(method: string, url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
+	private async sendRequest<T>(method: kyOptions["method"], url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
 		opts = { ...this.opts, ...(opts || {}) };
 
 		if (opts.body && typeof opts !== "string") {
@@ -52,12 +52,11 @@ export class Connection {
 		}
 
 		try {
-			// @ts-ignore
-			const response = await ky[method](`${this.host}/${url}`, opts);
+			const response = await ky(`${this.host}/${url}`, { ...opts, method });
 
 			return {
 				body: await response.json(),
-				headers: response.headers,
+				headers: response.headers as any as IResponse<T>["headers"],
 				status: response.status,
 			};
 		} catch (error) {
