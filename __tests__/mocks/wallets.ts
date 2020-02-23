@@ -6,15 +6,7 @@ export const mockWallets = (host: string) => {
 		.reply(200, { data: [] });
 
 	nock(host)
-		.get("/wallets/top")
-		.reply(200, { data: [] });
-
-	nock(host)
 		.get("/wallets/123")
-		.reply(200, { data: [] });
-
-	nock(host)
-		.get("/wallets/123/locks")
 		.reply(200, { data: [] });
 
 	nock(host)
@@ -22,11 +14,11 @@ export const mockWallets = (host: string) => {
 		.reply(200, { data: [] });
 
 	nock(host)
-		.get("/wallets/123/transactions/sent")
+		.get("/wallets/123/transactions/received")
 		.reply(200, { data: [] });
 
 	nock(host)
-		.get("/wallets/123/transactions/received")
+		.get("/wallets/123/transactions/sent")
 		.reply(200, { data: [] });
 
 	nock(host)
@@ -34,6 +26,14 @@ export const mockWallets = (host: string) => {
 		.reply(200, { data: [] });
 
 	nock(host)
+		.get("/wallets/top")
+		.reply(200, { data: [] });
+
+	nock(host)
 		.post("/wallets/search")
+		.reply(200, { data: [] });
+
+	nock(host)
+		.get("/wallets/123/locks")
 		.reply(200, { data: [] });
 };

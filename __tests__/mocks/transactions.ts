@@ -32,4 +32,8 @@ export const mockTransactions = (host: string) => {
 	nock(host)
 		.get("/transactions/fees")
 		.reply(200, { data: [] });
+
+	nock(host)
+		.get("/transactions/schemas")
+		.reply(200, { data: [] });
 };
