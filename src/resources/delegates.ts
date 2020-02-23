@@ -1,20 +1,61 @@
 import { IResponse } from "../interfaces";
+import { AllDelegatesApiQuery, DelegateBlocksApiQuery, DelegateVotersApiQuery } from "../resourcesTypes/delegates";
 import { Resource } from "./resource";
 
+/**
+ * Delegates are regular wallets (addresses) which have registered themselves eligible to become a Delegate by a registration transaction.
+ * 
+ * If a Delegate is amongst the top 51 highest voted \(by staked ARK\), it may run a forging Node, which produces a block once every 6.8 minutes, awarding the Delegate two ARK + the transaction fees.
+ * 
+ * Genesis Delegates are the initial, virtualized Delegates.
+ * They were not registered nor voted in, and in the ARK `mainnet` has been replaced by actual Delegates a long time ago.
+ */
 export class Delegates extends Resource {
-	public async all<T = any>(query?: Record<string, any>): Promise<IResponse<T>> {
+	/**
+	 * List All Delegates
+	 * 
+	 * You can obtain all Delegates through this paginated API. Note that all registered Delegates are returned in this response, not just the top 51 forging Delegates.
+	 * 
+	 * If a Delegate Node is offline, it is still returned through this API; as the `delegate` resource is not concerned with the actual nodes, only with the on-chain registrations and wallets.
+	 */
+	public async all<T = any>(query?: AllDelegatesApiQuery): Promise<IResponse<T>> {
 		return this.sendGet("delegates", query);
 	}
 
-	public async get<T = any>(id: string): Promise<IResponse<T>> {
-		return this.sendGet(`delegates/${id}`);
+	/**
+	 * Retrieve a Delegate
+	 * 
+	 * You can query for a specific delegate by username, address, and public key; thus the following queries will result in an identical response.
+	 * 
+	 * Note that public keys are always known for delegates, as they have previously transmitted a registration transaction. This is not the case for regular wallets.
+	 * 
+	 * @param usernameOrAddressOrPublicKey The identifier of the delegate to be retrieved.
+	 */
+	public async get<T = any>(usernameOrAddressOrPublicKey: string): Promise<IResponse<T>> {
+		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}`);
 	}
 
-	public async blocks<T = any>(id: string, query?: Record<string, any>): Promise<IResponse<T>> {
-		return this.sendGet(`delegates/${id}/blocks`, query);
+	/**
+	 * List All Blocks of a Delegate
+	 * 
+	 * The `delegate` resource allows you to obtain blocks from a specific Delegate.
+	 * 
+	 * This is the equivalent of searching for blocks using the `generatorPublicKey`.
+	 * 
+	 * @param usernameOrAddressOrPublicKey The identifier of the delegate to be retrieved.
+	 */
+	public async blocks<T = any>(usernameOrAddressOrPublicKey: string, query?: DelegateBlocksApiQuery): Promise<IResponse<T>> {
+		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/blocks`, query);
 	}
 
-	public async voters<T = any>(id: string, query?: Record<string, any>): Promise<IResponse<T>> {
-		return this.sendGet(`delegates/${id}/voters`, query);
+	/**
+	 * List All Voters of a Delegate
+	 * 
+	 * Obtaining the voters of a Delegate is trivial as well. This endpoint returns **active** voters. To acquire historical voters, it is better to query the database directly.
+	 * 
+	 * @param usernameOrAddressOrPublicKey The identifier of the delegate to be retrieved.
+	 */
+	public async voters<T = any>(usernameOrAddressOrPublicKey: string, query?: DelegateVotersApiQuery): Promise<IResponse<T>> {
+		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/voters`, query);
 	}
 }
