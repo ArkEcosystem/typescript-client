@@ -6,8 +6,13 @@ export class Blocks extends Resource {
 		return this.sendGet("blocks", query);
 	}
 
-	public async get<T = any>(id: string): Promise<IResponse<T>> {
-		return this.sendGet(`blocks/${id}`);
+	public async first<T = any>(): Promise<IResponse<T>> {
+		return this.sendGet("blocks/first");
+	}
+
+	public async last<T = any>(): Promise<IResponse<T>> {
+		return this.sendGet("blocks/last");
+	}
 	}
 
 	public async transactions<T = any>(id: string, query?: Record<string, any>): Promise<IResponse<T>> {
