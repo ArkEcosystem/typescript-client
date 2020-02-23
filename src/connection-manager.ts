@@ -17,19 +17,17 @@ export class ConnectionManager {
 	public disconnect(name?: string): void {
 		name = name || this.getDefaultConnection();
 
-		// @ts-ignore
+		// tslint:disable-next-line: no-dynamic-delete
 		delete this.connections[name];
 	}
 
 	public connection(name?: string): Connection {
 		name = name || this.getDefaultConnection();
 
-		// @ts-ignore
 		if (!this.connections[name]) {
 			throw new Error(`Connection [${name}] not configured.`);
 		}
 
-		// @ts-ignore
 		return this.connections[name];
 	}
 

@@ -36,7 +36,6 @@ export class Connection {
 		opts = { ...this.opts, ...(opts || {}) };
 
 		if (opts.body && typeof opts !== "string") {
-			// @ts-ignore
 			opts.body = JSON.stringify(opts.body);
 		}
 

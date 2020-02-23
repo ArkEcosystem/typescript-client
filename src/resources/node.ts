@@ -19,8 +19,6 @@ export class Node extends Resource {
 	}
 
 	public async fees<T = any>(days: number): Promise<IResponse<T>> {
-		return this.sendGet("node/fees", {
-			days,
-		});
+		return this.sendGet("node/fees", { days });
 	}
 }
