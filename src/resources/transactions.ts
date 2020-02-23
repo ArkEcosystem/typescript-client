@@ -22,8 +22,8 @@ export class Transactions extends Resource {
 		return this.sendGet(`transactions/unconfirmed/${id}`);
 	}
 
-	public async search<T = any>(payload: Record<string, any>): Promise<IResponse<T>> {
-		return this.sendPost("transactions/search", payload);
+	public async search<T = any>(payload: Record<string, any>, query?: Record<string, any>): Promise<IResponse<T>> {
+		return this.sendPost("transactions/search", payload, query);
 	}
 
 	public async types<T = any>(): Promise<IResponse<T>> {

@@ -14,7 +14,7 @@ export class Blocks extends Resource {
 		return this.sendGet(`blocks/${id}/transactions`, query);
 	}
 
-	public async search<T = any>(payload?: Record<string, any>): Promise<IResponse<T>> {
-		return this.sendPost("blocks/search", payload);
+	public async search<T = any>(payload?: Record<string, any>, query?: Record<string, any>): Promise<IResponse<T>> {
+		return this.sendPost("blocks/search", payload, query);
 	}
 }

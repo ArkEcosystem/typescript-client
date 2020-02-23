@@ -26,8 +26,12 @@ export class Resource {
 		return response;
 	}
 
-	public async sendPost<T = any>(url: string, body?: Record<string, any>): Promise<IResponse<T>> {
-		const response = await this.connection.post(url, { ...this.opts, ...{ body } });
+	public async sendPost<T = any>(
+		url: string,
+		body?: Record<string, any>,
+		query?: Record<string, any>,
+	): Promise<IResponse<T>> {
+		const response = await this.connection.post(url, { ...this.opts, ...{ body }, ...{ searchParams: query } });
 
 		this.resetOptions();
 

@@ -34,7 +34,7 @@ export class Wallets extends Resource {
 		return this.sendGet(`wallets/${id}/votes`);
 	}
 
-	public async search<T = any>(payload: Record<string, any>): Promise<IResponse<T>> {
-		return this.sendPost("wallets/search", payload);
+	public async search<T = any>(payload: Record<string, any>, query?: Record<string, any>): Promise<IResponse<T>> {
+		return this.sendPost("wallets/search", payload, query);
 	}
 }

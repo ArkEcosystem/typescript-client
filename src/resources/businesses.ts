@@ -14,7 +14,7 @@ export class Businesses extends Resource {
     return this.sendGet(`businesses/${id}/bridgechains`, query);
   }
 
-  public async search<T = any>(payload?: Record<string, any>): Promise<IResponse<T>> {
-    return this.sendPost("businesses/search", payload);
+  public async search<T = any>(payload?: Record<string, any>, query?: Record<string, any>): Promise<IResponse<T>> {
+    return this.sendPost("businesses/search", payload, query);
   }
 }

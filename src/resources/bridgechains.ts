@@ -10,7 +10,7 @@ export class Bridgechains extends Resource {
     return this.sendGet(`bridgechains/${id}`);
   }
 
-  public async search<T = any>(payload?: Record<string, any>): Promise<IResponse<T>> {
-    return this.sendPost("bridgechains/search", payload);
+  public async search<T = any>(payload?: Record<string, any>, query?: Record<string, any>): Promise<IResponse<T>> {
+    return this.sendPost("bridgechains/search", payload, query);
   }
 }
