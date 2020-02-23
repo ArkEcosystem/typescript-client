@@ -38,5 +38,5 @@ export interface SearchLocksUnlockedApiQuery extends ApiQuery {
 
 export interface SearchLocksUnlockedApiBody extends ApiBody {
 	/** Array of lock ids. */
-	ids: string[];
+	ids?: string[];
 }
