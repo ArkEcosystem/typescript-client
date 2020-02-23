@@ -36,7 +36,7 @@ export interface TransactionsInBlockApiQuery extends ApiQuery {
 	vendorField?: string;
 }
 
-export interface SearchAllBlockApiBody extends ApiBody {
+export interface SearchBlockApiBody extends ApiBody {
 	/** ID of the block. */
 	id?: string;
 	/** Version of the block. */
