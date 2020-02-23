@@ -2,7 +2,7 @@ import isUrl from "is-url-superb";
 import ky, { Options as kyOptions } from "ky-universal";
 import { RequestError } from "./errors";
 import { IResponse } from "./interfaces";
-import { Resources } from "./resources";
+import { AvailableResource, AvailableResourcesName, Resources } from "./resources";
 
 export class Connection {
 	private opts: Record<string, any>;
@@ -13,11 +13,9 @@ export class Connection {
 		}
 	}
 
-	public api<T = any>(name: string): T {
-		name = name.charAt(0).toUpperCase() + name.slice(1);
-
-		// @ts-ignore
-		return new Resources[name](this);
+	public api<T extends AvailableResourcesName>(name: T) {
+		const selectedResourceClass = Resources[name];
+		return new selectedResourceClass(this) as AvailableResource<T>;
 	}
 
 	public withOptions(opts: Record<string, any>): this {

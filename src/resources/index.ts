@@ -24,3 +24,6 @@ export const Resources = {
 	Votes,
 	Wallets,
 };
+
+export type AvailableResourcesName = keyof typeof Resources;
+export type AvailableResource<T extends AvailableResourcesName> = InstanceType<typeof Resources[T]>;
