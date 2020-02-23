@@ -1,4 +1,4 @@
-import { IResponse, ApiQuery } from "../interfaces";
+import { ApiQuery, IResponse } from "../interfaces";
 import { AllTransactionsApiQuery, SearchTransactionsApiBody } from "../resourcesTypes/transactions";
 import { Resource } from "./resource";
 
