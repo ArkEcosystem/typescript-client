@@ -1,5 +1,5 @@
-import { IResponse } from "../interfaces";
-import { AllDelegatesApiQuery, DelegateBlocksApiQuery, DelegateVotersApiQuery } from "../resourcesTypes/delegates";
+import { ApiQuery, IResponse } from "../interfaces";
+import { AllDelegatesApiQuery, DelegateBlocksApiQuery, DelegateVotersApiQuery, SearchDelegatesApiBody } from "../resourcesTypes/delegates";
 import { Resource } from "./resource";
 
 /**
@@ -57,5 +57,14 @@ export class Delegates extends Resource {
 	 */
 	public async voters<T = any>(usernameOrAddressOrPublicKey: string, query?: DelegateVotersApiQuery): Promise<IResponse<T>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/voters`, query);
+	}
+
+	/**
+	 * Search for a Delegate
+	 * 
+	 * For fine-grained searches, use the search endpoint.
+	 */
+	public async search<T = any>(payload?: SearchDelegatesApiBody, query?: ApiQuery): Promise<IResponse<T>> {
+		return this.sendPost("delegates/search", payload, query);
 	}
 }

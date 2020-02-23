@@ -12,6 +12,7 @@ export class Businesses extends Resource {
 
   /**
    * Return business by wallet address
+   * 
    * @param walletAddress The identifier of the wallet to be retrieved.
    */
   public async get<T = any>(walletAddress: string): Promise<IResponse<T>> {
@@ -20,6 +21,7 @@ export class Businesses extends Resource {
 
   /**
    * Return bridgechains of a business
+   * 
    * @param walletAddress The identifier of the wallet to be retrieved.
    */
   public async bridgechains<T = any>(walletAddress: string, query?: BusinessBridgechainsApiQuery): Promise<IResponse<T>> {
