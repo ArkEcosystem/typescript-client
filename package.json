@@ -58,7 +58,7 @@
 	},
 	"dependencies": {
 		"is-url-superb": "^3.0.0",
-		"ky": "^0.16.1",
+		"ky": "^0.17.0",
 		"ky-universal": "^0.3.0"
 	},
 	"devDependencies": {

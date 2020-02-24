@@ -2642,10 +2642,10 @@ ky-universal@^0.3.0:
     abort-controller "^3.0.0"
     node-fetch "^2.6.0"
 
-ky@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/ky/-/ky-0.16.1.tgz#1b7e14b1a964525b270fca5faf3bbf9e47ac8c8a"
-  integrity sha512-olhyGihJ8XOxP8dhdXXDFu1FfowsmkQznI33KNTl4Woa3T/UDBEV/FR8Y8Pe1cJ3ofVnlflcXRUE8a3Phwr3Og==
+ky@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-0.17.0.tgz#c1c464bd5e88217fb75ccadcee146497a8ea2f13"
+  integrity sha512-WSDBoSr9IWJOJOIGdsVbngyFrbAkCE3Nvwa4KLF77jWiKVm2zpMUQKSqaq6bZ/4V3ez8F2ggKDMaKXnteZY+ag==
 
 leven@^3.1.0:
   version "3.1.0"
