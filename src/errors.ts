@@ -1,6 +1,5 @@
 export class RequestError extends Error {
-	// @ts-ignore
-	public constructor(error) {
+	public constructor(error: any) {
 		super(error.message);
 
 		Object.defineProperty(this, "message", {

@@ -1,8 +1,8 @@
-import ky from "ky-universal";
 import isUrl from "is-url-superb";
+import ky, { Options as kyOptions } from "ky-universal";
 import { RequestError } from "./errors";
 import { IResponse } from "./interfaces";
-import { Resources } from "./resources";
+import { AvailableResource, AvailableResourcesName, Resources } from "./resources";
 
 export class Connection {
 	private opts: Record<string, any>;
@@ -13,11 +13,9 @@ export class Connection {
 		}
 	}
 
-	public api<T = any>(name: string): T {
-		name = name.charAt(0).toUpperCase() + name.slice(1);
-
-		// @ts-ignore
-		return new Resources[name](this);
+	public api<T extends AvailableResourcesName>(name: T) {
+		const selectedResourceClass = Resources[name];
+		return new selectedResourceClass(this) as AvailableResource<T>;
 	}
 
 	public withOptions(opts: Record<string, any>): this {
@@ -34,11 +32,10 @@ export class Connection {
 		return this.sendRequest("post", url, opts);
 	}
 
-	private async sendRequest<T>(method: string, url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
+	private async sendRequest<T>(method: kyOptions["method"], url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
 		opts = { ...this.opts, ...(opts || {}) };
 
 		if (opts.body && typeof opts !== "string") {
-			// @ts-ignore
 			opts.body = JSON.stringify(opts.body);
 		}
 
@@ -52,12 +49,11 @@ export class Connection {
 		}
 
 		try {
-			// @ts-ignore
-			const response = await ky[method](`${this.host}/${url}`, opts);
+			const response = await ky(`${this.host}/${url}`, { ...opts, method });
 
 			return {
 				body: await response.json(),
-				headers: response.headers,
+				headers: response.headers as any as IResponse<T>["headers"],
 				status: response.status,
 			};
 		} catch (error) {
