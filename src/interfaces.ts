@@ -11,4 +11,4 @@ export interface ApiQuery extends Record<string, any> {
 	limit?: number;
 }
 
-export interface ApiBody extends Record<string, any> { }
+export interface ApiBody extends Record<string, any> {}
