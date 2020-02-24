@@ -1,5 +1,5 @@
 import isUrl from "is-url-superb";
-import ky, { Options as kyOptions } from "ky-universal";
+import ky from "ky-universal";
 import { RequestError } from "./errors";
 import { IResponse } from "./interfaces";
 import { AvailableResource, AvailableResourcesName, Resources } from "./resources";
@@ -32,7 +32,7 @@ export class Connection {
 		return this.sendRequest("post", url, opts);
 	}
 
-	private async sendRequest<T>(method: kyOptions["method"], url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
+	private async sendRequest<T>(method: string, url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
 		opts = { ...this.opts, ...(opts || {}) };
 
 		if (opts.body && typeof opts !== "string") {
