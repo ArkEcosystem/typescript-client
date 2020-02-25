@@ -1,16 +1,35 @@
 import { IResponse } from "../interfaces";
+import {
+	AllBridgechainsApiQuery,
+	SearchBridgechainsApiBody,
+	SearchBridgechainsApiQuery,
+} from "../resourcesTypes/bridgechains";
 import { Resource } from "./resource";
 
 export class Bridgechains extends Resource {
-	public async all<T = any>(query?: Record<string, any>): Promise<IResponse<T>> {
+	/**
+	 * List all bridgechains
+	 *
+	 * Returns a list of all registered bridgechains on the network.
+	 */
+	public async all<T = any>(query?: AllBridgechainsApiQuery): Promise<IResponse<T>> {
 		return this.sendGet("bridgechains", query);
 	}
 
-	public async get<T = any>(id: string): Promise<IResponse<T>> {
-		return this.sendGet(`bridgechains/${id}`);
+	/**
+	 * Return bridgechain by genesis hash
+	 */
+	public async get<T = any>(genesisHash: string): Promise<IResponse<T>> {
+		return this.sendGet(`bridgechains/${genesisHash}`);
 	}
 
-	public async search<T = any>(payload?: Record<string, any>): Promise<IResponse<T>> {
-		return this.sendPost("bridgechains/search", payload);
+	/**
+	 * Search bridgechains
+	 */
+	public async search<T = any>(
+		payload?: SearchBridgechainsApiBody,
+		query?: SearchBridgechainsApiQuery,
+	): Promise<IResponse<T>> {
+		return this.sendPost("bridgechains/search", payload, query);
 	}
 }

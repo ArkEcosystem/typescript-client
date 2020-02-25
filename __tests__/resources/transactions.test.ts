@@ -51,4 +51,10 @@ describe("API - 2.0 - Resources - Transactions", () => {
 
 		expect(response.status).toBe(200);
 	});
+
+	it("should call \"schemas\" method", async () => {
+		const response = await resource.schemas();
+
+		expect(response.status).toBe(200);
+	});
 });

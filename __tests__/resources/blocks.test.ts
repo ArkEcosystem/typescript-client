@@ -10,6 +10,18 @@ describe("API - 2.0 - Resources - Blocks", () => {
 		expect(response.status).toBe(200);
 	});
 
+	it("should call \"first\" method", async () => {
+		const response = await resource.first();
+
+		expect(response.status).toBe(200);
+	});
+
+	it("should call \"last\" method", async () => {
+		const response = await resource.last();
+
+		expect(response.status).toBe(200);
+	});
+
 	it("should call \"get\" method", async () => {
 		const response = await resource.get("123");
 

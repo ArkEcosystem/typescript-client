@@ -53,7 +53,7 @@ export class Connection {
 
 			return {
 				body: await response.json(),
-				headers: response.headers as any as IResponse<T>["headers"],
+				headers: (response.headers as any) as IResponse<T>["headers"],
 				status: response.status,
 			};
 		} catch (error) {

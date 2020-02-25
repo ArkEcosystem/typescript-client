@@ -16,4 +16,9 @@ export const mockDelegates = (host: string) => {
 	nock(host)
 		.get("/delegates/123/voters")
 		.reply(200, { data: [] });
+
+
+	nock(host)
+		.post("/delegates/search")
+		.reply(200, { data: [] });
 };
