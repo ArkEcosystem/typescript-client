@@ -37,6 +37,19 @@ export class Businesses extends Resource {
 	}
 
 	/**
+	 * Return bridgechain by genesis hash of a business
+	 *
+	 * @param walletAddress The identifier of the wallet to be retrieved.
+	 * @param genesisHash The genesis hash of the bridgechain to be retrieved.
+	 */
+	public async bridgechain<T = any>(
+		walletAddress: string,
+		genesisHash: string,
+	): Promise<IResponse<T>> {
+		return this.sendGet(`businesses/${walletAddress}/bridgechains/${genesisHash}`);
+	}
+
+	/**
 	 * Search business
 	 */
 	public async search<T = any>(
