@@ -57,6 +57,14 @@ export class Connection {
 				status: response.status,
 			};
 		} catch (error) {
+			// Inject the JSON body in the error
+			if (error.response) {
+				error.response = {
+					body: await error.response.json(),
+					headers: error.response.headers,
+					status: error.response.status,
+				};
+			}
 			throw new RequestError(error);
 		}
 	}

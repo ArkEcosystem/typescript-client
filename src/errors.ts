@@ -16,9 +16,9 @@ export class RequestError extends Error {
 			Object.defineProperty(this, "response", {
 				enumerable: false,
 				value: {
-					body: JSON.parse(error.response.body),
+					body: error.response.body,
 					headers: error.response.headers,
-					status: error.response.statusCode,
+					status: error.response.status,
 				},
 			});
 		}
