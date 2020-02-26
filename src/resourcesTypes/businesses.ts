@@ -1,5 +1,15 @@
 import { ApiBody, ApiQuery } from "../interfaces";
 
+export class Business {
+	address: string;
+	publicKey: string;
+	name: string;
+	website: string;
+	vat: string;
+	repository: string;
+	isResigned: true;
+}
+
 export interface AllBusinessesApiQuery extends ApiQuery {
 	/** Type by which it orders businesses. */
 	orderBy?: string;
