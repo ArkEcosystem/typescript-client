@@ -1,5 +1,11 @@
 import { ApiQuery, IResponse } from "../interfaces";
-import { AllBlockApiQuery, SearchBlockApiBody, TransactionsInBlockApiQuery } from "../resourcesTypes/blocks";
+import {
+	AllBlockApiQuery,
+	SearchBlockApiBody,
+	TransactionsInBlockApiQuery,
+	MultipleBlocksApiResponse,
+	BlockApiResponse,
+} from "../resourcesTypes/blocks";
 import { Resource } from "./resource";
 
 /**
@@ -15,21 +21,21 @@ export class Blocks extends Resource {
 	 *
 	 * This dataset contains millions of blocks; thus for analytical purposes, we recommend you use the Elasticsearch plugin or query the database directly.
 	 */
-	public async all<T = any>(query?: AllBlockApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllBlockApiQuery): Promise<MultipleBlocksApiResponse> {
 		return this.sendGet("blocks", query);
 	}
 
 	/**
 	 * Retrieve first Block
 	 */
-	public async first<T = any>(): Promise<IResponse<T>> {
+	public async first(): Promise<BlockApiResponse> {
 		return this.sendGet("blocks/first");
 	}
 
 	/**
 	 * Retrieve last Block
 	 */
-	public async last<T = any>(): Promise<IResponse<T>> {
+	public async last(): Promise<BlockApiResponse> {
 		return this.sendGet("blocks/last");
 	}
 
@@ -41,7 +47,7 @@ export class Blocks extends Resource {
 	 * When comparing the order of transactions and blocks, prefer using the block.height over transaction timestamps, as the height is guaranteed to be correctly ordered.
 	 * @param idOrHeight The ID or height of the block to be retrieved.
 	 */
-	public async get<T = any>(idOrHeight: string): Promise<IResponse<T>> {
+	public async get(idOrHeight: string): Promise<BlockApiResponse> {
 		return this.sendGet(`blocks/${idOrHeight}`);
 	}
 
@@ -63,7 +69,7 @@ export class Blocks extends Resource {
 	 *
 	 * Filtering for blocks at the Node side is a lot more efficient than requesting a large payload and filtering it at the client side.
 	 */
-	public async search<T = any>(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<IResponse<T>> {
+	public async search(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<MultipleBlocksApiResponse> {
 		return this.sendPost("blocks/search", payload, query);
 	}
 }
