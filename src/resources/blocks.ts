@@ -1,12 +1,12 @@
-import { ApiQuery, IResponse } from "../interfaces";
+import { ApiQuery, ApiResponse } from "../interfaces";
+import { Resource } from "./resource";
 import {
 	AllBlockApiQuery,
 	SearchBlockApiBody,
 	TransactionsInBlockApiQuery,
-	MultipleBlocksApiResponse,
-	BlockApiResponse,
-} from "../resourcesTypes/blocks";
-import { Resource } from "./resource";
+	Block,
+	Transaction,
+} from "../resourcesTypes";
 
 /**
  * Blocks are added every eight seconds to the blockchain by a Delegate Node. Due to network/technical errors, a Delegate might miss a block. The time between two blocks is then 16 seconds, as the round continues to the next Delegate.
@@ -21,21 +21,21 @@ export class Blocks extends Resource {
 	 *
 	 * This dataset contains millions of blocks; thus for analytical purposes, we recommend you use the Elasticsearch plugin or query the database directly.
 	 */
-	public async all(query?: AllBlockApiQuery): Promise<MultipleBlocksApiResponse> {
+	public async all(query?: AllBlockApiQuery): Promise<ApiResponse<Block[]>> {
 		return this.sendGet("blocks", query);
 	}
 
 	/**
 	 * Retrieve first Block
 	 */
-	public async first(): Promise<BlockApiResponse> {
+	public async first(): Promise<ApiResponse<Block>> {
 		return this.sendGet("blocks/first");
 	}
 
 	/**
 	 * Retrieve last Block
 	 */
-	public async last(): Promise<BlockApiResponse> {
+	public async last(): Promise<ApiResponse<Block>> {
 		return this.sendGet("blocks/last");
 	}
 
@@ -47,7 +47,7 @@ export class Blocks extends Resource {
 	 * When comparing the order of transactions and blocks, prefer using the block.height over transaction timestamps, as the height is guaranteed to be correctly ordered.
 	 * @param idOrHeight The ID or height of the block to be retrieved.
 	 */
-	public async get(idOrHeight: string): Promise<BlockApiResponse> {
+	public async get(idOrHeight: string): Promise<ApiResponse<Block>> {
 		return this.sendGet(`blocks/${idOrHeight}`);
 	}
 
@@ -58,7 +58,10 @@ export class Blocks extends Resource {
 	 *
 	 * @param idOrHeight The identifier of the block to be retrieved.
 	 */
-	public async transactions<T = any>(idOrHeight: string, query?: TransactionsInBlockApiQuery): Promise<IResponse<T>> {
+	public async transactions(
+		idOrHeight: string,
+		query?: TransactionsInBlockApiQuery,
+	): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet(`blocks/${idOrHeight}/transactions`, query);
 	}
 
@@ -69,7 +72,7 @@ export class Blocks extends Resource {
 	 *
 	 * Filtering for blocks at the Node side is a lot more efficient than requesting a large payload and filtering it at the client side.
 	 */
-	public async search(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<MultipleBlocksApiResponse> {
+	public async search(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<ApiResponse<Block[]>> {
 		return this.sendPost("blocks/search", payload, query);
 	}
 }

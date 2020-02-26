@@ -1,4 +1,4 @@
-import { ApiBody, ApiQuery, IResponse, PaginableResponse, DataResponse } from "../interfaces";
+import { ApiBody, ApiQuery } from "../interfaces";
 
 export interface Block {
 	id: string;
@@ -29,9 +29,6 @@ export interface Block {
 		human: string;
 	};
 }
-
-export type BlockApiResponse = IResponse<DataResponse<Block>>;
-export type MultipleBlocksApiResponse = IResponse<DataResponse<Block[]> & PaginableResponse>;
 
 export interface AllBlockApiQuery extends ApiQuery {
 	/** Type by which it orders blocks. */

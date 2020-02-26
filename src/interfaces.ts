@@ -18,6 +18,8 @@ export interface PaginableResponse {
 	};
 }
 
+export type ApiResponse<T> = IResponse<DataResponse<T> & (T extends any[] ? PaginableResponse : {})>;
+
 export interface ApiQuery extends Record<string, any> {
 	/** The number of the page that will be returned. */
 	page?: number;
