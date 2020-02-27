@@ -1,5 +1,6 @@
-import { ApiQuery, IResponse } from "../interfaces";
+import { ApiQuery, ApiResponse } from "../interfaces";
 import { Resource } from "./resource";
+import { Transaction } from "../resourcesTypes";
 
 /**
  * A vote is a specific type of transaction (type 3).
@@ -14,7 +15,7 @@ export class Votes extends Resource {
 	/**
 	 * List All Votes
 	 */
-	public async all<T = any>(query?: ApiQuery): Promise<IResponse<T>> {
+	public async all(query?: ApiQuery): Promise<ApiResponse<Transaction>> {
 		return this.sendGet("votes", query);
 	}
 
@@ -29,7 +30,7 @@ export class Votes extends Resource {
 	 *
 	 * @param id The identifier of the vote to be retrieved.
 	 */
-	public async get<T = any>(id: string): Promise<IResponse<T>> {
+	public async get(id: string): Promise<ApiResponse<Transaction>> {
 		return this.sendGet(`votes/${id}`);
 	}
 }

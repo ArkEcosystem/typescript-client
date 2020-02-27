@@ -1,12 +1,14 @@
-import { ApiQuery, IResponse } from "../interfaces";
+import { ApiQuery, ApiResponse } from "../interfaces";
 import {
 	AllWalletsApiQuery,
 	SearchWalletsApiBody,
 	WalletsTransactionsApiQuery,
 	WalletsTransactionsReceivedApiQuery,
 	WalletsTransactionsSentApiQuery,
+	Wallet,
 } from "../resourcesTypes/wallets";
 import { Resource } from "./resource";
+import { Transaction, Lock } from "../resourcesTypes";
 
 /**
  * Wallets are addresses containing, or previously having contained ARK.
@@ -19,7 +21,7 @@ export class Wallets extends Resource {
 	 *
 	 * A paginated API is provided to obtain all wallets, including empty ones.
 	 */
-	public async all<T = any>(query?: AllWalletsApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllWalletsApiQuery): Promise<ApiResponse<Wallet[]>> {
 		return this.sendGet("wallets", query);
 	}
 
@@ -30,7 +32,7 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async get<T = any>(addressOrPublicKey: string): Promise<IResponse<T>> {
+	public async get(addressOrPublicKey: string): Promise<ApiResponse<Wallet>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}`);
 	}
 
@@ -43,10 +45,10 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async transactions<T = any>(
+	public async transactions(
 		addressOrPublicKey: string,
 		query?: WalletsTransactionsApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/transactions`, query);
 	}
 
@@ -59,10 +61,10 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async transactionsReceived<T = any>(
+	public async transactionsReceived(
 		addressOrPublicKey: string,
 		query?: WalletsTransactionsReceivedApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/transactions/received`, query);
 	}
 
@@ -75,10 +77,10 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async transactionsSent<T = any>(
+	public async transactionsSent(
 		addressOrPublicKey: string,
 		query?: WalletsTransactionsSentApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/transactions/sent`, query);
 	}
 
@@ -91,7 +93,7 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async votes<T = any>(addressOrPublicKey: string, query?: ApiQuery): Promise<IResponse<T>> {
+	public async votes(addressOrPublicKey: string, query?: ApiQuery): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/votes`, query);
 	}
 
@@ -102,7 +104,7 @@ export class Wallets extends Resource {
 	 *
 	 * Most top wallets belong to exchanges and the frozen remainder from the ARK ICO.
 	 */
-	public async top<T = any>(query?: ApiQuery): Promise<IResponse<T>> {
+	public async top(query?: ApiQuery): Promise<ApiResponse<Wallet[]>> {
 		return this.sendGet("wallets/top", query);
 	}
 
@@ -113,7 +115,7 @@ export class Wallets extends Resource {
 	 *
 	 * A direct database query usually is more performant when the query expression becomes complicated.
 	 */
-	public async search<T = any>(payload: SearchWalletsApiBody, query?: ApiQuery): Promise<IResponse<T>> {
+	public async search(payload: SearchWalletsApiBody, query?: ApiQuery): Promise<ApiResponse<Wallet[]>> {
 		return this.sendPost("wallets/search", payload, query);
 	}
 
@@ -122,7 +124,7 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async locks<T = any>(addressOrPublicKey: string, query?: ApiQuery): Promise<IResponse<T>> {
+	public async locks(addressOrPublicKey: string, query?: ApiQuery): Promise<ApiResponse<Lock[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/locks`, query);
 	}
 }
