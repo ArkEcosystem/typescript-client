@@ -26,7 +26,7 @@ export interface PaginableResponse {
  * @template V Should the request be auto-paginated ? (optional)
  */
 export type ApiResponse<T, U extends Record<string, any> = {}, V extends boolean = true> = IResponse<
-	DataResponse<T> & V extends true ? (T extends any[] ? PaginableResponse : {}) : {} & U
+	DataResponse<T> & (V extends true ? (T extends any[] ? PaginableResponse : {}) : {}) & U
 >;
 
 // Export type ApiResponse<T, U extends Record<string, any> = {}> = IResponse<DataResponse<T> & (T extends any[] ? PaginableResponse : {})>;
