@@ -1,12 +1,14 @@
-import { IResponse } from "../interfaces";
+import { ApiResponse } from "../interfaces";
 import {
 	AllLocksApiQuery,
 	SearchLocksApiBody,
 	SearchLocksApiQuery,
 	SearchLocksUnlockedApiBody,
 	SearchLocksUnlockedApiQuery,
+	Lock,
 } from "../resourcesTypes/locks";
 import { Resource } from "./resource";
+import { Transaction } from "../resourcesTypes";
 
 /**
  * /!\ This endpoints return HTLC Locks. HTLC Locks are not operational on Mainnet.
@@ -15,7 +17,7 @@ export class Locks extends Resource {
 	/**
 	 * List all locks
 	 */
-	public async all<T = any>(query?: AllLocksApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllLocksApiQuery): Promise<ApiResponse<Lock[]>> {
 		return this.sendGet("locks", query);
 	}
 
@@ -23,24 +25,24 @@ export class Locks extends Resource {
 	 * Return lock by id
 	 * @param id Lock id
 	 */
-	public async get<T = any>(id: string): Promise<IResponse<T>> {
+	public async get(id: string): Promise<ApiResponse<Lock>> {
 		return this.sendGet(`locks/${id}`);
 	}
 
 	/**
 	 * Search locks
 	 */
-	public async search<T = any>(payload?: SearchLocksApiBody, query?: SearchLocksApiQuery): Promise<IResponse<T>> {
+	public async search(payload?: SearchLocksApiBody, query?: SearchLocksApiQuery): Promise<ApiResponse<Lock[]>> {
 		return this.sendPost("locks/search", payload, query);
 	}
 
 	/**
 	 * Search unlocked
 	 */
-	public async unlocked<T = any>(
+	public async unlocked(
 		payload?: SearchLocksUnlockedApiBody,
 		query?: SearchLocksUnlockedApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Transaction[]>> {
 		return this.sendPost("locks/unlocked", payload, query);
 	}
 }
