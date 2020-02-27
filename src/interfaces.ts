@@ -18,7 +18,18 @@ export interface PaginableResponse {
 	};
 }
 
-export type ApiResponse<T> = IResponse<DataResponse<T> & (T extends any[] ? PaginableResponse : {})>;
+/**
+ * An API response
+ *
+ * @template T `body` content, will add `meta` pagination data if is an array
+ * @template U Custom `meta` data to add (optional)
+ * @template V Should the request be auto-paginated ? (optional)
+ */
+export type ApiResponse<T, U extends Record<string, any> = {}, V extends boolean = true> = IResponse<
+	DataResponse<T> & V extends true ? (T extends any[] ? PaginableResponse : {}) : {} & U
+>;
+
+// Export type ApiResponse<T, U extends Record<string, any> = {}> = IResponse<DataResponse<T> & (T extends any[] ? PaginableResponse : {})>;
 
 export interface ApiQuery extends Record<string, any> {
 	/** The number of the page that will be returned. */
