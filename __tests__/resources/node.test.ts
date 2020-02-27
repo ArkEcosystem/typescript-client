@@ -33,10 +33,4 @@ describe("API - 2.0 - Resources - Node", () => {
 
 		expect(response.status).toBe(200);
 	});
-
-	it("should call \"debug\" method", async () => {
-		const response = await resource.debug();
-
-		expect(response.status).toBe(200);
-	});
 });
