@@ -1,5 +1,35 @@
 import { ApiBody, ApiQuery } from "../interfaces";
 
+export interface Block {
+	id: string;
+	version: number;
+	height: number;
+	previous: string;
+	forged: {
+		reward: number;
+		fee: number;
+		total: number;
+		amount: number;
+	};
+	payload: {
+		username?: string;
+		hash: string;
+		length: number;
+	};
+	generator: {
+		username: string;
+		address: string;
+		publicKey: string;
+	};
+	signature: string;
+	transactions: number;
+	timestamp: {
+		epoch: number;
+		unix: number;
+		human: string;
+	};
+}
+
 export interface AllBlockApiQuery extends ApiQuery {
 	/** Type by which it orders blocks. */
 	orderBy?: string;

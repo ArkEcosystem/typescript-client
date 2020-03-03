@@ -1,5 +1,16 @@
 import { ApiBody, ApiQuery } from "../interfaces";
 
+export interface Bridgechain {
+	publicKey: string;
+	address: string;
+	name: string;
+	seedNodes: string[];
+	genesisHash: string;
+	bridgechainRepository: string;
+	ports: Record<string, number>;
+	isResigned: false;
+}
+
 export interface AllBridgechainsApiQuery extends ApiQuery {
 	/** Type by which it orders bridgechains. */
 	orderBy?: string;

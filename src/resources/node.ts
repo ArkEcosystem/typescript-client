@@ -1,5 +1,13 @@
-import { IResponse } from "../interfaces";
+import { ApiResponse } from "../interfaces";
 import { Resource } from "./resource";
+import {
+	NodeConfiguration,
+	NodeCryptoConfiguration,
+	NodeFeeStatisticsBody,
+	NodeFeeStatisticsMeta,
+	NodeStatus,
+	NodeSyncingStatus,
+} from "../resourcesTypes/node";
 
 /**
  * The `node` resource is useful for service discovery, health checks, and obtaining network configurations, such as fees, API, and token information.
@@ -12,7 +20,7 @@ export class Node extends Resource {
 	 *
 	 * Used to access a Node's configuration and the network it is attached to (identified by the `nethash`).
 	 */
-	public async configuration<T = any>(): Promise<IResponse<T>> {
+	public async configuration(): Promise<ApiResponse<NodeConfiguration>> {
 		return this.sendGet("node/configuration");
 	}
 
@@ -21,7 +29,7 @@ export class Node extends Resource {
 	 *
 	 * Used to access a Node's configuration for the `@arkecosystem/crypto` package that handles all cryptography operations.
 	 */
-	public async crypto<T = any>(): Promise<IResponse<T>> {
+	public async crypto(): Promise<ApiResponse<NodeCryptoConfiguration>> {
 		return this.sendGet("node/configuration/crypto");
 	}
 
@@ -32,7 +40,7 @@ export class Node extends Resource {
 	 *
 	 * @param days The number of days which will be regarded.
 	 */
-	public async fees<T = any>(days: number): Promise<IResponse<T>> {
+	public async fees(days: number): Promise<ApiResponse<NodeFeeStatisticsBody, NodeFeeStatisticsMeta, false>> {
 		return this.sendGet("node/fees", { days });
 	}
 
@@ -41,7 +49,7 @@ export class Node extends Resource {
 	 *
 	 * The status allows for health checking, showing if the node is in sync with the network.
 	 */
-	public async status<T = any>(): Promise<IResponse<T>> {
+	public async status(): Promise<ApiResponse<NodeStatus>> {
 		return this.sendGet("node/status");
 	}
 
@@ -52,16 +60,7 @@ export class Node extends Resource {
 	 *
 	 * If a node is not syncing but significantly behind in blocks, it might be time to perform a check.
 	 */
-	public async syncing<T = any>(): Promise<IResponse<T>> {
+	public async syncing(): Promise<ApiResponse<NodeSyncingStatus>> {
 		return this.sendGet("node/syncing");
-	}
-
-	/**
-	 * Node debug
-	 *
-	 * Shows node's debug logs
-	 */
-	public async debug<T = any>(): Promise<IResponse<T>> {
-		return this.sendGet("node/debug");
 	}
 }
