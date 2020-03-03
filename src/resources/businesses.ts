@@ -1,17 +1,19 @@
-import { IResponse } from "../interfaces";
+import { ApiResponse } from "../interfaces";
+import { Resource } from "./resource";
 import {
 	AllBusinessesApiQuery,
 	BusinessBridgechainsApiQuery,
 	SearchBusinesssApiBody,
 	SearchBusinesssApiQuery,
-} from "../resourcesTypes/businesses";
-import { Resource } from "./resource";
+	Business,
+	Bridgechain,
+} from "../resourcesTypes";
 
 export class Businesses extends Resource {
 	/**
 	 * List all businesses
 	 */
-	public async all<T = any>(query?: AllBusinessesApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllBusinessesApiQuery): Promise<ApiResponse<Business[]>> {
 		return this.sendGet("businesses", query);
 	}
 
@@ -20,7 +22,7 @@ export class Businesses extends Resource {
 	 *
 	 * @param walletAddress The identifier of the wallet to be retrieved.
 	 */
-	public async get<T = any>(walletAddress: string): Promise<IResponse<T>> {
+	public async get(walletAddress: string): Promise<ApiResponse<Business>> {
 		return this.sendGet(`businesses/${walletAddress}`);
 	}
 
@@ -29,33 +31,33 @@ export class Businesses extends Resource {
 	 *
 	 * @param walletAddress The identifier of the wallet to be retrieved.
 	 */
-	public async bridgechains<T = any>(
+	public async bridgechains(
 		walletAddress: string,
 		query?: BusinessBridgechainsApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Bridgechain[]>> {
 		return this.sendGet(`businesses/${walletAddress}/bridgechains`, query);
 	}
 
 	/**
-	 * Return bridgechain by genesis hash of a business
+	 * Return bridgechain of a business by genesis hash
 	 *
 	 * @param walletAddress The identifier of the wallet to be retrieved.
 	 * @param genesisHash The genesis hash of the bridgechain to be retrieved.
 	 */
-	public async bridgechain<T = any>(
+	public async bridgechain(
 		walletAddress: string,
 		genesisHash: string,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Bridgechain>> {
 		return this.sendGet(`businesses/${walletAddress}/bridgechains/${genesisHash}`);
 	}
 
 	/**
 	 * Search business
 	 */
-	public async search<T = any>(
+	public async search(
 		payload?: SearchBusinesssApiBody,
 		query?: SearchBusinesssApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Business[]>> {
 		return this.sendPost("businesses/search", payload, query);
 	}
 }

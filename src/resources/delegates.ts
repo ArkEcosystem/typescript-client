@@ -1,11 +1,14 @@
-import { ApiQuery, IResponse } from "../interfaces";
+import { ApiQuery, ApiResponse } from "../interfaces";
 import {
 	AllDelegatesApiQuery,
 	DelegateBlocksApiQuery,
 	DelegateVotersApiQuery,
 	SearchDelegatesApiBody,
+	Delegate,
+	Voter,
 } from "../resourcesTypes/delegates";
 import { Resource } from "./resource";
+import { Block } from "..";
 
 /**
  * Delegates are regular wallets (addresses) which have registered themselves eligible to become a Delegate by a registration transaction.
@@ -23,7 +26,7 @@ export class Delegates extends Resource {
 	 *
 	 * If a Delegate Node is offline, it is still returned through this API; as the `delegate` resource is not concerned with the actual nodes, only with the on-chain registrations and wallets.
 	 */
-	public async all<T = any>(query?: AllDelegatesApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllDelegatesApiQuery): Promise<ApiResponse<Delegate[]>> {
 		return this.sendGet("delegates", query);
 	}
 
@@ -36,7 +39,7 @@ export class Delegates extends Resource {
 	 *
 	 * @param usernameOrAddressOrPublicKey The identifier of the delegate to be retrieved.
 	 */
-	public async get<T = any>(usernameOrAddressOrPublicKey: string): Promise<IResponse<T>> {
+	public async get(usernameOrAddressOrPublicKey: string): Promise<ApiResponse<Delegate>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}`);
 	}
 
@@ -49,10 +52,10 @@ export class Delegates extends Resource {
 	 *
 	 * @param usernameOrAddressOrPublicKey The identifier of the delegate to be retrieved.
 	 */
-	public async blocks<T = any>(
+	public async blocks(
 		usernameOrAddressOrPublicKey: string,
 		query?: DelegateBlocksApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Block[]>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/blocks`, query);
 	}
 
@@ -63,10 +66,10 @@ export class Delegates extends Resource {
 	 *
 	 * @param usernameOrAddressOrPublicKey The identifier of the delegate to be retrieved.
 	 */
-	public async voters<T = any>(
+	public async voters(
 		usernameOrAddressOrPublicKey: string,
 		query?: DelegateVotersApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Voter[]>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/voters`, query);
 	}
 
@@ -75,7 +78,7 @@ export class Delegates extends Resource {
 	 *
 	 * For fine-grained searches, use the search endpoint.
 	 */
-	public async search<T = any>(payload?: SearchDelegatesApiBody, query?: ApiQuery): Promise<IResponse<T>> {
+	public async search(payload?: SearchDelegatesApiBody, query?: ApiQuery): Promise<ApiResponse<Delegate[]>> {
 		return this.sendPost("delegates/search", payload, query);
 	}
 }

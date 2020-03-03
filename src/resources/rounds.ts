@@ -1,4 +1,4 @@
-import { IResponse } from "../interfaces";
+import { ApiResponse } from "../interfaces";
 import { Resource } from "./resource";
 
 export class Rounds extends Resource {
@@ -7,7 +7,9 @@ export class Rounds extends Resource {
 	 *
 	 * @param roundNumber The number of wanted round.
 	 */
-	public async delegates<T = any>(roundNumber: number): Promise<IResponse<T>> {
+	public async delegates(
+		roundNumber: number,
+	): Promise<ApiResponse<{ publicKey: string; votes: string }, null, false>> {
 		return this.sendGet(`rounds/${roundNumber}/delegates`);
 	}
 }

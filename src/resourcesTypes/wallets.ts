@@ -1,5 +1,53 @@
 import { ApiBody, ApiQuery } from "../interfaces";
 
+export interface Wallet {
+	address: string;
+	publicKey: string;
+	secondPublicKey?: string;
+	nonce: string;
+	balance: string;
+	username?: string;
+	vote?: string;
+	attributes: {
+		secondPublicKey?: string;
+		vote?: string;
+		delegate?: {
+			username: string;
+			voteBalance: string;
+			forgedFees: string;
+			forgedRewards: string;
+			producedBlocks: number;
+			rank: number;
+			lastBlock: {
+				version: number;
+				timestamp: number;
+				height: number;
+				previousBlockHex: string;
+				previousBlock: string;
+				numberOfTransactions: number;
+				totalAmount: string;
+				totalFee: string;
+				reward: string;
+				payloadLength: number;
+				payloadHash: string;
+				generatorPublicKey: string;
+				blockSignature: string;
+				idHex: string;
+				id: string;
+			};
+			round: number;
+		};
+		htlc?: {
+			locks: {};
+			lockedBalance: string;
+		};
+		votes?: string[];
+	} & Record<string, any>;
+	lockedBalance?: string;
+	isDelegate: boolean;
+	isResigned: boolean;
+}
+
 export interface AllWalletsApiQuery extends ApiQuery {
 	/** Type by which it orders wallets. */
 	orderBy?: string;

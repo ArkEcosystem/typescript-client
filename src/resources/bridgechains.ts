@@ -1,10 +1,11 @@
-import { IResponse } from "../interfaces";
+import { ApiResponse } from "../interfaces";
+import { Resource } from "./resource";
 import {
 	AllBridgechainsApiQuery,
 	SearchBridgechainsApiBody,
 	SearchBridgechainsApiQuery,
-} from "../resourcesTypes/bridgechains";
-import { Resource } from "./resource";
+	Bridgechain,
+} from "../resourcesTypes";
 
 export class Bridgechains extends Resource {
 	/**
@@ -12,17 +13,17 @@ export class Bridgechains extends Resource {
 	 *
 	 * Returns a list of all registered bridgechains on the network.
 	 */
-	public async all<T = any>(query?: AllBridgechainsApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllBridgechainsApiQuery): Promise<ApiResponse<Bridgechain[]>> {
 		return this.sendGet("bridgechains", query);
 	}
 
 	/**
 	 * Search bridgechains
 	 */
-	public async search<T = any>(
+	public async search(
 		payload?: SearchBridgechainsApiBody,
 		query?: SearchBridgechainsApiQuery,
-	): Promise<IResponse<T>> {
+	): Promise<ApiResponse<Bridgechain[]>> {
 		return this.sendPost("bridgechains/search", payload, query);
 	}
 }

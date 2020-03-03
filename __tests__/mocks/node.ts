@@ -21,8 +21,4 @@ export const mockNode = (host: string) => {
 	nock(host)
 		.get("/node/syncing")
 		.reply(200, { data: [] });
-
-	nock(host)
-		.get("/node/debug")
-		.reply(200, { data: [] });
 };

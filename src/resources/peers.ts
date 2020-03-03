@@ -1,5 +1,5 @@
-import { IResponse } from "../interfaces";
-import { AllPeersApiQuery } from "../resourcesTypes/peers";
+import { ApiResponse } from "../interfaces";
+import { AllPeersApiQuery, Peer } from "../resourcesTypes/peers";
 import { Resource } from "./resource";
 
 /**
@@ -13,7 +13,7 @@ export class Peers extends Resource {
 	 *
 	 * Returns all peers known by the Node. These are not necessarily all peers; only public Nodes appear here.
 	 */
-	public async all<T = any>(query?: AllPeersApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllPeersApiQuery): Promise<ApiResponse<Peer[]>> {
 		return this.sendGet("peers", query);
 	}
 
@@ -26,7 +26,7 @@ export class Peers extends Resource {
 	 *
 	 * @param ip The IP address of the peer to be retrieved.
 	 */
-	public async get<T = any>(ip: string): Promise<IResponse<T>> {
+	public async get(ip: string): Promise<ApiResponse<Peer>> {
 		return this.sendGet(`peers/${ip}`);
 	}
 }

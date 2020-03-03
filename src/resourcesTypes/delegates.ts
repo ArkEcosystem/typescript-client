@@ -1,5 +1,45 @@
 import { ApiBody, ApiQuery } from "../interfaces";
 
+export interface Delegate {
+	username: string;
+	address: string;
+	publicKey: string;
+	votes: number;
+	rank: number;
+	blocks: {
+		produced: number;
+		missed: number;
+		last?: {
+			id: string;
+			height: number;
+			timestamp: {
+				epoch: number;
+				unix: number;
+				human: string;
+			};
+		};
+	};
+	production: {
+		approval: number;
+		productivity?: number;
+	};
+	forged: {
+		fees: number;
+		rewards: number;
+		total: number;
+	};
+}
+
+export interface Voter {
+	address: string;
+	publicKey: string;
+	username?: string;
+	secondPublicKey?: string;
+	balance: number;
+	isDelegate: boolean;
+	vote: string;
+}
+
 export interface AllDelegatesApiQuery extends ApiQuery {
 	/** Type by which it orders delegates. */
 	orderBy?: string;

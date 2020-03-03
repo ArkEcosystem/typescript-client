@@ -1,5 +1,12 @@
-import { ApiQuery, IResponse } from "../interfaces";
-import { AllTransactionsApiQuery, SearchTransactionsApiBody } from "../resourcesTypes/transactions";
+import { ApiQuery, ApiResponse } from "../interfaces";
+import {
+	AllTransactionsApiQuery,
+	SearchTransactionsApiBody,
+	CreateTransactionApiResponse,
+	Transaction,
+	TransactionTypes,
+	TransactionFees,
+} from "../resourcesTypes/transactions";
 import { Resource } from "./resource";
 
 /**
@@ -11,7 +18,7 @@ export class Transactions extends Resource {
 	 *
 	 * The paginated API is used to query for multiple transactions. You can apply _filters_ through the query parameter to search for specific transactions.
 	 */
-	public async all<T = any>(query?: AllTransactionsApiQuery): Promise<IResponse<T>> {
+	public async all(query?: AllTransactionsApiQuery): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet("transactions", query);
 	}
 
@@ -24,7 +31,7 @@ export class Transactions extends Resource {
 	 *
 	 * @param payload The list of transactions to create.
 	 */
-	public async create<T = any>(payload: object[]): Promise<IResponse<T>> {
+	public async create(payload: object[]): Promise<ApiResponse<CreateTransactionApiResponse> & { errors?: any }> {
 		return this.sendPost("transactions", payload);
 	}
 
@@ -35,7 +42,7 @@ export class Transactions extends Resource {
 	 *
 	 * @param id The identifier of the transaction to be retrieved.
 	 */
-	public async get<T = any>(id: string): Promise<IResponse<T>> {
+	public async get(id: string): Promise<ApiResponse<Transaction>> {
 		return this.sendGet(`transactions/${id}`);
 	}
 
@@ -48,7 +55,7 @@ export class Transactions extends Resource {
 	 *
 	 * If you have set the transaction with a fee of near zero, it might not be picked up by a Delegate and will time out.
 	 */
-	public async allUnconfirmed<T = any>(query?: ApiQuery): Promise<IResponse<T>> {
+	public async allUnconfirmed(query?: ApiQuery): Promise<ApiResponse<Transaction[]>> {
 		return this.sendGet("transactions/unconfirmed", query);
 	}
 
@@ -59,7 +66,7 @@ export class Transactions extends Resource {
 	 *
 	 * @param id The identifier of the transaction to be retrieved.
 	 */
-	public async getUnconfirmed<T = any>(id: string): Promise<IResponse<T>> {
+	public async getUnconfirmed(id: string): Promise<ApiResponse<Transaction>> {
 		return this.sendGet(`transactions/unconfirmed/${id}`);
 	}
 
@@ -72,7 +79,7 @@ export class Transactions extends Resource {
 	 *
 	 * It is best to filter as many transactions node side, instead of dissecting the response client side.
 	 */
-	public async search<T = any>(payload: SearchTransactionsApiBody, query?: ApiQuery): Promise<IResponse<T>> {
+	public async search(payload: SearchTransactionsApiBody, query?: ApiQuery): Promise<ApiResponse<Transaction[]>> {
 		return this.sendPost("transactions/search", payload, query);
 	}
 
@@ -83,7 +90,7 @@ export class Transactions extends Resource {
 	 *
 	 * ARK currently supports eight different types, but BridgeChains may define more or less if needed for their business purpose.
 	 */
-	public async types<T = any>(): Promise<IResponse<T>> {
+	public async types(): Promise<ApiResponse<TransactionTypes>> {
 		return this.sendGet("transactions/types");
 	}
 
@@ -92,14 +99,14 @@ export class Transactions extends Resource {
 	 *
 	 * The static transaction fees are significantly higher than the dynamic transaction fees. Use the `node resource` to find dynamic fees, and prefer using these.
 	 */
-	public async fees<T = any>(): Promise<IResponse<T>> {
+	public async fees(): Promise<ApiResponse<TransactionFees>> {
 		return this.sendGet("transactions/fees");
 	}
 
 	/**
 	 * Get transaction schemas
 	 */
-	public async schemas<T = any>(): Promise<IResponse<T>> {
+	public async schemas(): Promise<ApiResponse<Record<string, object>>> {
 		return this.sendGet("transactions/schemas");
 	}
 }
