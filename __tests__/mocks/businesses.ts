@@ -20,6 +20,12 @@ export const mockBusinesses = (host: string) => {
     });
 
   nock(host)
+    .get("/businesses/123/bridgechains/123")
+    .reply(200, {
+      data: [],
+    });
+
+  nock(host)
     .post("/businesses/search")
     .reply(200, {
       data: [],

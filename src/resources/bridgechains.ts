@@ -18,13 +18,6 @@ export class Bridgechains extends Resource {
 	}
 
 	/**
-	 * Return bridgechain by genesis hash
-	 */
-	public async get(genesisHash: string): Promise<ApiResponse<Bridgechain>> {
-		return this.sendGet(`bridgechains/${genesisHash}`);
-	}
-
-	/**
 	 * Search bridgechains
 	 */
 	public async search(

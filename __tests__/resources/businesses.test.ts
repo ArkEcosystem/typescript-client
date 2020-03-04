@@ -22,6 +22,12 @@ describe("API - 2.0 - Resources - Businesses", () => {
     expect(response.status).toBe(200);
   });
 
+  it("should call \"bridgechain\" method", async () => {
+    const response = await resource.bridgechain("123", "123");
+
+    expect(response.status).toBe(200);
+  });
+
   it("should call \"search\" method", async () => {
     const response = await resource.search({});
 
