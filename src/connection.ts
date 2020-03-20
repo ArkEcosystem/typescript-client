@@ -14,7 +14,8 @@ export class Connection {
 	}
 
 	public api<T extends AvailableResourcesName>(name: T) {
-		const selectedResourceClass = Resources[name];
+		// Convert to lower case to be backward-compatible
+		const selectedResourceClass = Resources[name.toLowerCase() as AvailableResourcesName];
 		return new selectedResourceClass(this) as AvailableResource<T>;
 	}
 

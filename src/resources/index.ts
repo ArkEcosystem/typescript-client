@@ -12,17 +12,17 @@ import { Wallets } from "./wallets";
 
 // tslint:disable-next-line: variable-name
 export const Resources = {
-	Blocks,
-	Bridgechains,
-	Businesses,
-	Delegates,
-	Locks,
-	Node,
-	Peers,
-	Rounds,
-	Transactions,
-	Votes,
-	Wallets,
+	blocks: Blocks,
+	bridgechains: Bridgechains,
+	businesses: Businesses,
+	delegates: Delegates,
+	locks: Locks,
+	node: Node,
+	peers: Peers,
+	rounds: Rounds,
+	transactions: Transactions,
+	votes: Votes,
+	wallets: Wallets,
 };
 
 export type AvailableResourcesName = keyof typeof Resources;
