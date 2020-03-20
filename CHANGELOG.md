@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.1.0] - 2020-03-20
 
+### Added
+
+- Types for resource methods (721ff209, @rigwild)
+- Types for available resources (2bdf431e, @rigwild)
+- Types for API responses (97a0502f, @rigwild)
+
 ### Fixed
 
 - ky implementation (8206af1c, @alexbarnsley)
