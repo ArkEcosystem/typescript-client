@@ -11,7 +11,7 @@ export interface Transaction {
 	sender: string;
 	senderPublicKey: string;
 	recipient: string;
-	asset?: Record<string, any>;
+	asset?: TransactionAssets;
 	signature: string;
 	signSignature?: string;
 	vendorField?: string;
@@ -23,6 +23,35 @@ export interface Transaction {
 	};
 	nonce: string;
 }
+
+export type TransactionAssets = {
+	ipfs?: string;
+	votes?: string[];
+	delegate?: {
+		username: string;
+	};
+	signature?: {
+		publicKey: string;
+	};
+	multiSignature?: {
+		publicKeys: string[];
+		min: string;
+	};
+	lock?: {
+		secretHash: string;
+		expiration: {
+			type: number;
+			value: number;
+		};
+	};
+	claim?: {
+		lockTransactionId: string;
+		unlockSecret: string;
+	};
+	refund?: {
+		lockTransactionId: string;
+	};
+} & Record<string, any>;
 
 export interface CreateTransactionApiResponse {
 	accept: string[];
@@ -94,11 +123,16 @@ export interface SearchTransactionsApiBody extends ApiBody {
 	blockId?: string;
 	type?: number;
 	version?: number;
+	network?: number;
 	senderPublicKey?: string;
 	senderId?: string;
 	recipientId?: string;
 	ownerId?: string;
 	vendorFieldHex?: string;
+	asset?: TransactionAssets;
+	signature?: string;
+	signatures?: string[];
+	MultiSignatureAddress?: string;
 	timestamp?: {
 		from?: number;
 		to?: number;
