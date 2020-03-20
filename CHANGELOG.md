@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2020-03-20
+
+### Fixed
+
+- ky implementation (8206af1c, @alexbarnsley)
+- update dependency ky to ^0.18.0 (a9d8d48b, @renovate[bot])
+- update dependency ky to ^0.19.0 (88df2a04, @renovate[bot])
+
+### Changed
+
+- use ky instead of got (ab1f6335, @alexbarnsley)
+- bump handlebars from 4.1.2 to 4.5.3 (cc9206e1, @dependabot[bot])
+- update dependency jest to v25 (585aa234, @renovate[bot])
+- update dependency cross-env to v7 (b126333e, @renovate[bot])
+- update dependency nock to v12 (c4c608e7, @renovate[bot])
+- update dependency codecov to v3.6.5 [security] (75082664, @renovate[bot])
+- update dependency ts-jest to v25 (795c733e, @renovate[bot])
+- update dependency @types/jest to v25 (e192a9f4, @renovate[bot])
+- update all dependencies (02f38b76, @faustbrian)
+- move bridgechains/{id} endpoint (9d15f8cc, @dated)
+- bump acorn from 6.0.2 to 6.4.1 (59b2d3aa, @dependabot[bot])
+- update dependencies (4efad41b, @faustbrian)
+
 ## [1.0.6] - 2020-01-11
 
 ### Changed
