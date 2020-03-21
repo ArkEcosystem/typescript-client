@@ -31,7 +31,9 @@ export class Transactions extends Resource {
 	 *
 	 * @param payload The list of transactions to create.
 	 */
-	public async create(payload: object[]): Promise<ApiResponse<CreateTransactionApiResponse> & { errors?: any }> {
+	public async create(
+		payload: { transactions: object[] } & Record<string, any>,
+	): Promise<ApiResponse<CreateTransactionApiResponse> & { errors?: any }> {
 		return this.sendPost("transactions", payload);
 	}
 

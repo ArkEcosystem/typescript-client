@@ -4,7 +4,7 @@ export interface IResponse<T> {
 	status: number;
 }
 
-export type DataResponse<T> = { data: T };
+export type DataResponse<T> = { data: T; errors: any };
 export interface PaginableResponse {
 	meta: {
 		count: number;

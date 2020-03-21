@@ -14,7 +14,8 @@ export class Connection {
 	}
 
 	public api<T extends AvailableResourcesName>(name: T) {
-		const selectedResourceClass = Resources[name];
+		// Convert to lower case to be backward-compatible
+		const selectedResourceClass = Resources[name.toLowerCase() as AvailableResourcesName];
 		return new selectedResourceClass(this) as AvailableResource<T>;
 	}
 
@@ -35,10 +36,6 @@ export class Connection {
 	private async sendRequest<T>(method: string, url: string, opts?: Record<string, any>): Promise<IResponse<T>> {
 		opts = { ...this.opts, ...(opts || {}) };
 
-		if (opts.body && typeof opts !== "string") {
-			opts.body = JSON.stringify(opts.body);
-		}
-
 		// Do not retry unless explicitly stated.
 		if (!opts.retry) {
 			opts.retry = { retries: 0 };
@@ -49,7 +46,7 @@ export class Connection {
 		}
 
 		try {
-			const response = await ky(`${this.host}/${url}`, { ...opts, method });
+			const response = await ky(`${this.host}/${url}`, { ...opts, method, json: opts.body });
 
 			return {
 				body: await response.json(),

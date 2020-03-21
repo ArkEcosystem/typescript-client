@@ -11,7 +11,7 @@ describe("API - 2.0 - Resources - Transactions", () => {
 	});
 
 	it("should call \"create\" method", async () => {
-		const response = await resource.create([]);
+		const response = await resource.create({ transactions: [] });
 
 		expect(response.status).toBe(200);
 	});
