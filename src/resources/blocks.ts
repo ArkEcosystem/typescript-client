@@ -1,4 +1,4 @@
-import { ApiQuery, ApiResponse } from "../interfaces";
+import { ApiQuery, ApiResponse, ApiPaginableResponse } from "../interfaces";
 import { Resource } from "./resource";
 import {
 	AllBlockApiQuery,
@@ -21,7 +21,7 @@ export class Blocks extends Resource {
 	 *
 	 * This dataset contains millions of blocks; thus for analytical purposes, we recommend you use the Elasticsearch plugin or query the database directly.
 	 */
-	public async all(query?: AllBlockApiQuery): Promise<ApiResponse<Block[]>> {
+	public async all(query?: AllBlockApiQuery): Promise<ApiPaginableResponse<Block[]>> {
 		return this.sendGet("blocks", query);
 	}
 
@@ -61,7 +61,7 @@ export class Blocks extends Resource {
 	public async transactions(
 		idOrHeight: string,
 		query?: TransactionsInBlockApiQuery,
-	): Promise<ApiResponse<Transaction[]>> {
+	): Promise<ApiPaginableResponse<Transaction[]>> {
 		return this.sendGet(`blocks/${idOrHeight}/transactions`, query);
 	}
 
@@ -72,7 +72,7 @@ export class Blocks extends Resource {
 	 *
 	 * Filtering for blocks at the Node side is a lot more efficient than requesting a large payload and filtering it at the client side.
 	 */
-	public async search(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<ApiResponse<Block[]>> {
+	public async search(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<ApiPaginableResponse<Block[]>> {
 		return this.sendPost("blocks/search", payload, query);
 	}
 }

@@ -1,4 +1,4 @@
-import { ApiResponse } from "../interfaces";
+import { ApiPaginableResponse } from "../interfaces";
 import { Resource } from "./resource";
 import {
 	AllBridgechainsApiQuery,
@@ -13,7 +13,7 @@ export class Bridgechains extends Resource {
 	 *
 	 * Returns a list of all registered bridgechains on the network.
 	 */
-	public async all(query?: AllBridgechainsApiQuery): Promise<ApiResponse<Bridgechain[]>> {
+	public async all(query?: AllBridgechainsApiQuery): Promise<ApiPaginableResponse<Bridgechain[]>> {
 		return this.sendGet("bridgechains", query);
 	}
 
@@ -23,7 +23,7 @@ export class Bridgechains extends Resource {
 	public async search(
 		payload?: SearchBridgechainsApiBody,
 		query?: SearchBridgechainsApiQuery,
-	): Promise<ApiResponse<Bridgechain[]>> {
+	): Promise<ApiPaginableResponse<Bridgechain[]>> {
 		return this.sendPost("bridgechains/search", payload, query);
 	}
 }

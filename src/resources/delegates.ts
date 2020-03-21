@@ -1,4 +1,4 @@
-import { ApiQuery, ApiResponse } from "../interfaces";
+import { ApiQuery, ApiResponse, ApiPaginableResponse } from "../interfaces";
 import {
 	AllDelegatesApiQuery,
 	DelegateBlocksApiQuery,
@@ -26,7 +26,7 @@ export class Delegates extends Resource {
 	 *
 	 * If a Delegate Node is offline, it is still returned through this API; as the `delegate` resource is not concerned with the actual nodes, only with the on-chain registrations and wallets.
 	 */
-	public async all(query?: AllDelegatesApiQuery): Promise<ApiResponse<Delegate[]>> {
+	public async all(query?: AllDelegatesApiQuery): Promise<ApiPaginableResponse<Delegate[]>> {
 		return this.sendGet("delegates", query);
 	}
 
@@ -55,7 +55,7 @@ export class Delegates extends Resource {
 	public async blocks(
 		usernameOrAddressOrPublicKey: string,
 		query?: DelegateBlocksApiQuery,
-	): Promise<ApiResponse<Block[]>> {
+	): Promise<ApiPaginableResponse<Block[]>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/blocks`, query);
 	}
 
@@ -69,7 +69,7 @@ export class Delegates extends Resource {
 	public async voters(
 		usernameOrAddressOrPublicKey: string,
 		query?: DelegateVotersApiQuery,
-	): Promise<ApiResponse<Voter[]>> {
+	): Promise<ApiPaginableResponse<Voter[]>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/voters`, query);
 	}
 
@@ -78,7 +78,7 @@ export class Delegates extends Resource {
 	 *
 	 * For fine-grained searches, use the search endpoint.
 	 */
-	public async search(payload?: SearchDelegatesApiBody, query?: ApiQuery): Promise<ApiResponse<Delegate[]>> {
+	public async search(payload?: SearchDelegatesApiBody, query?: ApiQuery): Promise<ApiPaginableResponse<Delegate[]>> {
 		return this.sendPost("delegates/search", payload, query);
 	}
 }

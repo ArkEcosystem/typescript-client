@@ -22,12 +22,24 @@ export interface PaginableResponse {
  * An API response
  *
  * @template T `body` content, will add `meta` pagination data if is an array
- * @template U Custom `meta` data to add (optional)
- * @template V Should the request be auto-paginated ? (optional)
  */
-export type ApiResponse<T, U extends Record<string, any> = {}, V extends boolean = true> = IResponse<
-	DataResponse<T> & (V extends true ? (T extends any[] ? PaginableResponse : {}) : {}) & U
->;
+export interface ApiResponse<T> extends IResponse<DataResponse<T>> {}
+
+/**
+ * An API extended response
+ *
+ * @template T `body` content, will add `meta` pagination data if is an array
+ * @template U Custom `meta` data to add (optional)
+ */
+export interface ApiExtendedResponse<T, U extends Record<string, any>> extends IResponse<DataResponse<T> & U> {}
+
+/**
+ * An API paginable response
+ *
+ * @template T `body` content, will add `meta` pagination data if is an array
+ * @template U Custom `meta` data to add (optional)
+ */
+export interface ApiPaginableResponse<T> extends ApiExtendedResponse<T, PaginableResponse> {}
 
 // Export type ApiResponse<T, U extends Record<string, any> = {}> = IResponse<DataResponse<T> & (T extends any[] ? PaginableResponse : {})>;
 

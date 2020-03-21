@@ -1,4 +1,4 @@
-import { ApiQuery, ApiResponse } from "../interfaces";
+import { ApiQuery, ApiResponse, ApiPaginableResponse } from "../interfaces";
 import {
 	AllWalletsApiQuery,
 	SearchWalletsApiBody,
@@ -21,7 +21,7 @@ export class Wallets extends Resource {
 	 *
 	 * A paginated API is provided to obtain all wallets, including empty ones.
 	 */
-	public async all(query?: AllWalletsApiQuery): Promise<ApiResponse<Wallet[]>> {
+	public async all(query?: AllWalletsApiQuery): Promise<ApiPaginableResponse<Wallet[]>> {
 		return this.sendGet("wallets", query);
 	}
 
@@ -48,7 +48,7 @@ export class Wallets extends Resource {
 	public async transactions(
 		addressOrPublicKey: string,
 		query?: WalletsTransactionsApiQuery,
-	): Promise<ApiResponse<Transaction[]>> {
+	): Promise<ApiPaginableResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/transactions`, query);
 	}
 
@@ -64,7 +64,7 @@ export class Wallets extends Resource {
 	public async transactionsReceived(
 		addressOrPublicKey: string,
 		query?: WalletsTransactionsReceivedApiQuery,
-	): Promise<ApiResponse<Transaction[]>> {
+	): Promise<ApiPaginableResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/transactions/received`, query);
 	}
 
@@ -80,7 +80,7 @@ export class Wallets extends Resource {
 	public async transactionsSent(
 		addressOrPublicKey: string,
 		query?: WalletsTransactionsSentApiQuery,
-	): Promise<ApiResponse<Transaction[]>> {
+	): Promise<ApiPaginableResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/transactions/sent`, query);
 	}
 
@@ -93,7 +93,7 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async votes(addressOrPublicKey: string, query?: ApiQuery): Promise<ApiResponse<Transaction[]>> {
+	public async votes(addressOrPublicKey: string, query?: ApiQuery): Promise<ApiPaginableResponse<Transaction[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/votes`, query);
 	}
 
@@ -104,7 +104,7 @@ export class Wallets extends Resource {
 	 *
 	 * Most top wallets belong to exchanges and the frozen remainder from the ARK ICO.
 	 */
-	public async top(query?: ApiQuery): Promise<ApiResponse<Wallet[]>> {
+	public async top(query?: ApiQuery): Promise<ApiPaginableResponse<Wallet[]>> {
 		return this.sendGet("wallets/top", query);
 	}
 
@@ -115,7 +115,7 @@ export class Wallets extends Resource {
 	 *
 	 * A direct database query usually is more performant when the query expression becomes complicated.
 	 */
-	public async search(payload: SearchWalletsApiBody, query?: ApiQuery): Promise<ApiResponse<Wallet[]>> {
+	public async search(payload: SearchWalletsApiBody, query?: ApiQuery): Promise<ApiPaginableResponse<Wallet[]>> {
 		return this.sendPost("wallets/search", payload, query);
 	}
 
@@ -124,7 +124,7 @@ export class Wallets extends Resource {
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.
 	 */
-	public async locks(addressOrPublicKey: string, query?: ApiQuery): Promise<ApiResponse<Lock[]>> {
+	public async locks(addressOrPublicKey: string, query?: ApiQuery): Promise<ApiPaginableResponse<Lock[]>> {
 		return this.sendGet(`wallets/${addressOrPublicKey}/locks`, query);
 	}
 }

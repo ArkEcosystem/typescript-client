@@ -1,4 +1,4 @@
-import { ApiResponse } from "../interfaces";
+import { ApiResponse, ApiPaginableResponse } from "../interfaces";
 import {
 	AllLocksApiQuery,
 	SearchLocksApiBody,
@@ -17,7 +17,7 @@ export class Locks extends Resource {
 	/**
 	 * List all locks
 	 */
-	public async all(query?: AllLocksApiQuery): Promise<ApiResponse<Lock[]>> {
+	public async all(query?: AllLocksApiQuery): Promise<ApiPaginableResponse<Lock[]>> {
 		return this.sendGet("locks", query);
 	}
 
@@ -32,7 +32,10 @@ export class Locks extends Resource {
 	/**
 	 * Search locks
 	 */
-	public async search(payload?: SearchLocksApiBody, query?: SearchLocksApiQuery): Promise<ApiResponse<Lock[]>> {
+	public async search(
+		payload?: SearchLocksApiBody,
+		query?: SearchLocksApiQuery,
+	): Promise<ApiPaginableResponse<Lock[]>> {
 		return this.sendPost("locks/search", payload, query);
 	}
 
@@ -42,7 +45,7 @@ export class Locks extends Resource {
 	public async unlocked(
 		payload?: SearchLocksUnlockedApiBody,
 		query?: SearchLocksUnlockedApiQuery,
-	): Promise<ApiResponse<Transaction[]>> {
+	): Promise<ApiPaginableResponse<Transaction[]>> {
 		return this.sendPost("locks/unlocked", payload, query);
 	}
 }

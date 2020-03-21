@@ -1,4 +1,4 @@
-import { ApiResponse } from "../interfaces";
+import { ApiResponse, ApiExtendedResponse } from "../interfaces";
 import { Resource } from "./resource";
 import {
 	NodeConfiguration,
@@ -40,7 +40,7 @@ export class Node extends Resource {
 	 *
 	 * @param days The number of days which will be regarded.
 	 */
-	public async fees(days: number): Promise<ApiResponse<NodeFeeStatisticsBody, NodeFeeStatisticsMeta, false>> {
+	public async fees(days: number): Promise<ApiExtendedResponse<NodeFeeStatisticsBody, NodeFeeStatisticsMeta>> {
 		return this.sendGet("node/fees", { days });
 	}
 
