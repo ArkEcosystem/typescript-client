@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.1] - 2020-03-12
+
+### Fixed
+
+- Add and adjust various transaction typings (6096f3ba, @rigwild)
+
 ## [1.1.0] - 2020-03-20
 
 ### Added
