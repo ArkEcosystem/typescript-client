@@ -65,7 +65,7 @@
 		"@types/jest": "^25.1.4",
 		"@types/nock": "^11.1.0",
 		"@types/prettier": "^1.19.0",
-		"@types/rimraf": "^2.0.3",
+		"@types/rimraf": "^3.0.0",
 		"@typeskrift/tsconfig": "^0.1.2",
 		"@typeskrift/tslint": "^0.1.5",
 		"codecov": "^3.6.5",
