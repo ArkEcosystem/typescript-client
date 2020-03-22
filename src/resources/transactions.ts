@@ -1,4 +1,4 @@
-import { ApiQuery, ApiResponse, ApiPaginableResponse } from "../interfaces";
+import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllTransactionsApiQuery,
 	SearchTransactionsApiBody,
@@ -18,7 +18,7 @@ export class Transactions extends Resource {
 	 *
 	 * The paginated API is used to query for multiple transactions. You can apply _filters_ through the query parameter to search for specific transactions.
 	 */
-	public async all(query?: AllTransactionsApiQuery): Promise<ApiPaginableResponse<Transaction[]>> {
+	public async all(query?: AllTransactionsApiQuery): Promise<ApiResponseWithPagination<Transaction[]>> {
 		return this.sendGet("transactions", query);
 	}
 
@@ -57,7 +57,7 @@ export class Transactions extends Resource {
 	 *
 	 * If you have set the transaction with a fee of near zero, it might not be picked up by a Delegate and will time out.
 	 */
-	public async allUnconfirmed(query?: ApiQuery): Promise<ApiPaginableResponse<Transaction[]>> {
+	public async allUnconfirmed(query?: ApiQuery): Promise<ApiResponseWithPagination<Transaction[]>> {
 		return this.sendGet("transactions/unconfirmed", query);
 	}
 
@@ -84,7 +84,7 @@ export class Transactions extends Resource {
 	public async search(
 		payload: SearchTransactionsApiBody,
 		query?: ApiQuery,
-	): Promise<ApiPaginableResponse<Transaction[]>> {
+	): Promise<ApiResponseWithPagination<Transaction[]>> {
 		return this.sendPost("transactions/search", payload, query);
 	}
 

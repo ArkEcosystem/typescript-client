@@ -5,7 +5,7 @@ export interface IResponse<T> {
 }
 
 export type DataResponse<T> = { data: T; errors: any };
-export interface PaginableResponse {
+export interface ResponseWithPagination {
 	meta: {
 		count: number;
 		pageCount: number;
@@ -39,7 +39,7 @@ export interface ApiExtendedResponse<T, U extends Record<string, any>> extends I
  * @template T `body` content, will add `meta` pagination data if is an array
  * @template U Custom `meta` data to add (optional)
  */
-export interface ApiPaginableResponse<T> extends ApiExtendedResponse<T, PaginableResponse> {}
+export interface ApiResponseWithPagination<T> extends ApiExtendedResponse<T, ResponseWithPagination> {}
 
 // Export type ApiResponse<T, U extends Record<string, any> = {}> = IResponse<DataResponse<T> & (T extends any[] ? PaginableResponse : {})>;
 

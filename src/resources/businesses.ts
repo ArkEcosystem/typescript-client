@@ -1,4 +1,4 @@
-import { ApiResponse, ApiPaginableResponse } from "../interfaces";
+import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import { Resource } from "./resource";
 import {
 	AllBusinessesApiQuery,
@@ -13,7 +13,7 @@ export class Businesses extends Resource {
 	/**
 	 * List all businesses
 	 */
-	public async all(query?: AllBusinessesApiQuery): Promise<ApiPaginableResponse<Business[]>> {
+	public async all(query?: AllBusinessesApiQuery): Promise<ApiResponseWithPagination<Business[]>> {
 		return this.sendGet("businesses", query);
 	}
 
@@ -34,7 +34,7 @@ export class Businesses extends Resource {
 	public async bridgechains(
 		walletAddress: string,
 		query?: BusinessBridgechainsApiQuery,
-	): Promise<ApiPaginableResponse<Bridgechain[]>> {
+	): Promise<ApiResponseWithPagination<Bridgechain[]>> {
 		return this.sendGet(`businesses/${walletAddress}/bridgechains`, query);
 	}
 
@@ -54,7 +54,7 @@ export class Businesses extends Resource {
 	public async search(
 		payload?: SearchBusinesssApiBody,
 		query?: SearchBusinesssApiQuery,
-	): Promise<ApiPaginableResponse<Business[]>> {
+	): Promise<ApiResponseWithPagination<Business[]>> {
 		return this.sendPost("businesses/search", payload, query);
 	}
 }
