@@ -7,9 +7,7 @@ export class Rounds extends Resource {
 	 *
 	 * @param roundNumber The number of wanted round.
 	 */
-	public async delegates(
-		roundNumber: number,
-	): Promise<ApiResponse<{ publicKey: string; votes: string }, null, false>> {
+	public async delegates(roundNumber: number): Promise<ApiResponse<{ publicKey: string; votes: string }[]>> {
 		return this.sendGet(`rounds/${roundNumber}/delegates`);
 	}
 }

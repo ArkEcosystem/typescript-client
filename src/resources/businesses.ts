@@ -1,4 +1,4 @@
-import { ApiResponse } from "../interfaces";
+import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import { Resource } from "./resource";
 import {
 	AllBusinessesApiQuery,
@@ -13,7 +13,7 @@ export class Businesses extends Resource {
 	/**
 	 * List all businesses
 	 */
-	public async all(query?: AllBusinessesApiQuery): Promise<ApiResponse<Business[]>> {
+	public async all(query?: AllBusinessesApiQuery): Promise<ApiResponseWithPagination<Business[]>> {
 		return this.sendGet("businesses", query);
 	}
 
@@ -34,7 +34,7 @@ export class Businesses extends Resource {
 	public async bridgechains(
 		walletAddress: string,
 		query?: BusinessBridgechainsApiQuery,
-	): Promise<ApiResponse<Bridgechain[]>> {
+	): Promise<ApiResponseWithPagination<Bridgechain[]>> {
 		return this.sendGet(`businesses/${walletAddress}/bridgechains`, query);
 	}
 
@@ -44,10 +44,7 @@ export class Businesses extends Resource {
 	 * @param walletAddress The identifier of the wallet to be retrieved.
 	 * @param genesisHash The genesis hash of the bridgechain to be retrieved.
 	 */
-	public async bridgechain(
-		walletAddress: string,
-		genesisHash: string,
-	): Promise<ApiResponse<Bridgechain>> {
+	public async bridgechain(walletAddress: string, genesisHash: string): Promise<ApiResponse<Bridgechain>> {
 		return this.sendGet(`businesses/${walletAddress}/bridgechains/${genesisHash}`);
 	}
 
@@ -57,7 +54,7 @@ export class Businesses extends Resource {
 	public async search(
 		payload?: SearchBusinesssApiBody,
 		query?: SearchBusinesssApiQuery,
-	): Promise<ApiResponse<Business[]>> {
+	): Promise<ApiResponseWithPagination<Business[]>> {
 		return this.sendPost("businesses/search", payload, query);
 	}
 }

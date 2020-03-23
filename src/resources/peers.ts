@@ -1,4 +1,4 @@
-import { ApiResponse } from "../interfaces";
+import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import { AllPeersApiQuery, Peer } from "../resourcesTypes/peers";
 import { Resource } from "./resource";
 
@@ -13,7 +13,7 @@ export class Peers extends Resource {
 	 *
 	 * Returns all peers known by the Node. These are not necessarily all peers; only public Nodes appear here.
 	 */
-	public async all(query?: AllPeersApiQuery): Promise<ApiResponse<Peer[]>> {
+	public async all(query?: AllPeersApiQuery): Promise<ApiResponseWithPagination<Peer[]>> {
 		return this.sendGet("peers", query);
 	}
 
