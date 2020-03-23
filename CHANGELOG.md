@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.1.1] - 2020-03-12
+## [1.1.3] - 2020-03-12
+
+### Changed
+
+- Simplify pagination with ApiResponse (therefore fixes rounds) (4b1ff6d, @Minigugus)
+- Switch from type to interface for better types preview in code editors (4b1ff6d, @Minigugus)
+
+## [1.1.1] - 2020-03-21
 
 ### Fixed
 
