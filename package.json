@@ -62,7 +62,7 @@
 		"ky-universal": "^0.7.0"
 	},
 	"devDependencies": {
-		"@types/jest": "^25.1.4",
+		"@types/jest": "^26.0.0",
 		"@types/nock": "^11.1.0",
 		"@types/prettier": "^2.0.0",
 		"@types/rimraf": "^3.0.0",
