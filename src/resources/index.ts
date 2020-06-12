@@ -10,6 +10,8 @@ import { Transactions } from "./transactions";
 import { Votes } from "./votes";
 import { Wallets } from "./wallets";
 
+export * from "./resource";
+
 // tslint:disable-next-line: variable-name
 export const Resources = {
 	blocks: Blocks,
