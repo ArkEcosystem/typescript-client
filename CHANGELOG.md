@@ -7,47 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.4] - 2020-06-12
+
+### Changed
+
+-   Export `Resource` class
+
+### Changed
+
 ## [1.1.3] - 2020-03-12
 
 ### Changed
 
-- Simplify pagination with ApiResponse (therefore fixes rounds) (4b1ff6d, @Minigugus)
-- Switch from type to interface for better types preview in code editors (4b1ff6d, @Minigugus)
+-   Simplify pagination with ApiResponse (therefore fixes rounds) (4b1ff6d, @Minigugus)
+-   Switch from type to interface for better types preview in code editors (4b1ff6d, @Minigugus)
 
 ## [1.1.1] - 2020-03-21
 
 ### Fixed
 
-- Add and adjust various transaction typings (6096f3ba, @rigwild)
+-   Add and adjust various transaction typings (6096f3ba, @rigwild)
 
 ## [1.1.0] - 2020-03-20
 
 ### Added
 
-- Types for resource methods (721ff209, @rigwild)
-- Types for available resources (2bdf431e, @rigwild)
-- Types for API responses (97a0502f, @rigwild)
+-   Types for resource methods (721ff209, @rigwild)
+-   Types for available resources (2bdf431e, @rigwild)
+-   Types for API responses (97a0502f, @rigwild)
 
 ### Fixed
 
-- ky implementation (8206af1c, @alexbarnsley)
-- update dependency ky to ^0.18.0 (a9d8d48b, @renovate[bot])
-- update dependency ky to ^0.19.0 (88df2a04, @renovate[bot])
+-   ky implementation (8206af1c, @alexbarnsley)
+-   update dependency ky to ^0.18.0 (a9d8d48b, @renovate[bot])
+-   update dependency ky to ^0.19.0 (88df2a04, @renovate[bot])
 
 ### Changed
 
-- use ky instead of got (ab1f6335, @alexbarnsley)
-- bump handlebars from 4.1.2 to 4.5.3 (cc9206e1, @dependabot[bot])
-- update dependency jest to v25 (585aa234, @renovate[bot])
-- update dependency cross-env to v7 (b126333e, @renovate[bot])
-- update dependency nock to v12 (c4c608e7, @renovate[bot])
-- update dependency codecov to v3.6.5 [security] (75082664, @renovate[bot])
-- update dependency ts-jest to v25 (795c733e, @renovate[bot])
-- update dependency @types/jest to v25 (e192a9f4, @renovate[bot])
-- update all dependencies (02f38b76, @faustbrian)
-- move bridgechains/{id} endpoint (9d15f8cc, @dated)
-- bump acorn from 6.0.2 to 6.4.1 (59b2d3aa, @dependabot[bot])
-- update dependencies (4efad41b, @faustbrian)
+-   use ky instead of got (ab1f6335, @alexbarnsley)
+-   bump handlebars from 4.1.2 to 4.5.3 (cc9206e1, @dependabot[bot])
+-   update dependency jest to v25 (585aa234, @renovate[bot])
+-   update dependency cross-env to v7 (b126333e, @renovate[bot])
+-   update dependency nock to v12 (c4c608e7, @renovate[bot])
+-   update dependency codecov to v3.6.5 [security] (75082664, @renovate[bot])
+-   update dependency ts-jest to v25 (795c733e, @renovate[bot])
+-   update dependency @types/jest to v25 (e192a9f4, @renovate[bot])
+-   update all dependencies (02f38b76, @faustbrian)
+-   move bridgechains/{id} endpoint (9d15f8cc, @dated)
+-   bump acorn from 6.0.2 to 6.4.1 (59b2d3aa, @dependabot[bot])
+-   update dependencies (4efad41b, @faustbrian)
 
 ## [1.0.6] - 2020-01-11
 
