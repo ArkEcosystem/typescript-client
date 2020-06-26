@@ -59,7 +59,7 @@
 	"dependencies": {
 		"is-url-superb": "^3.0.0",
 		"ky": "^0.20.0",
-		"ky-universal": "^0.7.0"
+		"ky-universal": "^0.8.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.0",

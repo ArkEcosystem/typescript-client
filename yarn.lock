@@ -2795,13 +2795,13 @@ kleur@^3.0.2:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-ky-universal@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/ky-universal/-/ky-universal-0.7.0.tgz#c51406190f724f42e624904d314066a526198db1"
-  integrity sha512-lJ39wTuCor/jcNqXd4jvNWw8Rq0eRYJqcof4sjF4aY0sfoj87aFiSKy1Vur7mQ8Jma29rG4qs6SRSeSVatKYlQ==
+ky-universal@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/ky-universal/-/ky-universal-0.8.0.tgz#14c728f73fd08dc8e458d0b8869b2dc53857db9f"
+  integrity sha512-BclVFETQQsbIUxxDr50iR7DA6meYxwbKv52Qh1Mgc1zUeq3PEXxjO++uIbfxEmIbe2wc0TIw6u4nNwOUNrivZQ==
   dependencies:
     abort-controller "^3.0.0"
-    node-fetch "^3.0.0-beta.6-exportfix"
+    node-fetch "^3.0.0-beta.7"
 
 ky@^0.20.0:
   version "0.20.0"
@@ -3050,7 +3050,7 @@ node-fetch@^2.2.0:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
 
-node-fetch@^3.0.0-beta.6-exportfix:
+node-fetch@^3.0.0-beta.7:
   version "3.0.0-beta.6-exportfix"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-3.0.0-beta.6-exportfix.tgz#fc39091dd71487c48a4d02ebcd3474b5c578fdea"
   integrity sha512-jhW2arLPAddi7q04JxlQtApqMQF8GxlGZV+wj5/WuDz3hpDTnAU9haJ5Fi2a0N3b4e728O4EIVACNq9nDCzLYw==
