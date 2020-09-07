@@ -7,7 +7,7 @@ import { AvailableResource, AvailableResourcesName, Resources } from "./resource
 export class Connection {
 	private opts: Record<string, any>;
 
-	public constructor(private readonly host: string) {
+	public constructor(public readonly host: string) {
 		if (!isUrl(host)) {
 			throw new Error(`${host} is not a valid URL.`);
 		}
