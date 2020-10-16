@@ -48,6 +48,8 @@ export interface ApiQuery extends Record<string, any> {
 	page?: number;
 	/** The number of resources per page. */
 	limit?: number;
+	/** The number where to start resource return */
+	offset?: number;
 }
 
 export interface ApiBody extends Record<string, any> {}
