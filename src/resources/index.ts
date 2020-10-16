@@ -1,7 +1,5 @@
 import { Blockchain } from "./blockchain";
 import { Blocks } from "./blocks";
-import { Bridgechains } from "./bridgechains";
-import { Businesses } from "./businesses";
 import { Delegates } from "./delegates";
 import { Locks } from "./locks";
 import { Node } from "./node";
@@ -17,8 +15,6 @@ export * from "./resource";
 export const Resources = {
 	blockchain: Blockchain,
 	blocks: Blocks,
-	bridgechains: Bridgechains,
-	businesses: Businesses,
 	delegates: Delegates,
 	locks: Locks,
 	node: Node,
