@@ -11,11 +11,13 @@ import { mockRounds } from "./rounds";
 import { mockTransactions } from "./transactions";
 import { mockVotes } from "./votes";
 import { mockWallets } from "./wallets";
+import { mockBlockchain } from "./blockchain";
 
 // @ts-ignore
 export const configureMocks = <T>(resource): T => {
 	const host = "https://example.net:4003/api";
 
+	mockBlockchain(host);
 	mockBlocks(host);
 	mockBridgechains(host);
 	mockBusinesses(host);
