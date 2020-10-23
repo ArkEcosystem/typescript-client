@@ -34,20 +34,41 @@ export interface AllBlockApiQuery extends ApiQuery {
 	/** Type by which it orders blocks. */
 	orderBy?: string;
 	/** The identifier of the block to be retrieved. */
-	id?: string;
-	version?: number;
-	timestamp?: number;
-	previousBlock?: string;
+	id?: string[];
+	version?: number[];
+	timestamp?: {
+		from?: number;
+		to?: number;
+	};
+	previousBlock?: string[];
 	/** The height of the block to be retrieved. */
-	height?: number;
-	numberOfTransactions?: number;
-	totalAmount?: number;
-	totalFee?: number;
-	reward?: number;
-	payloadLength?: number;
-	payloadHash?: number;
-	generatorPublicKey?: string;
-	blockSignature?: string;
+	height?: {
+		from?: number;
+		to?: number;
+	};
+	numberOfTransactions?: {
+		from?: number;
+		to?: number;
+	};
+	totalAmount?: {
+		from?: number;
+		to?: number;
+	};
+	totalFee?: {
+		from?: number;
+		to?: number;
+	};
+	reward?: {
+		from?: number;
+		to?: number;
+	};
+	payloadLength?: {
+		from?: number;
+		to?: number;
+	};
+	payloadHash?: number[];
+	generatorPublicKey?: string[];
+	blockSignature?: string[];
 }
 
 export interface TransactionsInBlockApiQuery extends ApiQuery {
@@ -59,14 +80,32 @@ export interface TransactionsInBlockApiQuery extends ApiQuery {
 	id?: string[];
 	version?: number[];
 	blockId?: string[];
-	sequence?: string[];
-	timestamp?: number[];
-	nonce?: number[];
+	sequence?: {
+		from?: number;
+		to?: number;
+	};
+	timestamp?: {
+		from?: number;
+		to?: number;
+	};
+	nonce?: {
+		from?: number;
+		to?: number;
+	};
 	senderPublicKey?: string[];
 	type?: number[];
 	typeGroup?: number[];
 	vendorField?: string[];
-	amount?: number[];
-	fee?: number[];
+	amount?: {
+		from?: number;
+		to?: number;
+	};
+	fee?: {
+		from?: number;
+		to?: number;
+	};
 	asset?: object[];
+
+
+
 }

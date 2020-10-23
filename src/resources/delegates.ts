@@ -1,12 +1,11 @@
-import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
+import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllDelegatesApiQuery,
 	DelegateBlocksApiQuery,
 	DelegateVotersApiQuery,
-	SearchDelegatesApiBody,
 	Delegate,
 	Voter,
-} from "../resourcesTypes/delegates";
+} from "../resourcesTypes";
 import { Resource } from "./resource";
 import { Block } from "..";
 
@@ -71,14 +70,5 @@ export class Delegates extends Resource {
 		query?: DelegateVotersApiQuery,
 	): Promise<ApiResponseWithPagination<Voter[]>> {
 		return this.sendGet(`delegates/${usernameOrAddressOrPublicKey}/voters`, query);
-	}
-
-	/**
-	 * Search for a Delegate
-	 *
-	 * For fine-grained searches, use the search endpoint.
-	 */
-	public async search(payload?: SearchDelegatesApiBody, query?: ApiQuery): Promise<ApiResponseWithPagination<Delegate[]>> {
-		return this.sendPost("delegates/search", payload, query);
 	}
 }

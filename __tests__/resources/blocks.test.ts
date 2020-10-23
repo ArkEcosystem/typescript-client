@@ -33,10 +33,4 @@ describe("API - 2.0 - Resources - Blocks", () => {
 
 		expect(response.status).toBe(200);
 	});
-
-	it("should call \"search\" method", async () => {
-		const response = await resource.search({});
-
-		expect(response.status).toBe(200);
-	});
 });

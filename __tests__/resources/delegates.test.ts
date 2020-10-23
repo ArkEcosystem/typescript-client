@@ -21,10 +21,4 @@ describe("API - 2.0 - Resources - Delegates", () => {
 
 		expect(response.status).toBe(200);
 	});
-
-	it("should call \"search\" method", async () => {
-		const response = await resource.search({});
-
-		expect(response.status).toBe(200);
-	});
 });
