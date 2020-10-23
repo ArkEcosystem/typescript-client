@@ -138,7 +138,7 @@ export interface DelegateVotersApiQuery extends ApiQuery {
 	orderBy?: string;
 	address: string;
 	publicKey: string;
-	balance: number;
-	nonce: number;
+	balance: string;
+	nonce: string;
 	attributes: object;
 }

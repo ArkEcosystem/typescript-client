@@ -6,10 +6,10 @@ export interface Block {
 	height: number;
 	previous: string;
 	forged: {
-		reward: number;
-		fee: number;
-		total: number;
-		amount: number;
+		reward: string;
+		fee: string;
+		total: string;
+		amount: string;
 	};
 	payload: {
 		hash: string;
@@ -105,7 +105,4 @@ export interface TransactionsInBlockApiQuery extends ApiQuery {
 		to?: number;
 	};
 	asset?: object[];
-
-
-
 }
