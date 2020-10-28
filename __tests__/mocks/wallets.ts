@@ -30,10 +30,6 @@ export const mockWallets = (host: string) => {
 		.reply(200, { data: [] });
 
 	nock(host)
-		.post("/wallets/search")
-		.reply(200, { data: [] });
-
-	nock(host)
 		.get("/wallets/123/locks")
 		.reply(200, { data: [] });
 };

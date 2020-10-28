@@ -30,10 +30,4 @@ export const mockBlocks = (host: string) => {
 		.reply(200, {
 			data: [],
 		});
-
-	nock(host)
-		.post("/blocks/search")
-		.reply(200, {
-			data: [],
-		});
 };
