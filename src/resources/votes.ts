@@ -1,6 +1,6 @@
-import { ApiQuery, ApiResponse } from "../interfaces";
+import { ApiResponse } from "../interfaces";
 import { Resource } from "./resource";
-import { Transaction } from "../resourcesTypes";
+import { AllTransactionsApiQuery, Transaction } from "../resourcesTypes";
 
 /**
  * A vote is a specific type of transaction (type 3).
@@ -15,7 +15,7 @@ export class Votes extends Resource {
 	/**
 	 * List All Votes
 	 */
-	public async all(query?: ApiQuery): Promise<ApiResponse<Transaction>> {
+	public async all(query?: AllTransactionsApiQuery): Promise<ApiResponse<Transaction>> {
 		return this.sendGet("votes", query);
 	}
 
