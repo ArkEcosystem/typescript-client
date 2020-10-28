@@ -1,9 +1,14 @@
 export interface NodeConfiguration {
+	core: {
+		version: string;
+	};
 	nethash: string;
+	slip44: number;
+	wif: number;
 	token: string;
 	symbol: string;
 	explorer: string;
-	version: number;
+	version: string;
 	ports: Record<string, number>;
 	constants: {
 		height: number;
@@ -24,15 +29,21 @@ export interface NodeConfiguration {
 				vote: number;
 				multiSignature: number;
 				ipfs: number;
-				timelockTransfer: number;
 				multiPayment: number;
 				delegateResignation: number;
+				htlcLock: number;
+				htlcClaim: number;
+				htlcRefund: number;
 			};
 		};
-		ignoreInvalidSecondSignatureField: boolean;
+		vendorFieldLength: number;
+		multiPaymentLimit: number;
+		aip11: boolean;
+		htlcEnabled: boolean;
+		aip36: boolean;
 	};
+
 	transactionPool: {
-		maxTransactionAge: number;
 		dynamicFees: {
 			enabled: boolean;
 			minFeePool: number;
@@ -44,11 +55,13 @@ export interface NodeConfiguration {
 				vote: number;
 				multiSignature: number;
 				ipfs: number;
-				timelockTransfer: number;
 				multiPayment: number;
 				delegateResignation: number;
+				htlcLock: number;
+				htlcClaim: number;
+				htlcRefund: number;
 			};
-		};
+		} | { enabled: boolean };
 	};
 }
 
@@ -132,12 +145,10 @@ export interface NodeCryptoConfiguration {
 }
 
 export interface NodeFeeStatisticsBody {
-	type: string;
 	min: string;
 	max: string;
 	avg: string;
 	sum: string;
-	median: string;
 }
 export interface NodeFeeStatisticsMeta {
 	days: number;
@@ -147,6 +158,7 @@ export interface NodeStatus {
 	synced: boolean;
 	now: number;
 	blocksCount: number;
+	timestamp: number;
 }
 
 export interface NodeSyncingStatus {

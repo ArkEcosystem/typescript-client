@@ -25,16 +25,12 @@ export interface AllLocksApiQuery extends ApiQuery {
 	amount?: string;
 	secretHash?: string;
 	recipientId?: string;
-	timestamp?: {
-		epoch?: number;
-		unix?: number;
-		human?: string;
-	};
+	"timestamp.epoch"?: number;
+	"timestamp.unix"?: number;
+	"timestamp.human"?: string;
 	expirationType?: number;
-	expirationValue?: {
-		from?: number;
-		to?: number;
-	};
+	"expirationValue.from"?: number;
+	"expirationValue.to"?: number;
 	vendorField: string;
 }
 

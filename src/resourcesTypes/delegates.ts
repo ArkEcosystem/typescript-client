@@ -42,56 +42,28 @@ export interface AllDelegatesApiQuery extends ApiQuery {
 	orderBy?: string;
 	username?: string;
 	address?: string;
-	votes?: {
-		from?: number;
-		to?: number;
-	};
-	rank?: {
-		from?: number;
-		to?: number;
-	};
+	"votes.from"?: number;
+	"votes.to"?: number;
+	"rank.from"?: number;
+	"rank.to"?: number;
 	isResigned?: boolean;
-	blocks?: {
-		produced?: {
-			from?: number;
-			to?: number;
-		};
-		last?: {
-			id?: string;
-			height?: number;
-			timestamp: {
-				epoch: {
-					from?: number;
-					to?: number;
-				};
-				unix: {
-					from?: number;
-					to?: number;
-				};
-				human: string;
-			};
-		};
-	};
-	production: {
-		approval: {
-			from?: number;
-			to?: number;
-		};
-	};
-	forged: {
-		fees: {
-			from?: number;
-			to?: number;
-		};
-		rewards: {
-			from?: number;
-			to?: number;
-		};
-		total: {
-			from?: number;
-			to?: number;
-		};
-	};
+	"blocks.produced.from"?: number;
+	"blocks.produced.to"?: number;
+	"blocks.last.id"?: string;
+	"blocks.last.height"?: number;
+	"blocks.last.timestamp.epoch.from"?: number;
+	"blocks.last.timestamp.epoch.to"?: number;
+	"blocks.last.timestamp.unix.from"?: number;
+	"blocks.last.timestamp.unix.to"?: number;
+	"blocks.last.timestamp.human"?: string;
+	"production.approval.from"?: number;
+	"production.approval.to"?: number;
+	"forged.fees.from"?: number;
+	"forged.fees.to"?: number;
+	"forged.rewards.from"?: number;
+	"forged.rewards.to"?: number;
+	"forged.total.from"?: number;
+	"forged.total.to"?: number;
 }
 
 export interface DelegateBlocksApiQuery extends ApiQuery {
@@ -99,35 +71,21 @@ export interface DelegateBlocksApiQuery extends ApiQuery {
 	orderBy?: string;
 	id?: string[];
 	version?: number[];
-	timestamp?: {
-		from?: number;
-		to?: number;
-	};
+	"timestamp.from"?: number;
+	"timestamp.to"?: number;
 	previousBlock?: string[];
-	height?: {
-		from?: number;
-		to?: number;
-	};
-	numberOfTransactions?: {
-		from?: number;
-		to?: number;
-	};
-	totalAmount?: {
-		from?: number;
-		to?: number;
-	};
-	totalFee?: {
-		from?: number;
-		to?: number;
-	};
-	reward?: {
-		from?: number;
-		to?: number;
-	};
-	payloadLength?: {
-		from?: number;
-		to?: number;
-	};
+	"height.from"?: number;
+	"height.to"?: number;
+	"numberOfTransactions.from"?: number;
+	"numberOfTransactions.to"?: number;
+	"totalAmount.from"?: number;
+	"totalAmount.to"?: number;
+	"totalFee.from"?: number;
+	"totalFee.to"?: number;
+	"reward.from"?: number;
+	"reward.to"?: number;
+	"payloadLength.from"?: number;
+	"payloadLength.to"?: number;
 	payloadHash?: string[];
 	generatorPublicKey?: string[];
 	blockSignature?: string[];
