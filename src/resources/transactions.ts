@@ -1,7 +1,6 @@
 import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllTransactionsApiQuery,
-	SearchTransactionsApiBody,
 	CreateTransactionApiResponse,
 	Transaction,
 	TransactionTypes,
@@ -70,22 +69,6 @@ export class Transactions extends Resource {
 	 */
 	public async getUnconfirmed(id: string): Promise<ApiResponse<Transaction>> {
 		return this.sendGet(`transactions/unconfirmed/${id}`);
-	}
-
-	/**
-	 * Search for Transactions
-	 *
-	 * For fine-grained searches, use the `search` endpoint.
-	 *
-	 * Note that unless you use specific body parameters, the response might contain a large number of transactions (hundreds of thousands).
-	 *
-	 * It is best to filter as many transactions node side, instead of dissecting the response client side.
-	 */
-	public async search(
-		payload: SearchTransactionsApiBody,
-		query?: ApiQuery,
-	): Promise<ApiResponseWithPagination<Transaction[]>> {
-		return this.sendPost("transactions/search", payload, query);
 	}
 
 	/**

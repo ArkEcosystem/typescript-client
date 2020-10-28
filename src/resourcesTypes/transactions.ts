@@ -1,4 +1,4 @@
-import { ApiBody, ApiQuery } from "../interfaces";
+import { ApiQuery } from "../interfaces";
 
 export interface Transaction {
 	id: string;
@@ -25,18 +25,22 @@ export interface Transaction {
 }
 
 export type TransactionAssets = {
-	ipfs?: string;
-	votes?: string[];
-	delegate?: {
-		username: string;
-	};
 	signature?: {
 		publicKey: string;
 	};
+	delegate?: {
+		username: string;
+	};
+	votes?: string[];
 	multiSignature?: {
 		publicKeys: string[];
 		min: string;
 	};
+	ipfs?: string;
+	payments?: {
+		amount: string;
+		recipientId: string;
+	}[];
 	lock?: {
 		secretHash: string;
 		expiration: {
@@ -75,12 +79,7 @@ export interface TransactionTypes extends Record<number, Record<string, number>>
 		HtlcRefund: number;
 	};
 	2: {
-		BusinessRegistration: number;
-		BusinessResignation: number;
-		BusinessUpdate: number;
-		BridgechainRegistration: number;
-		BridgechainResignation: number;
-		BridgechainUpdate: number;
+		Entity: number;
 	};
 }
 
@@ -99,50 +98,35 @@ export interface TransactionFees extends Record<number, Record<string, string>> 
 		htlcRefund: string;
 	};
 	2: {
-		businessRegistration: string;
-		businessResignation: string;
-		businessUpdate: string;
-		bridgechainRegistration: string;
-		bridgechainResignation: string;
-		bridgechainUpdate: string;
+		entityRegistration: string;
+		entityResignation: string;
+		entityUpdate: string;
 	};
 }
 
 export interface AllTransactionsApiQuery extends ApiQuery {
-	/** The transaction type to be retrieved. */
-	type?: number;
-	/** The block id to be retrieved. */
-	blockId?: number;
-	/** The transaction id to be retrieved. */
-	id?: number;
-}
-
-export interface SearchTransactionsApiBody extends ApiBody {
-	orderBy?: string;
-	id?: string;
-	blockId?: string;
-	type?: number;
-	version?: number;
-	network?: number;
-	senderPublicKey?: string;
+	address?: string;
 	senderId?: string;
 	recipientId?: string;
-	ownerId?: string;
-	vendorFieldHex?: string;
-	asset?: TransactionAssets;
-	signature?: string;
-	signatures?: string[];
-	MultiSignatureAddress?: string;
-	timestamp?: {
-		from?: number;
-		to?: number;
-	};
-	amount?: {
-		from?: number;
-		to?: number;
-	};
-	fee?: {
-		from?: number;
-		to?: number;
-	};
+	/** The transaction id to be retrieved. */
+	id?: number;
+	version?: number;
+	/** The block id to be retrieved. */
+	blockId?: number;
+	"sequence.from"?: number;
+	"sequence.to"?: number;
+	"timestamp.from"?: number;
+	"timestamp.to"?: number;
+	"nonce.from"?: number;
+	"nonce.to"?: number;
+	senderPublicKey?: string;
+	/** The transaction type to be retrieved. */
+	type?: number;
+	typeGroup?: number;
+	vendorField?: string;
+	"amount.from"?: number;
+	"amount.to"?: number;
+	"fee.from"?: number;
+	"fee.to"?: number;
+	asset?: object;
 }
