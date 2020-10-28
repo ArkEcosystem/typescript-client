@@ -10,6 +10,7 @@ import { mockTransactions } from "./transactions";
 import { mockVotes } from "./votes";
 import { mockWallets } from "./wallets";
 import { mockBlockchain } from "./blockchain";
+import { mockEntities } from "./entities";
 
 // @ts-ignore
 export const configureMocks = <T>(resource): T => {
@@ -18,6 +19,7 @@ export const configureMocks = <T>(resource): T => {
 	mockBlockchain(host);
 	mockBlocks(host);
 	mockDelegates(host);
+	mockEntities(host);
 	mockLocks(host);
 	mockNode(host);
 	mockPeers(host);

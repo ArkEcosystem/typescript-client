@@ -34,12 +34,6 @@ describe("API - 2.0 - Resources - Transactions", () => {
 		expect(response.status).toBe(200);
 	});
 
-	it("should call \"search\" method", async () => {
-		const response = await resource.search({});
-
-		expect(response.status).toBe(200);
-	});
-
 	it("should call \"types\" method", async () => {
 		const response = await resource.types();
 

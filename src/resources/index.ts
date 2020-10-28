@@ -8,6 +8,7 @@ import { Rounds } from "./rounds";
 import { Transactions } from "./transactions";
 import { Votes } from "./votes";
 import { Wallets } from "./wallets";
+import { Entities } from "./entities";
 
 export * from "./resource";
 
@@ -16,6 +17,7 @@ export const Resources = {
 	blockchain: Blockchain,
 	blocks: Blocks,
 	delegates: Delegates,
+	entities: Entities,
 	locks: Locks,
 	node: Node,
 	peers: Peers,
