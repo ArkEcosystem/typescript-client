@@ -1,122 +1,57 @@
-import { ApiBody, ApiQuery } from "../interfaces";
+import { ApiQuery } from "../interfaces";
 
 export interface Wallet {
 	address: string;
 	publicKey: string;
-	secondPublicKey?: string;
-	nonce: string;
 	balance: string;
-	username?: string;
-	vote?: string;
-	attributes: {
-		secondPublicKey?: string;
-		vote?: string;
-		delegate?: {
-			username: string;
-			voteBalance: string;
-			forgedFees: string;
-			forgedRewards: string;
-			producedBlocks: number;
-			rank: number;
-			lastBlock: {
-				version: number;
-				timestamp: number;
-				height: number;
-				previousBlockHex: string;
-				previousBlock: string;
-				numberOfTransactions: number;
-				totalAmount: string;
-				totalFee: string;
-				reward: string;
-				payloadLength: number;
-				payloadHash: string;
-				generatorPublicKey: string;
-				blockSignature: string;
-				idHex: string;
-				id: string;
-			};
-			round: number;
-		};
-		htlc?: {
-			locks: {};
-			lockedBalance: string;
-		};
-		votes?: string[];
-	} & Record<string, any>;
-	lockedBalance?: string;
-	isDelegate: boolean;
-	isResigned: boolean;
+	nonce: string;
+	attributes: object;
 }
 
 export interface AllWalletsApiQuery extends ApiQuery {
-	/** Type by which it orders wallets. */
-	orderBy?: string;
 	address?: string;
 	publicKey?: string;
+	"balance.from"?: number;
+	"balance.to"?: number;
+	"nonce.from"?: number;
+	"nonce.to"?: number;
+	attributes?: object;
+}
+
+export interface WalletsLockApiQuery extends ApiQuery {
+	lockId?: string;
 	senderPublicKey?: string;
-	vote?: string;
-	username?: string;
-	balance?: number;
-	voteBalance?: number;
-	producedBlocks?: number;
+	isExpired?: boolean;
+	amount?: string;
+	secretHash?: string;
+	recipientId?: string;
+	"blocks.last.timestamp.epoch.from"?: number;
+	"blocks.last.timestamp.epoch.to"?: number;
+	"blocks.last.timestamp.unix.from"?: number;
+	"blocks.last.timestamp.unix.to"?: number;
+	"blocks.last.timestamp.human"?: string;
 }
 
 export interface WalletsTransactionsApiQuery extends ApiQuery {
-	id?: string;
-	blockId?: string;
-	type?: number;
-	typeGroup?: number;
-	version?: number;
-	timestamp?: number;
-	nonce?: number;
-	amount?: number;
-	fee?: number;
-	vendorField?: string;
-}
-
-export interface WalletsTransactionsReceivedApiQuery extends ApiQuery {
-	id?: string;
-	blockId?: string;
-	type?: number;
-	typeGroup?: number;
-	version?: number;
-	senderPublicKey?: string;
-	senderId?: string;
-	timestamp?: number;
-	nonce?: number;
-	amount?: number;
-	fee?: number;
-	vendorField?: string;
-}
-
-export interface WalletsTransactionsSentApiQuery extends ApiQuery {
-	/** Type by which it orders wallets. */
-	orderBy?: string;
-	id?: string;
-	blockId?: string;
-	type?: number;
-	typeGroup?: number;
-	version?: number;
-	recipientId?: string;
-	timestamp?: number;
-	nonce?: number;
-	amount?: number;
-	fee?: number;
-	vendorField?: string;
-}
-
-export interface SearchWalletsApiBody extends ApiBody {
 	address?: string;
-	publicKey?: string;
-	secondPublicKey?: string;
-	vote?: string;
-	username?: string;
-	balance?: {
-		from?: number;
-		to?: number;
-	};
-	votebalance?: {
-		from?: number;
-		to?: number;
-	};
+	senderId?: string;
+	recipientId?: string;
+	id?: number;
+	version?: number;
+	blockId?: number;
+	"sequence.from"?: number;
+	"sequence.to"?: number;
+	"timestamp.from"?: number;
+	"timestamp.to"?: number;
+	"nonce.from"?: number;
+	"nonce.to"?: number;
+	senderPublicKey?: string;
+	type?: number;
+	typeGroup?: number;
+	vendorField?: string;
+	"amount.from"?: number;
+	"amount.to"?: number;
+	"fee.from"?: number;
+	"fee.to"?: number;
+	asset?: object;
 }
