@@ -1,6 +1,4 @@
 import { Blocks } from "./blocks";
-import { Bridgechains } from "./bridgechains";
-import { Businesses } from "./businesses";
 import { Delegates } from "./delegates";
 import { Locks } from "./locks";
 import { Node } from "./node";
@@ -15,8 +13,6 @@ export * from "./resource";
 // tslint:disable-next-line: variable-name
 export const Resources = {
 	blocks: Blocks,
-	bridgechains: Bridgechains,
-	businesses: Businesses,
 	delegates: Delegates,
 	locks: Locks,
 	node: Node,
