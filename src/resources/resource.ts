@@ -19,7 +19,7 @@ export class Resource {
 	}
 
 	public async sendGet<T = any>(url: string, query?: Record<string, any>): Promise<IResponse<T>> {
-		const dotNotationQuery: any = {};
+		let dotNotationQuery: any = {};
 		const loopTrueObjects = (object: any, dotedParameter: string) => {
 			for (const key of Object.keys(object)) {
 				const objectProperty = object[key];
@@ -30,9 +30,13 @@ export class Resource {
 				}
 			}
 		};
-		loopTrueObjects(query, "");
+		if (query) {
+			loopTrueObjects(query, "");
+		}else {
+			dotNotationQuery = undefined;
+		}
 
-		const response = await this.connection.get(url, { ...this.opts, ...{ searchParams: dotNotationQuery } });
+		const response = await this.connection.get(url, { ...this.opts, ...{ searchParams: dotNotationQuery} });
 
 		this.resetOptions();
 
