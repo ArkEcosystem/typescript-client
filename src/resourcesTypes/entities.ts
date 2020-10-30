@@ -20,6 +20,8 @@ export interface AllEntitiesApiQuery extends ApiQuery {
 	isResigned?: boolean;
 	type?: number;
 	subType?: number;
-	"data.name"?: string;
-	"data.ipfsData"?: string;
+	data?: {
+		name?: string;
+		ipfsData?: string;
+	};
 }

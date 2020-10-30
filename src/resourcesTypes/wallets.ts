@@ -11,10 +11,14 @@ export interface Wallet {
 export interface AllWalletsApiQuery extends ApiQuery {
 	address?: string;
 	publicKey?: string;
-	"balance.from"?: number;
-	"balance.to"?: number;
-	"nonce.from"?: number;
-	"nonce.to"?: number;
+	balance?: {
+		from?: number;
+		to?: number;
+	};
+	nonce?: {
+		from?: number;
+		to?: number;
+	};
 	attributes?: object;
 }
 
@@ -25,11 +29,21 @@ export interface WalletsLockApiQuery extends ApiQuery {
 	amount?: string;
 	secretHash?: string;
 	recipientId?: string;
-	"blocks.last.timestamp.epoch.from"?: number;
-	"blocks.last.timestamp.epoch.to"?: number;
-	"blocks.last.timestamp.unix.from"?: number;
-	"blocks.last.timestamp.unix.to"?: number;
-	"blocks.last.timestamp.human"?: string;
+	blocks?: {
+		last?: {
+			timestamp?: {
+				epoch?: {
+					from?: number;
+					to?: number;
+				};
+				unix?: {
+					from?: number;
+					to?: number;
+				};
+				human?: string;
+			};
+		};
+	};
 }
 
 export interface WalletsTransactionsApiQuery extends ApiQuery {
@@ -39,19 +53,29 @@ export interface WalletsTransactionsApiQuery extends ApiQuery {
 	id?: number;
 	version?: number;
 	blockId?: number;
-	"sequence.from"?: number;
-	"sequence.to"?: number;
-	"timestamp.from"?: number;
-	"timestamp.to"?: number;
-	"nonce.from"?: number;
-	"nonce.to"?: number;
+	sequence?: {
+		from?: number;
+		to?: number;
+	};
+	timestamp?: {
+		from?: number;
+		to?: number;
+	};
+	nonce?: {
+		from?: number;
+		to?: number;
+	};
 	senderPublicKey?: string;
 	type?: number;
 	typeGroup?: number;
 	vendorField?: string;
-	"amount.from"?: number;
-	"amount.to"?: number;
-	"fee.from"?: number;
-	"fee.to"?: number;
+	amount?: {
+		from?: number;
+		to?: number;
+	};
+	fee?: {
+		from?: number;
+		to?: number;
+	};
 	asset?: object;
 }

@@ -113,20 +113,30 @@ export interface AllTransactionsApiQuery extends ApiQuery {
 	version?: number;
 	/** The block id to be retrieved. */
 	blockId?: number;
-	"sequence.from"?: number;
-	"sequence.to"?: number;
-	"timestamp.from"?: number;
-	"timestamp.to"?: number;
-	"nonce.from"?: number;
-	"nonce.to"?: number;
+	sequence?: {
+		from?: number;
+		to?: number;
+	};
+	timestamp?: {
+		from?: number;
+		to?: number;
+	};
+	nonce?: {
+		from?: number;
+		to?: number;
+	};
 	senderPublicKey?: string;
 	/** The transaction type to be retrieved. */
 	type?: number;
 	typeGroup?: number;
 	vendorField?: string;
-	"amount.from"?: number;
-	"amount.to"?: number;
-	"fee.from"?: number;
-	"fee.to"?: number;
+	amount?: {
+		from?: number;
+		to?: number;
+	};
+	fee?: {
+		from?: number;
+		to?: number;
+	};
 	asset?: object;
 }
