@@ -1,3 +1,6 @@
+// @ts-ignore - Could not find a declaration file for module 'node-dotify'.
+import dotify from "node-dotify"
+
 import { Connection } from "../connection";
 import { IResponse } from "../interfaces";
 
@@ -19,7 +22,13 @@ export class Resource {
 	}
 
 	public async sendGet<T = any>(url: string, query?: Record<string, any>): Promise<IResponse<T>> {
-		const response = await this.connection.get(url, { ...this.opts, ...{ searchParams: query } });
+        let response;
+
+        if (query !== undefined) {
+            response = await this.connection.get(url, { ...this.opts, ...{ searchParams: dotify(query) } });
+        } else {
+            response = await this.connection.get(url, this.opts);
+        }
 
 		this.resetOptions();
 
@@ -31,7 +40,13 @@ export class Resource {
 		body?: Record<string, any>,
 		query?: Record<string, any>,
 	): Promise<IResponse<T>> {
-		const response = await this.connection.post(url, { ...this.opts, ...{ body }, ...{ searchParams: query } });
+        let response;
+
+        if (query !== undefined) {
+            response = await this.connection.post(url, { ...this.opts, ...{ body }, ...{ searchParams: dotify(query) } });
+        } else {
+            response = await this.connection.post(url, { ...this.opts, ...{ body } });
+        }
 
 		this.resetOptions();
 
