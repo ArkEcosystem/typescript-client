@@ -18,7 +18,7 @@ yarn add @arkecosystem/client
 import { Connection } from "@arkecosystem/client";
 
 const init = async () => {
-	const connection: Connection = new Connection("https://dexplorer.ark.io/api/v2");
+	const connection: Connection = new Connection("https://dexplorer.ark.io/api");
 
 	console.log(await connection.api("blocks").all())
 };
