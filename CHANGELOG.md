@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2020-11-11
+
+### Changed
+
+- Export `node` resource type (0048d30c, @KovacZan)
+- Remove bridgechains and businesses endpoints (cf204922, @KovacZan)
+- Dotify query parameters before sending them (6ebbe3be, @faustbrian)
+
 ## [1.1.4] - 2020-06-12
 
 ### Changed
