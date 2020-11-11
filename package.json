@@ -59,7 +59,8 @@
 	"dependencies": {
 		"is-url-superb": "^4.0.0",
 		"ky": "^0.23.0",
-		"ky-universal": "^0.8.2"
+		"ky-universal": "^0.8.2",
+		"node-dotify": "^1.0.2"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.14",
