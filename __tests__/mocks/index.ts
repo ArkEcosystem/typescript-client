@@ -2,7 +2,7 @@ import { Connection } from "../../src";
 
 import { mockBlocks } from "./blocks";
 import { mockDelegates } from "./delegates";
-=import { mockLocks } from "./locks";
+import { mockLocks } from "./locks";
 import { mockNode } from "./node";
 import { mockPeers } from "./peers";
 import { mockRounds } from "./rounds";
