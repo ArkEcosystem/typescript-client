@@ -2,7 +2,6 @@ import { Connection } from "../../src";
 
 import { mockBlocks } from "./blocks";
 import { mockDelegates } from "./delegates";
-import { mockEntities } from "./entities";
 import { mockLocks } from "./locks";
 import { mockNode } from "./node";
 import { mockPeers } from "./peers";
@@ -17,7 +16,6 @@ export const configureMocks = <T>(resource): T => {
 
 	mockBlocks(host);
 	mockDelegates(host);
-	mockEntities(host);
 	mockLocks(host);
 	mockNode(host);
 	mockPeers(host);
