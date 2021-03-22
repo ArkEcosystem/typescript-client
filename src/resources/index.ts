@@ -1,6 +1,5 @@
 import { Blocks } from "./blocks";
 import { Delegates } from "./delegates";
-import { Entities } from "./entities";
 import { Locks } from "./locks";
 import { Node } from "./node";
 import { Peers } from "./peers";
@@ -15,7 +14,6 @@ export * from "./resource";
 export const Resources = {
 	blocks: Blocks,
 	delegates: Delegates,
-	entities: Entities,
 	locks: Locks,
 	node: Node,
 	peers: Peers,
