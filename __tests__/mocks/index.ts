@@ -16,7 +16,7 @@ export const configureMocks = <T>(resource): T => {
 
 	mockBlocks(host);
 	mockDelegates(host);
-=	mockLocks(host);
+	mockLocks(host);
 	mockNode(host);
 	mockPeers(host);
 	mockRounds(host);
