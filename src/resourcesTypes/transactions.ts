@@ -116,33 +116,3 @@ export interface AllTransactionsApiQuery extends ApiQuery {
 	/** The transaction id to be retrieved. */
 	id?: number;
 }
-
-export interface SearchTransactionsApiBody extends ApiBody {
-	orderBy?: string;
-	id?: string;
-	blockId?: string;
-	type?: number;
-	version?: number;
-	network?: number;
-	senderPublicKey?: string;
-	senderId?: string;
-	recipientId?: string;
-	ownerId?: string;
-	vendorFieldHex?: string;
-	asset?: TransactionAssets;
-	signature?: string;
-	signatures?: string[];
-	MultiSignatureAddress?: string;
-	timestamp?: {
-		from?: number;
-		to?: number;
-	};
-	amount?: {
-		from?: number;
-		to?: number;
-	};
-	fee?: {
-		from?: number;
-		to?: number;
-	};
-}
