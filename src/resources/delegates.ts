@@ -1,9 +1,8 @@
-import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
+import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllDelegatesApiQuery,
 	DelegateBlocksApiQuery,
 	DelegateVotersApiQuery,
-	SearchDelegatesApiBody,
 	Delegate,
 	Voter,
 } from "../resourcesTypes/delegates";

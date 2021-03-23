@@ -1,8 +1,6 @@
 import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllLocksApiQuery,
-	SearchLocksApiBody,
-	SearchLocksApiQuery,
 	SearchLocksUnlockedApiBody,
 	SearchLocksUnlockedApiQuery,
 	Lock,

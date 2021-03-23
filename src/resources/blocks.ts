@@ -1,8 +1,7 @@
-import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
+import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import { Resource } from "./resource";
 import {
 	AllBlockApiQuery,
-	SearchBlockApiBody,
 	TransactionsInBlockApiQuery,
 	Block,
 	Transaction,

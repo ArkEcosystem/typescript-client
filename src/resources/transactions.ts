@@ -1,7 +1,6 @@
 import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllTransactionsApiQuery,
-	SearchTransactionsApiBody,
 	CreateTransactionApiResponse,
 	Transaction,
 	TransactionTypes,
