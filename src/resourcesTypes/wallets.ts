@@ -1,4 +1,4 @@
-import { ApiBody, ApiQuery } from "../interfaces";
+import { ApiQuery } from "../interfaces";
 
 export interface Wallet {
 	address: string;
