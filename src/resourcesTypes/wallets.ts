@@ -1,4 +1,4 @@
-import { ApiBody, ApiQuery } from "../interfaces";
+import { ApiQuery } from "../interfaces";
 
 export interface Wallet {
 	address: string;
@@ -103,20 +103,4 @@ export interface WalletsTransactionsSentApiQuery extends ApiQuery {
 	amount?: number;
 	fee?: number;
 	vendorField?: string;
-}
-
-export interface SearchWalletsApiBody extends ApiBody {
-	address?: string;
-	publicKey?: string;
-	secondPublicKey?: string;
-	vote?: string;
-	username?: string;
-	balance?: {
-		from?: number;
-		to?: number;
-	};
-	votebalance?: {
-		from?: number;
-		to?: number;
-	};
 }

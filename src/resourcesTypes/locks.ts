@@ -30,24 +30,6 @@ export interface AllLocksApiQuery extends ApiQuery {
 	isExpired?: boolean;
 }
 
-export interface SearchLocksApiQuery extends ApiQuery {
-	/** Type by which it orders locks. */
-	orderBy?: string;
-}
-
-export interface SearchLocksApiBody extends ApiBody {
-	recipientId?: string;
-	senderPublicKey?: string;
-	lockId?: string;
-	secretHash?: string;
-	amount?: number;
-	timestamp?: number;
-	vendorField?: string;
-	expirationType?: number;
-	expirationValue?: number;
-	isExpired?: boolean;
-}
-
 export interface SearchLocksUnlockedApiQuery extends ApiQuery {
 	/** Type by which it orders locks. */
 	orderBy?: string;

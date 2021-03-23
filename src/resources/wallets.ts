@@ -1,7 +1,6 @@
 import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllWalletsApiQuery,
-	SearchWalletsApiBody,
 	WalletsTransactionsApiQuery,
 	WalletsTransactionsReceivedApiQuery,
 	WalletsTransactionsSentApiQuery,
@@ -106,17 +105,6 @@ export class Wallets extends Resource {
 	 */
 	public async top(query?: ApiQuery): Promise<ApiResponseWithPagination<Wallet[]>> {
 		return this.sendGet("wallets/top", query);
-	}
-
-	/**
-	 * Search All Wallets
-	 *
-	 * Searching for specific wallets is possible as well.
-	 *
-	 * A direct database query usually is more performant when the query expression becomes complicated.
-	 */
-	public async search(payload: SearchWalletsApiBody, query?: ApiQuery): Promise<ApiResponseWithPagination<Wallet[]>> {
-		return this.sendPost("wallets/search", payload, query);
 	}
 
 	/**

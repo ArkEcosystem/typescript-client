@@ -22,10 +22,6 @@ export const mockTransactions = (host: string) => {
 		.reply(200, { data: [] });
 
 	nock(host)
-		.post("/transactions/search")
-		.reply(200, { data: [] });
-
-	nock(host)
 		.get("/transactions/types")
 		.reply(200, { data: [] });
 

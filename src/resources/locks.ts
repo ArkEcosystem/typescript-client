@@ -1,8 +1,6 @@
 import { ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllLocksApiQuery,
-	SearchLocksApiBody,
-	SearchLocksApiQuery,
 	SearchLocksUnlockedApiBody,
 	SearchLocksUnlockedApiQuery,
 	Lock,
@@ -27,16 +25,6 @@ export class Locks extends Resource {
 	 */
 	public async get(id: string): Promise<ApiResponse<Lock>> {
 		return this.sendGet(`locks/${id}`);
-	}
-
-	/**
-	 * Search locks
-	 */
-	public async search(
-		payload?: SearchLocksApiBody,
-		query?: SearchLocksApiQuery,
-	): Promise<ApiResponseWithPagination<Lock[]>> {
-		return this.sendPost("locks/search", payload, query);
 	}
 
 	/**
