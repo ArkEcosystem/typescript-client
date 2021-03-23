@@ -109,17 +109,6 @@ export class Wallets extends Resource {
 	}
 
 	/**
-	 * Search All Wallets
-	 *
-	 * Searching for specific wallets is possible as well.
-	 *
-	 * A direct database query usually is more performant when the query expression becomes complicated.
-	 */
-	public async search(payload: SearchWalletsApiBody, query?: ApiQuery): Promise<ApiResponseWithPagination<Wallet[]>> {
-		return this.sendPost("wallets/search", payload, query);
-	}
-
-	/**
 	 * List All Locks of a Wallet
 	 *
 	 * @param addressOrPublicKey The identifier of the wallet to be retrieved.

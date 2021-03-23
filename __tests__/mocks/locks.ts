@@ -14,12 +14,6 @@ export const mockLocks = (host: string) => {
     });
 
   nock(host)
-    .post("/locks/search")
-    .reply(200, {
-      data: [],
-    });
-
-  nock(host)
     .post("/locks/unlocked")
     .reply(200, {
       data: [],

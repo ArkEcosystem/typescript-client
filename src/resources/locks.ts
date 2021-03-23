@@ -30,16 +30,6 @@ export class Locks extends Resource {
 	}
 
 	/**
-	 * Search locks
-	 */
-	public async search(
-		payload?: SearchLocksApiBody,
-		query?: SearchLocksApiQuery,
-	): Promise<ApiResponseWithPagination<Lock[]>> {
-		return this.sendPost("locks/search", payload, query);
-	}
-
-	/**
 	 * Search unlocked
 	 */
 	public async unlocked(

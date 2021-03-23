@@ -64,15 +64,4 @@ export class Blocks extends Resource {
 	): Promise<ApiResponseWithPagination<Transaction[]>> {
 		return this.sendGet(`blocks/${idOrHeight}/transactions`, query);
 	}
-
-	/**
-	 * Search All Blocks
-	 *
-	 * It is possible to filter for specifics blocks using the search resource.
-	 *
-	 * Filtering for blocks at the Node side is a lot more efficient than requesting a large payload and filtering it at the client side.
-	 */
-	public async search(payload?: SearchBlockApiBody, query?: ApiQuery): Promise<ApiResponseWithPagination<Block[]>> {
-		return this.sendPost("blocks/search", payload, query);
-	}
 }
