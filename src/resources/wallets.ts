@@ -1,7 +1,6 @@
 import { ApiQuery, ApiResponse, ApiResponseWithPagination } from "../interfaces";
 import {
 	AllWalletsApiQuery,
-	SearchWalletsApiBody,
 	WalletsTransactionsApiQuery,
 	WalletsTransactionsReceivedApiQuery,
 	WalletsTransactionsSentApiQuery,
