@@ -16,12 +16,6 @@ describe("API - 2.0 - Resources - Locks", () => {
     expect(response.status).toBe(200);
   });
 
-  it("should call \"search\" method", async () => {
-    const response = await resource.search({});
-
-    expect(response.status).toBe(200);
-  });
-
   it("should call \"unlocked\" method", async () => {
     const response = await resource.unlocked({});
 
